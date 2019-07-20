@@ -1,4 +1,5 @@
 import os
+import re
 import uuid
 
 import dialogflow_v2
@@ -8,11 +9,13 @@ import dialogflow_v2beta1
 
 
 @task
-def list_intent(c, project='catbot-test'):
+def list_intent(c, project='catbot-test', display_name_regex='\0'):
+    display_name_pattern = re.compile(display_name_regex)
     client = dialogflow_v2beta1.IntentsClient()
     parent = client.project_agent_path(project)
     for element in client.list_intents(parent):
-        print(element)
+        if display_name_pattern.search(element.display_name):
+            print(element)
 
 
 @task
