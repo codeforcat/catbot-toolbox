@@ -1,13 +1,14 @@
 import json
+import os
 import re
+import sys
 import uuid
 
 import dialogflow_v2beta1 as dialogflow
+import yaml
 from dialogflow_v2beta1.proto.session_pb2 import TextInput, QueryInput
-from dialogflow_v2beta1.types import intent_pb2
 from dialogflow_v2.gapic import enums
 from google.protobuf.json_format import MessageToDict
-from google.protobuf.struct_pb2 import Struct
 from invoke import task
 
 from catbot_toolbox.repositories import IntentRepository
@@ -62,14 +63,13 @@ def create_sample_intent(c, project='catbot-test'):
           "displayName": "sample",
           ...
     """
+    with open(os.path.join(os.path.dirname(__file__), 'sample.yml')) as f:
+        intents = yaml.full_load(f)['intents']
+
     repos = IntentRepository(project)
-    intent = repos.create(
-        display_name='sample',
-        training_phrases=['サンプルインテントを呼んで下さい'],
-        messages=['これはサンプルインテントです'],
-        more_question=True,
-    )
-    print(json.dumps(intent, ensure_ascii=False))
+    for display_name, intent_dict in intents.items():
+        intent = repos.create(display_name=display_name, **intent_dict)
+        print(json.dumps(intent, ensure_ascii=False))
 
 
 @task
@@ -96,3 +96,25 @@ def detect_intent(c, text, project='catbot-test'):
     query_input = QueryInput(text=text_input)
     response = sessions_client.detect_intent(session=session, query_input=query_input)
     print(json.dumps(MessageToDict(response), ensure_ascii=False))
+
+
+@task
+def yaml2json(c, file):
+    """YAML形式のファイルを読み込み、JSON形式で出力します。
+
+    Examples:
+        $ pipenv run inv yaml2json -f sample.yml | jq
+    """
+    with open(file) as f:
+        print(json.dumps(yaml.full_load(f), ensure_ascii=False))
+
+
+@task
+def json2yaml(c, file):
+    """JSON形式のファイルを読み込み、YAML形式で出力します。
+
+    Examples:
+        $ pipenv run inv json2yaml -f sample.json
+    """
+    with open(file) as f:
+        yaml.dump(json.load(f), sys.stdout, allow_unicode=True)
