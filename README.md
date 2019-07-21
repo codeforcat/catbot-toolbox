@@ -58,7 +58,7 @@ intentの取得などでパーミッションエラーが出た場合、GCPの�
 [クイックスタート](https://cloud.google.com/dialogflow/docs/quickstart-api#detect-intent-text-python) のサンプルコードの実行
 
 ```
-$ pipenv run python ./detect_intent_texts.py --project-id catbot-test --language-code ja-JP "ほげほげ"
+$ pipenv run python examples/detect_intent_texts.py --project-id catbot-test --language-code ja-JP "ほげほげ"
 Loading .env environment variables…
 Session path: projects/catbot-test/agent/sessions/167b667b-946a-4740-a369-86180e75e0b4
 
