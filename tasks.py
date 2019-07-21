@@ -10,6 +10,8 @@ from google.protobuf.json_format import MessageToDict
 from google.protobuf.struct_pb2 import Struct
 from invoke import task
 
+from catbot_toolbox.repositories import IntentRepository
+
 
 @task
 def list_intent(c, project='catbot-test', display_name_regex='\0'):
@@ -25,16 +27,15 @@ def list_intent(c, project='catbot-test', display_name_regex='\0'):
           "displayName": "sample",
         ...
     """
+    repos = IntentRepository(project)
     display_name_pattern = re.compile(display_name_regex)
-    intents_client = dialogflow.IntentsClient()
-    parent = intents_client.project_agent_path(project)
-    for element in intents_client.list_intents(parent):
-        if display_name_pattern.search(element.display_name):
-            print(json.dumps(MessageToDict(element), ensure_ascii=False))
+    for intent in repos.list_intent():
+        if display_name_pattern.search(intent['display_name']):
+            print(json.dumps(intent, ensure_ascii=False))
 
 
 @task
-def get_intent(c, project='catbot-test', intent_id='', intent_view=enums.IntentView.INTENT_VIEW_FULL):
+def get_intent(c, intent_id, project='catbot-test', intent_view=enums.IntentView.INTENT_VIEW_FULL):
     """Intent IDを指定してIntentを一件取得します。
     IntentのIDがわかっている場合は、 `list-intent` ではなくこちらを利用してください。
 
@@ -45,10 +46,9 @@ def get_intent(c, project='catbot-test', intent_id='', intent_view=enums.IntentV
           "displayName": "sample",
           ...
     """
-    intents_client = dialogflow.IntentsClient()
-    name = intents_client.intent_path(project, intent_id)
-    response = intents_client.get_intent(name, intent_view=intent_view)
-    print(json.dumps(MessageToDict(response), ensure_ascii=False))
+    repos = IntentRepository(project)
+    intent = repos.get(intent_id)
+    print(json.dumps(intent, ensure_ascii=False))
 
 
 @task
@@ -62,87 +62,29 @@ def create_sample_intent(c, project='catbot-test'):
           "displayName": "sample",
           ...
     """
-    intents_client = dialogflow.IntentsClient()
-    contexts_client = dialogflow.ContextsClient()
-
-    training_phrases_parts = ['サンプルインテントを呼んで下さい']
-    training_phrases = []
-    for training_phrases_part in training_phrases_parts:
-        part = intent_pb2.Intent.TrainingPhrase.Part(text=training_phrases_part, user_defined=True)
-        training_phrase = intent_pb2.Intent.TrainingPhrase(
-            parts=[part],
-            type=enums.Intent.TrainingPhrase.Type.EXAMPLE
-        )
-        training_phrases.append(training_phrase)
-
-    message_texts = ['これはサンプルインテントです']
-    text = intent_pb2.Intent.Message.Text(text=message_texts)
-    message = intent_pb2.Intent.Message(
-        text=text,
-        platform=enums.Intent.Message.Platform.LINE
+    repos = IntentRepository(project)
+    intent = repos.create(
+        display_name='sample',
+        training_phrases=['サンプルインテントを呼んで下さい'],
+        messages=['これはサンプルインテントです'],
+        more_question=True,
     )
-
-    payload = Struct()
-    payload.update({
-        'line': {
-            "type": "template",
-            "altText": "もっと質問あるにゃ？",
-            'template': {
-                "type": "confirm",
-                "text": "もっと質問あるにゃ？",
-                "actions": [
-                    {
-                        "type": "message",
-                        "label": "はい",
-                        "text": "はい",
-                    },
-                    {
-                        "type": "message",
-                        "label": "いいえ",
-                        "text": "いいえ",
-                    },
-                ],
-            },
-        },
-    })
-    message2 = dialogflow.types.intent_pb2.Intent.Message(
-        payload=payload,
-        platform=enums.Intent.Message.Platform.LINE,
-    )
-
-    context = dialogflow.types.context_pb2.Context(
-        name=contexts_client.context_path(project=project, session='-', context='more_question'),
-        lifespan_count=5,
-    )
-
-    display_name = 'sample'
-    intent = intent_pb2.Intent(
-        display_name=display_name,
-        output_contexts=[context],
-        training_phrases=training_phrases,
-        messages=[message, message2],
-    )
-
-    parent = intents_client.project_agent_path(project)
-    response = intents_client.create_intent(parent, intent)
-
-    print(json.dumps(MessageToDict(response), ensure_ascii=False))
+    print(json.dumps(intent, ensure_ascii=False))
 
 
 @task
-def delete_intent(c, project='catbot-test', intent_id=''):
+def delete_intent(c, intent_id, project='catbot-test'):
     """Intent IDを指定してIntentを一件削除します。
 
     Examples:
         $ pipenv run inv delete-intent --intent-id 1c5e9b44-1822-4b7a-9e97-f00e789c0ff3
     """
-    intents_client = dialogflow.IntentsClient()
-    name = intents_client.intent_path(project, intent_id)
-    intents_client.delete_intent(name)
+    repos = IntentRepository(project)
+    repos.delete(intent_id)
 
 
 @task
-def detect_intent(c, project='catbot-test', text=''):
+def detect_intent(c, text, project='catbot-test'):
     """入力テキストにマッチするIntentを検出します。
 
     Examples:
