@@ -1,10 +1,10 @@
 import re
-from typing import Union, Optional, List
+from typing import List, Optional, Tuple, Union
 
 import dialogflow_v2beta1 as dialogflow
 import yaml
-from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2.gapic import enums
+from dialogflow_v2beta1.proto import intent_pb2
 from google.api_core.page_iterator import GRPCIterator
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.struct_pb2 import Struct
@@ -57,14 +57,14 @@ class IntentRepository:
         )
 
     @staticmethod
-    def parse_intent_name(name: str) -> (Optional[str], Optional[str]):
+    def parse_intent_name(name: str) -> Tuple[Optional[str], Optional[str]]:
         matches = re.match('projects/(?P<project>[^/]+)/agent/intents/(?P<intent>[^/]+)', name)
         if matches:
             return matches['project'], matches['intent']
         else:
             return None, None
 
-    def build_training_phrases(self, texts: [str]) -> [intent_pb2.Intent.TrainingPhrase]:
+    def build_training_phrases(self, texts: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
         training_phrases = []
         for text in texts:
             part = intent_pb2.Intent.TrainingPhrase.Part(
@@ -79,7 +79,7 @@ class IntentRepository:
 
         return training_phrases
 
-    def build_messages(self, payloads: [Union[str, dict]]) -> [intent_pb2.Intent.Message]:
+    def build_messages(self, payloads: List[Union[str, dict]]) -> List[intent_pb2.Intent.Message]:
         messages = []
         for payload in payloads:
             if isinstance(payload, str):
@@ -109,9 +109,9 @@ class IntentRepository:
     def build_intent(
         self,
         display_name: str,
-        training_phrases: [str],
-        messages: [Union[str, dict]],
-        more_question=False
+        training_phrases: List[str],
+        messages: List[Union[str, dict]],
+        more_question: bool = False
     ) -> intent_pb2.Intent:
         _training_phrases = self.build_training_phrases(training_phrases)
         _messages = self.build_messages(messages)
@@ -134,8 +134,8 @@ class IntentRepository:
 
     def list(
         self,
-        as_dict=True,
-        intent_view=enums.IntentView.INTENT_VIEW_FULL,
+        as_dict: bool = True,
+        intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> Union[List[dict], GRPCIterator]:
         parent = self.intents_client.project_agent_path(self.project)
         intents = self.intents_client.list_intents(parent, intent_view=intent_view)
@@ -147,7 +147,7 @@ class IntentRepository:
     def find_by_display_name(
         self,
         display_name: str,
-        intent_list: Optional[List[dict]]=None,
+        intent_list: Optional[List[dict]] = None,
     ) -> Optional[dict]:
         if intent_list:
             for intent in intent_list:
@@ -161,7 +161,7 @@ class IntentRepository:
 
         return None
 
-    def get(self, id: str, intent_view=enums.IntentView.INTENT_VIEW_FULL) -> dict:
+    def get(self, id: str, intent_view: int = enums.IntentView.INTENT_VIEW_FULL) -> dict:
         name = self.intents_client.intent_path(self.project, id)
         response = self.intents_client.get_intent(name, intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -169,10 +169,10 @@ class IntentRepository:
     def create(
         self,
         display_name: str,
-        training_phrases: [str],
-        messages: [Union[str, dict]],
-        more_question=False,
-        intent_view=enums.IntentView.INTENT_VIEW_FULL,
+        training_phrases: List[str],
+        messages: List[Union[str, dict]],
+        more_question: bool = False,
+        intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
         intent = self.build_intent(display_name, training_phrases, messages, more_question)
         parent = self.intents_client.project_agent_path(self.project)
@@ -183,10 +183,10 @@ class IntentRepository:
         self,
         id: str,
         display_name: str,
-        training_phrases: [str],
-        messages: [Union[str, dict]],
-        more_question=False,
-        intent_view=enums.IntentView.INTENT_VIEW_FULL,
+        training_phrases: List[str],
+        messages: List[Union[str, dict]],
+        more_question: bool = False,
+        intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
         intent = self.build_intent(display_name, training_phrases, messages, more_question)
         intent.name = self.intents_client.intent_path(self.project, id)
@@ -196,11 +196,11 @@ class IntentRepository:
     def upsert(
         self,
         display_name: str,
-        training_phrases: [str],
-        messages: [Union[str, dict]],
-        more_question=False,
-        intent_view=enums.IntentView.INTENT_VIEW_FULL,
-        intent_list: [dict]=None,
+        training_phrases: List[str],
+        messages: List[Union[str, dict]],
+        more_question: bool = False,
+        intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
+        intent_list: Optional[List[dict]] = None,
     ) -> dict:
         """`Intentのupsertを行う。
         `project` と `display_name` が一致するIntentがあればupdate、なければcreateを実行します。
@@ -233,6 +233,6 @@ class IntentRepository:
 
         return result
 
-    def delete(self, id: str):
+    def delete(self, id: str) -> None:
         name = self.intents_client.intent_path(self.project, id)
         self.intents_client.delete_intent(name)

@@ -108,3 +108,7 @@ class IntentRepositoryTest(unittest.TestCase):
                 for intent in result['intents']:
                     project, id = repos.parse_intent_name(intent['name'])
                     repos.delete(id)
+
+
+if __name__ == '__main__':
+    unittest.main()

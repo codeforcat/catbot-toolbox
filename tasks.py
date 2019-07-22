@@ -6,8 +6,8 @@ import uuid
 
 import dialogflow_v2beta1 as dialogflow
 import yaml
-from dialogflow_v2beta1.proto.session_pb2 import TextInput, QueryInput
 from dialogflow_v2.gapic import enums
+from dialogflow_v2beta1.proto.session_pb2 import QueryInput, TextInput
 from google.protobuf.json_format import MessageToDict
 from invoke import task
 
@@ -130,3 +130,75 @@ def json2yaml(c, file):
     """
     with open(file) as f:
         yaml.dump(json.load(f), sys.stdout, allow_unicode=True)
+
+
+@task
+def coverage_report(c):
+    """コンソールへカバレッジレポートを出力します。"""
+    c.run('coverage report -m')
+
+
+@task
+def coverage_html(c):
+    """HTML形式のカバレッジレポートを出力します。"""
+    c.run('coverage html')
+
+
+@task
+def unittest(c):
+    """ユニットテストを実施します。"""
+    c.run('coverage run --source="." tests.py')
+
+
+@task(pre=[unittest, coverage_report, coverage_html])
+def test(c):
+    """テストに関するタスクを実施します。"""
+    pass
+
+
+@task
+def isort(c):
+    """import文の最適化を実施します。"""
+    c.run('isort -rc .')
+
+
+@task(pre=[isort])
+def flake8(c):
+    """コードフォーマットチェックを実施します。"""
+    c.run('flake8')
+
+
+@task
+def mypy(c):
+    """型アノテーションのチェックを実施します。"""
+    c.run('mypy .')
+
+
+@task(pre=[isort, flake8, mypy])
+def format(c):
+    """コードフォーマッティングに関するタスクを実行します。"""
+    pass
+
+
+@task
+def radon_cc(c):
+    """循環的複雑度(Cyclomatic Complexity)を算出します。"""
+    c.run('radon cc -s -a .')
+
+
+@task
+def radon_mi(c):
+    """保守性指数(Maintainability Index)を算出します。"""
+    c.run('radon mi -s .')
+
+
+@task
+def xenon(c):
+    """コード複雑度の検査をします。"""
+    c.run('xenon --max-absolute B --max-modules A --max-average A .')
+
+
+@task(pre=[radon_cc, radon_mi, xenon])
+def metrics(c):
+    """コードメトリクスに関するタスクを実行します。"""
+    pass

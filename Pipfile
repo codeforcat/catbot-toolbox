@@ -5,6 +5,12 @@ verify_ssl = true
 
 [dev-packages]
 invoke = "*"
+coverage = "*"
+mypy = "*"
+xenon = "*"
+flake8 = "*"
+isort = "*"
+flake8-isort = "*"
 
 [packages]
 dialogflow = "*"
