@@ -183,13 +183,13 @@ def format(c):
 @task
 def radon_cc(c):
     """循環的複雑度(Cyclomatic Complexity)を算出します。"""
-    c.run('radon cc -s -a .')
+    c.run('radon cc -s -a -e tasks.py -i examples .')
 
 
 @task
 def radon_mi(c):
     """保守性指数(Maintainability Index)を算出します。"""
-    c.run('radon mi -s .')
+    c.run('radon mi -s -e tasks.py -i examples .')
 
 
 @task
