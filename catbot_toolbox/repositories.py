@@ -129,9 +129,13 @@ class IntentRepository:
 
         return intent
 
-    def list(self, as_dict=True) -> Union[List[dict], GRPCIterator]:
+    def list(
+        self,
+        as_dict=True,
+        intent_view=enums.IntentView.INTENT_VIEW_FULL,
+    ) -> Union[List[dict], GRPCIterator]:
         parent = self.intents_client.project_agent_path(self.project)
-        intents = self.intents_client.list_intents(parent)
+        intents = self.intents_client.list_intents(parent, intent_view=intent_view)
         if as_dict:
             intents = [MessageToDict(intent, preserving_proto_field_name=True) for intent in intents]
 
