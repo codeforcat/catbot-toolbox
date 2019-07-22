@@ -1,7 +1,8 @@
 import re
-from typing import Union, Optional, List, Any
+from typing import Union, Optional, List
 
 import dialogflow_v2beta1 as dialogflow
+import yaml
 from dialogflow_v2beta1.proto import intent_pb2
 from dialogflow_v2.gapic import enums
 from google.api_core.page_iterator import GRPCIterator
@@ -217,6 +218,20 @@ class IntentRepository:
             intent = self.update(id, display_name, training_phrases, messages, more_question, intent_view)
 
         return intent
+
+    def load(self, file: str) -> dict:
+        with open(file) as f:
+            data = yaml.full_load(f)
+            project = data['project']
+            intents = data['intents']
+
+        result = {'project': project, 'intents': []}
+        repos = IntentRepository(project)
+        for intent_params in intents:
+            intent = repos.upsert(**intent_params)
+            result['intents'].append(intent)
+
+        return result
 
     def delete(self, id: str):
         name = self.intents_client.intent_path(self.project, id)

@@ -76,14 +76,23 @@ def upsert_sample_intent(c):
 
 
 @task
-def delete_intent(c, intent_id, project='catbot-test'):
+def delete_intents(c, intent_id='', display_name_regex='', project='catbot-test'):
     """Intent IDを指定してIntentを一件削除します。
 
     Examples:
-        $ pipenv run inv delete-intent --intent-id 1c5e9b44-1822-4b7a-9e97-f00e789c0ff3
+        $ pipenv run inv delete-intents --intent-id 1c5e9b44-1822-4b7a-9e97-f00e789c0ff3
+        $ pipenv run inv delete-intents --display-name-regex '^test_'
     """
-    repos = IntentRepository(project)
-    repos.delete(intent_id)
+    if intent_id:
+        repos = IntentRepository(project)
+        repos.delete(intent_id)
+    elif display_name_regex:
+        repos = IntentRepository(project)
+        display_name_pattern = re.compile(display_name_regex)
+        for intent in repos.list():
+            if display_name_pattern.search(intent['display_name']):
+                _, _id = repos.parse_intent_name(intent['name'])
+                repos.delete(_id)
 
 
 @task

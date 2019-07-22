@@ -1,6 +1,6 @@
 project: catbot-test
 intents:
-  create_sample:
+  - display_name: sample
     training_phrases:
     - サンプルインテントを呼んで下さい
     messages:
