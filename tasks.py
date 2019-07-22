@@ -15,7 +15,7 @@ from catbot_toolbox.repositories import IntentRepository
 
 
 @task
-def list_intent(c, project='catbot-test', display_name_regex='\0'):
+def list_intent(c, project='catbot-test', display_name_regex='.*'):
     """Intentの一覧を取得します。
     `--display-name-regex` オプションで結果を絞り込むことができますが、
     裏では全件取得しているので、IntentのIDが判明している場合は `get-intent` taskの利用を推奨します。
@@ -30,7 +30,7 @@ def list_intent(c, project='catbot-test', display_name_regex='\0'):
     """
     repos = IntentRepository(project)
     display_name_pattern = re.compile(display_name_regex)
-    for intent in repos.list_intent():
+    for intent in repos.list():
         if display_name_pattern.search(intent['display_name']):
             print(json.dumps(intent, ensure_ascii=False))
 
@@ -93,6 +93,51 @@ def update_sample_intent(c):
     repos = IntentRepository(project)
     for display_name, intent_dict in intents.items():
         intent = repos.update(display_name=display_name, **intent_dict)
+        print(json.dumps(intent, ensure_ascii=False))
+
+
+@task
+def update_sample_intent(c):
+    """サンプルのIntentを更新します。
+
+    Examples:
+        $ pipenv run inv update-sample-intent | jq
+        {
+          "name": "projects/catbot-test/agent/intents/08be25b6-a5c3-4bd5-9387-76ccf12e548a",
+          "displayName": "sample",
+          ...
+    """
+    with open(os.path.join(os.path.dirname(__file__), 'examples', 'update_sample.yml')) as f:
+        data = yaml.full_load(f)
+        project = data['project']
+        intents = data['intents']
+
+    repos = IntentRepository(project)
+    for display_name, intent_dict in intents.items():
+        intent = repos.update(display_name=display_name, **intent_dict)
+        print(json.dumps(intent, ensure_ascii=False))
+
+
+@task
+def upsert_sample_intent(c):
+    """サンプルのIntentを更新もしくは作成します。
+
+    Examples:
+        $ pipenv run inv upsert-sample-intent | jq
+        {
+          "name": "projects/catbot-test/agent/intents/08be25b6-a5c3-4bd5-9387-76ccf12e548a",
+          "displayName": "sample",
+          ...
+    """
+    with open(os.path.join(os.path.dirname(__file__), 'examples', 'create_sample.yml')) as f:
+        data = yaml.full_load(f)
+        project = data['project']
+        intents = data['intents']
+
+    repos = IntentRepository(project)
+    intent_list = repos.list()
+    for display_name, intent_dict in intents.items():
+        intent = repos.upsert(display_name=display_name, intent_list=intent_list, **intent_dict)
         print(json.dumps(intent, ensure_ascii=False))
 
 
