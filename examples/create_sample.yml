@@ -1,0 +1,8 @@
+project: catbot-test
+intents:
+  create_sample:
+    training_phrases:
+    - サンプルインテントを呼んで下さい
+    messages:
+    - これはサンプルインテントです
+    more_question: true

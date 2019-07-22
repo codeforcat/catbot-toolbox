@@ -8,7 +8,7 @@ from google.protobuf.struct_pb2 import Struct
 
 
 class IntentRepository:
-    def __init__(self, project):
+    def __init__(self, project: str):
         self.project = project
         self.platform = enums.Intent.Message.Platform.LINE
         self.intents_client = dialogflow.IntentsClient()
@@ -93,17 +93,13 @@ class IntentRepository:
 
         return messages
 
-    def list_intent(self):
-        parent = self.intents_client.project_agent_path(self.project)
-        intents = [MessageToDict(intent) for intent in self.intents_client.list_intents(parent)]
-        return intents
-
-    def get(self, id, intent_view=enums.IntentView.INTENT_VIEW_FULL):
-        name = self.intents_client.intent_path(self.project, id)
-        response = self.intents_client.get_intent(name, intent_view=intent_view)
-        return MessageToDict(response)
-
-    def create(self, display_name, training_phrases, messages, more_question=False):
+    def build_intent(
+        self,
+        display_name: str,
+        training_phrases: [str],
+        messages: [Union[str, dict]],
+        more_question=False
+    ):
         _training_phrases = self.build_training_phrases(training_phrases)
         _messages = self.build_messages(messages)
 
@@ -121,11 +117,47 @@ class IntentRepository:
                 messages=_messages,
             )
 
+        return intent
+
+    def list_intent(self):
+        parent = self.intents_client.project_agent_path(self.project)
+        intents = [
+            MessageToDict(intent, preserving_proto_field_name=True)
+            for intent in self.intents_client.list_intents(parent)
+        ]
+        return intents
+
+    def get(self, id: str, intent_view=enums.IntentView.INTENT_VIEW_FULL):
+        name = self.intents_client.intent_path(self.project, id)
+        response = self.intents_client.get_intent(name, intent_view=intent_view)
+        return MessageToDict(response, preserving_proto_field_name=True)
+
+    def create(
+        self,
+        display_name: str,
+        training_phrases: [str],
+        messages: [Union[str, dict]],
+        more_question=False
+    ):
+        intent = self.build_intent(display_name, training_phrases, messages, more_question)
         parent = self.intents_client.project_agent_path(self.project)
         response = self.intents_client.create_intent(parent, intent)
+        return MessageToDict(response, preserving_proto_field_name=True)
 
-        return MessageToDict(response)
+    def update(
+        self,
+        id: str,
+        display_name: str,
+        training_phrases: [str],
+        messages: [Union[str, dict]],
+        more_question=False,
+        intent_view=enums.IntentView.INTENT_VIEW_FULL,
+    ):
+        intent = self.build_intent(display_name, training_phrases, messages, more_question)
+        intent.name = self.intents_client.intent_path(self.project, id)
+        response = self.intents_client.update_intent(intent, language_code='', intent_view=intent_view)
+        return MessageToDict(response, preserving_proto_field_name=True)
 
-    def delete(self, id):
+    def delete(self, id: str):
         name = self.intents_client.intent_path(self.project, id)
         self.intents_client.delete_intent(name)
