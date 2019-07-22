@@ -132,16 +132,13 @@ class IntentRepository:
 
         return intent
 
-    def list(
-        self,
-        as_dict: bool = True,
-        intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
-    ) -> Union[List[dict], GRPCIterator]:
+    def list(self, intent_view: int = enums.IntentView.INTENT_VIEW_FULL) -> GRPCIterator:
         parent = self.intents_client.project_agent_path(self.project)
         intents = self.intents_client.list_intents(parent, intent_view=intent_view)
-        if as_dict:
-            intents = [MessageToDict(intent, preserving_proto_field_name=True) for intent in intents]
+        return intents
 
+    def list_all(self, intent_view: int = enums.IntentView.INTENT_VIEW_FULL) -> List[dict]:
+        intents = [MessageToDict(intent, preserving_proto_field_name=True) for intent in self.list(intent_view)]
         return intents
 
     def find_by_display_name(
@@ -150,11 +147,11 @@ class IntentRepository:
         intent_list: Optional[List[dict]] = None,
     ) -> Optional[dict]:
         if intent_list:
-            for intent in intent_list:
-                if intent['display_name'] == display_name:
-                    return intent
+            for intent_dict in intent_list:
+                if intent_dict['display_name'] == display_name:
+                    return intent_dict
         else:
-            for page in self.list(as_dict=False).pages:
+            for page in self.list().pages:
                 for intent in page:
                     if intent.display_name == display_name:
                         return MessageToDict(intent, preserving_proto_field_name=True)
@@ -207,15 +204,12 @@ class IntentRepository:
         `intent_list` 引数にIntentの一覧を渡すことで、毎回Intentを走査するのを防ぐことができます。
         """
         current_intent = self.find_by_display_name(display_name, intent_list)
-        if current_intent:
-            project, id = self.parse_intent_name(current_intent['name'])
-        else:
-            project, id = None, None
+        project, id = self.parse_intent_name(current_intent['name'] if current_intent else '')
 
-        if not project or project != self.project:
-            intent = self.create(display_name, training_phrases, messages, more_question)
-        else:
+        if id:
             intent = self.update(id, display_name, training_phrases, messages, more_question, intent_view)
+        else:
+            intent = self.create(display_name, training_phrases, messages, more_question)
 
         return intent
 

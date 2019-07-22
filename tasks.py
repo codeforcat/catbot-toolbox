@@ -69,7 +69,7 @@ def upsert_sample_intent(c):
         intents = data['intents']
 
     repos = IntentRepository(project)
-    intent_list = repos.list()
+    intent_list = repos.list_all()
     for display_name, intent_dict in intents.items():
         intent = repos.upsert(display_name=display_name, intent_list=intent_list, **intent_dict)
         print(json.dumps(intent, ensure_ascii=False))
