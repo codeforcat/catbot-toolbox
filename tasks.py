@@ -15,7 +15,7 @@ from catbot_toolbox.repositories import IntentRepository
 
 
 @task
-def list_intent(c, project='catbot-test', display_name_regex='.*'):
+def list_intents(c, project='catbot-test', display_name_regex='.*'):
     """Intentの一覧を取得します。
     `--display-name-regex` オプションで結果を絞り込むことができますが、
     裏では全件取得しているので、IntentのIDが判明している場合は `get-intent` taskの利用を推奨します。
@@ -50,72 +50,6 @@ def get_intent(c, intent_id, project='catbot-test', intent_view=enums.IntentView
     repos = IntentRepository(project)
     intent = repos.get(intent_id)
     print(json.dumps(intent, ensure_ascii=False))
-
-
-@task
-def create_sample_intent(c):
-    """サンプルのIntentを作成します。
-
-    Examples:
-        $ pipenv run inv create-sample-intent | jq
-        {
-          "name": "projects/catbot-test/agent/intents/08be25b6-a5c3-4bd5-9387-76ccf12e548a",
-          "displayName": "sample",
-          ...
-    """
-    with open(os.path.join(os.path.dirname(__file__), 'examples', 'create_sample.yml')) as f:
-        data = yaml.full_load(f)
-        project = data['project']
-        intents = data['intents']
-
-    repos = IntentRepository(project)
-    for display_name, intent_dict in intents.items():
-        intent = repos.create(display_name=display_name, **intent_dict)
-        print(json.dumps(intent, ensure_ascii=False))
-
-
-@task
-def update_sample_intent(c):
-    """サンプルのIntentを更新します。
-
-    Examples:
-        $ pipenv run inv update-sample-intent | jq
-        {
-          "name": "projects/catbot-test/agent/intents/08be25b6-a5c3-4bd5-9387-76ccf12e548a",
-          "displayName": "sample",
-          ...
-    """
-    with open(os.path.join(os.path.dirname(__file__), 'examples', 'update_sample.yml')) as f:
-        data = yaml.full_load(f)
-        project = data['project']
-        intents = data['intents']
-
-    repos = IntentRepository(project)
-    for display_name, intent_dict in intents.items():
-        intent = repos.update(display_name=display_name, **intent_dict)
-        print(json.dumps(intent, ensure_ascii=False))
-
-
-@task
-def update_sample_intent(c):
-    """サンプルのIntentを更新します。
-
-    Examples:
-        $ pipenv run inv update-sample-intent | jq
-        {
-          "name": "projects/catbot-test/agent/intents/08be25b6-a5c3-4bd5-9387-76ccf12e548a",
-          "displayName": "sample",
-          ...
-    """
-    with open(os.path.join(os.path.dirname(__file__), 'examples', 'update_sample.yml')) as f:
-        data = yaml.full_load(f)
-        project = data['project']
-        intents = data['intents']
-
-    repos = IntentRepository(project)
-    for display_name, intent_dict in intents.items():
-        intent = repos.update(display_name=display_name, **intent_dict)
-        print(json.dumps(intent, ensure_ascii=False))
 
 
 @task

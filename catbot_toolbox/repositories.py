@@ -10,6 +10,29 @@ from google.protobuf.struct_pb2 import Struct
 
 
 class IntentRepository:
+    MORE_QUESTION_PAYLOAD = {
+        'line': {
+            "type": "template",
+            "altText": "もっと質問あるにゃ？",
+            'template': {
+                "type": "confirm",
+                "text": "もっと質問あるにゃ？",
+                "actions": [
+                    {
+                        "type": "message",
+                        "label": "はい",
+                        "text": "はい",
+                    },
+                    {
+                        "type": "message",
+                        "label": "いいえ",
+                        "text": "いいえ",
+                    },
+                ],
+            },
+        },
+    }
+
     def __init__(self, project: str):
         self.project = project
         self.platform = enums.Intent.Message.Platform.LINE
@@ -17,28 +40,7 @@ class IntentRepository:
         self.contexts_client = dialogflow.ContextsClient()
 
         payload = Struct()
-        payload.update({
-            'line': {
-                "type": "template",
-                "altText": "もっと質問あるにゃ？",
-                'template': {
-                    "type": "confirm",
-                    "text": "もっと質問あるにゃ？",
-                    "actions": [
-                        {
-                            "type": "message",
-                            "label": "はい",
-                            "text": "はい",
-                        },
-                        {
-                            "type": "message",
-                            "label": "いいえ",
-                            "text": "いいえ",
-                        },
-                    ],
-                },
-            },
-        })
+        payload.update(self.MORE_QUESTION_PAYLOAD)
         self.more_question_message = dialogflow.types.intent_pb2.Intent.Message(
             payload=payload,
             platform=self.platform,
