@@ -27,10 +27,17 @@ class IntentRepositoryTest(unittest.TestCase):
             params['training_phrases'][0],
             intent['training_phrases'][0]['parts'][0]['text'],
         )
-        self.assertEqual(
-            params['messages'][0],
-            intent['messages'][0]['text']['text'][0],
-        )
+        if isinstance(params['messages'][0], str):
+            self.assertEqual(
+                params['messages'][0],
+                intent['messages'][0]['text']['text'][0],
+            )
+        else:
+            self.assertEqual(
+                params['messages'][0],
+                intent['messages'][0]['payload'],
+            )
+
         if params.get('more_question', False):
             self.assertEqual(
                 IntentRepository.MORE_QUESTION_PAYLOAD,
@@ -92,6 +99,25 @@ class IntentRepositoryTest(unittest.TestCase):
 
     def test_load(self):
         file = os.path.join(os.path.dirname(__file__), 'examples', 'sample.yml')
+
+        with open(file) as f:
+            data = yaml.full_load(f)
+
+        repos = IntentRepository(self.project)
+        result = None
+        try:
+            result = repos.load(file)
+            self.assertEqual(data['project'], result['project'])
+            for i, intent_params in enumerate(data['intents']):
+                self.assert_intent(result['intents'][i], intent_params)
+        finally:
+            if result:
+                for intent in result['intents']:
+                    project, id = repos.parse_intent_name(intent['name'])
+                    repos.delete(id)
+
+    def test_load_richmenu_sample(self):
+        file = os.path.join(os.path.dirname(__file__), 'examples', 'richmenu_sample.yml')
 
         with open(file) as f:
             data = yaml.full_load(f)

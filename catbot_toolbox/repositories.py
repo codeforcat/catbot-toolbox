@@ -96,7 +96,7 @@ class IntentRepository:
                 payload_struct = Struct()
                 payload_struct.update(payload)
                 message = intent_pb2.Intent.Message(
-                    payload=payload,
+                    payload=payload_struct,
                     platform=self.platform,
                 )
             else:
@@ -219,10 +219,11 @@ class IntentRepository:
             project = data['project']
             intents = data['intents']
 
+        intent_list = self.list_all()
         result = {'project': project, 'intents': []}
         repos = IntentRepository(project)
         for intent_params in intents:
-            intent = repos.upsert(**intent_params)
+            intent = repos.upsert(intent_list=intent_list, **intent_params)
             result['intents'].append(intent)
 
         return result

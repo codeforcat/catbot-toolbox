@@ -30,7 +30,7 @@ def list_intents(c, project='catbot-test', display_name_regex='.*'):
     """
     repos = IntentRepository(project)
     display_name_pattern = re.compile(display_name_regex)
-    for intent in repos.list():
+    for intent in repos.list_all():
         if display_name_pattern.search(intent['display_name']):
             print(json.dumps(intent, ensure_ascii=False))
 
@@ -89,7 +89,7 @@ def delete_intents(c, intent_id='', display_name_regex='', project='catbot-test'
     elif display_name_regex:
         repos = IntentRepository(project)
         display_name_pattern = re.compile(display_name_regex)
-        for intent in repos.list():
+        for intent in repos.list_all():
             if display_name_pattern.search(intent['display_name']):
                 _, _id = repos.parse_intent_name(intent['name'])
                 repos.delete(_id)
@@ -108,6 +108,18 @@ def detect_intent(c, text, project='catbot-test'):
     query_input = QueryInput(text=text_input)
     response = sessions_client.detect_intent(session=session, query_input=query_input)
     print(json.dumps(MessageToDict(response), ensure_ascii=False))
+
+
+@task
+def load_intents(c, file, project='catbot-test'):
+    """YAMLファイルからIntentをロードします。
+
+    Examples:
+        $ pipenv run inv load-intents --file examples/sample.yml
+    """
+    repos = IntentRepository(project)
+    response = repos.load(file)
+    print(json.dumps(response, ensure_ascii=False))
 
 
 @task
