@@ -4,7 +4,7 @@ intents:
     training_phrases:
     - テーマから選ぼうのサンプル
     messages:
-    - line:
+    - payload:
         type: template
         altText: 何か気になることある？
         template:

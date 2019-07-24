@@ -34,13 +34,13 @@ class IntentRepositoryTest(unittest.TestCase):
             )
         else:
             self.assertEqual(
-                params['messages'][0],
-                intent['messages'][0]['payload'],
+                params['messages'][0]['payload'],
+                intent['messages'][0]['payload']['line'],
             )
 
         if params.get('more_question', False):
             self.assertEqual(
-                IntentRepository.MORE_QUESTION_PAYLOAD,
+                {'line': IntentRepository.MORE_QUESTION_PAYLOAD},
                 intent['messages'][1]['payload'],
             )
 

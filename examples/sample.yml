@@ -2,7 +2,7 @@ project: catbot-test
 intents:
   - display_name: sample
     training_phrases:
-    - サンプルインテントを呼んで下さい
+    - サンプルインテントを呼んでください
     messages:
     - これはサンプルインテントです
     more_question: true

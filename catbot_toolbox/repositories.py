@@ -11,37 +11,47 @@ from google.protobuf.struct_pb2 import Struct
 
 
 class IntentRepository:
+    PLATFORMS = [
+        'PLATFORM_UNSPECIFIED',
+        'FACEBOOK',
+        'SLACK',
+        'TELEGRAM',
+        'KIK',
+        'SKYPE',
+        'LINE',
+        'VIBER',
+        'ACTIONS_ON_GOOGLE',
+    ]
+
     MORE_QUESTION_PAYLOAD = {
-        'line': {
-            "type": "template",
-            "altText": "もっと質問あるにゃ？",
-            'template': {
-                "type": "confirm",
-                "text": "もっと質問あるにゃ？",
-                "actions": [
-                    {
-                        "type": "message",
-                        "label": "はい",
-                        "text": "はい",
-                    },
-                    {
-                        "type": "message",
-                        "label": "いいえ",
-                        "text": "いいえ",
-                    },
-                ],
-            },
+        "type": "template",
+        "altText": "もっと質問あるにゃ？",
+        'template': {
+            "type": "confirm",
+            "text": "もっと質問あるにゃ？",
+            "actions": [
+                {
+                    "type": "message",
+                    "label": "はい",
+                    "text": "はい",
+                },
+                {
+                    "type": "message",
+                    "label": "いいえ",
+                    "text": "いいえ",
+                },
+            ],
         },
     }
 
-    def __init__(self, project: str):
+    def __init__(self, project: str, platform: int = enums.Intent.Message.Platform.LINE):
         self.project = project
-        self.platform = enums.Intent.Message.Platform.LINE
+        self.platform = platform
         self.intents_client = dialogflow.IntentsClient()
         self.contexts_client = dialogflow.ContextsClient()
 
         payload = Struct()
-        payload.update(self.MORE_QUESTION_PAYLOAD)
+        payload.update({self.PLATFORMS[self.platform].lower(): self.MORE_QUESTION_PAYLOAD})
         self.more_question_message = dialogflow.types.intent_pb2.Intent.Message(
             payload=payload,
             platform=self.platform,
@@ -92,9 +102,9 @@ class IntentRepository:
                     text=intent_pb2.Intent.Message.Text(text=payload),
                     platform=self.platform,
                 )
-            elif isinstance(payload, dict):
+            elif isinstance(payload, dict) and 'payload' in payload:
                 payload_struct = Struct()
-                payload_struct.update(payload)
+                payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
                 message = intent_pb2.Intent.Message(
                     payload=payload_struct,
                     platform=self.platform,

@@ -187,7 +187,7 @@ def mypy(c):
 
 
 @task(pre=[isort, flake8, mypy])
-def format(c):
+def lint(c):
     """コードフォーマッティングに関するタスクを実行します。"""
     pass
 
@@ -210,7 +210,13 @@ def xenon(c):
     c.run('xenon --max-absolute B --max-modules A --max-average A .')
 
 
-@task(pre=[radon_cc, radon_mi, xenon])
+@task(pre=[radon_cc, radon_mi])
 def metrics(c):
     """コードメトリクスに関するタスクを実行します。"""
+    pass
+
+
+@task(pre=[lint, metrics, test])
+def ci(c):
+    """CI関連タスクを実行します。"""
     pass
