@@ -31,18 +31,16 @@ intents:
     training_phrases:
     - 先生のひみつのサンプル
     messages:
-    - random_events:
-      - mame_sample
+    - random_choices:
+      - messages: ['豆知識1']
+      - messages: ['豆知識2']
     webhook_state: WEBHOOK_STATE_ENABLED
-  - display_name: mame_sample
-    messages:
-    - これは豆知識のサンプルです。
   - display_name: richmenu_teacher_quiz_sample
     training_phrases:
     - 先生と遊ぼうのサンプル
     messages:
-    - random_events:
-      - quiz_sample
+    - random_choices:
+      - followup_event: quiz_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: quiz_sample
     output_contexts:
@@ -83,7 +81,7 @@ intents:
     messages:
     - choices:
       - numbers: [1]
-        text: '正解です'
+        messages: ['正解です']
       - numbers: [2]
-        text: '不正解です'
+        messages: ['不正解です']
     webhook_state: WEBHOOK_STATE_ENABLED
