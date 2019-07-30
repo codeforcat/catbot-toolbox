@@ -127,7 +127,7 @@ class IntentRepository:
     ) -> intent_pb2.Intent:
         _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
         _messages = self.build_messages(messages if messages else [])
-        _events = events if events else []
+        _events = events if events else [display_name]
 
         params: Dict[str, Any] = {
             'display_name': display_name,

@@ -36,6 +36,5 @@ intents:
           - mame_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: mame_sample
-    events: [mame_sample]
     messages:
     - これは豆知識のサンプルです。

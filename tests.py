@@ -42,6 +42,11 @@ class IntentRepositoryTest(unittest.TestCase):
                     intent['messages'][0]['payload']['line'],
                 )
 
+        if 'events' in params:
+            self.assertEqual(params['events'], intent['events'])
+        else:
+            self.assertEqual([params['display_name']], intent['events'])
+
         if params.get('more_question', False):
             self.assertEqual(
                 {'line': IntentRepository.MORE_QUESTION_PAYLOAD},
