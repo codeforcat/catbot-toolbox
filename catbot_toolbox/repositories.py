@@ -171,14 +171,15 @@ class IntentRepository:
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
-        more_question: bool = False
+        is_fallback: Optional[bool] = None,
+        more_question: bool = False,
     ) -> Intent:
         _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
         _input_context_names = self.build_input_context_names(input_context_names if input_context_names else [])
         _output_contexts = self.build_output_contexts(output_contexts if output_contexts else [])
         _parameters = self.build_parameters(parameters if parameters else [])
         _messages = self.build_messages(messages if messages else [])
-        _events = events if events else [display_name]
+        _events = events if events is not None else [display_name]
 
         params: Dict[str, Any] = {
             'display_name': display_name,
@@ -189,6 +190,7 @@ class IntentRepository:
             'messages': _messages,
             'events': _events,
             'webhook_state': webhook_state,
+            'is_fallback': is_fallback,
         }
         if more_question:
             params['output_contexts'].append(self.more_question_context)
@@ -239,6 +241,7 @@ class IntentRepository:
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
+        is_fallback: Optional[bool] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
@@ -251,6 +254,7 @@ class IntentRepository:
             messages,
             events,
             webhook_state,
+            is_fallback,
             more_question,
         )
         parent = self.intents_client.project_agent_path(self.project)
@@ -268,6 +272,7 @@ class IntentRepository:
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
+        is_fallback: Optional[bool] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
@@ -280,6 +285,7 @@ class IntentRepository:
             messages,
             events,
             webhook_state,
+            is_fallback,
             more_question,
         )
         intent.name = self.intents_client.intent_path(self.project, id)
@@ -296,6 +302,7 @@ class IntentRepository:
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
+        is_fallback: Optional[bool] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
         intent_list: Optional[List[dict]] = None,
@@ -318,6 +325,7 @@ class IntentRepository:
             'messages': messages,
             'events': events,
             'webhook_state': webhook_state,
+            'is_fallback': is_fallback,
             'more_question': more_question,
             'intent_view': intent_view,
         }

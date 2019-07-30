@@ -1,0 +1,25 @@
+intents:
+  - display_name: fallback
+    is_fallback: true
+    messages:
+    - random_choices:
+      - messages: ['ごめんね。ちょっとわからなかったにゃ']
+      - messages: ["にゃ？\n少し言い換えてほしいにゃ。"]
+      - messages: ['よくわからないにゃー']
+      - messages: ["にゃ？\nもう一度言ってほしいにゃ。"]
+      - messages:
+        - payload:
+            type: image
+            originalContentUrl: https://code4cat.org/catbot/catbot-01_original.jpg
+            previewImageUrl: https://code4cat.org/catbot/catbot-01_preview.jpg
+      - messages:
+        - payload:
+            type: image
+            originalContentUrl: https://code4cat.org/catbot/catbot-01-2_original.jpg
+            previewImageUrl: https://code4cat.org/catbot/catbot-01-2_preview.jpg
+      - messages:
+        - payload:
+            type: image
+            originalContentUrl: https://code4cat.org/catbot/catbot-01-3_original.jpg
+            previewImageUrl: https://code4cat.org/catbot/catbot-01-3_preview.jpg
+    webhook_state: WEBHOOK_STATE_ENABLED
