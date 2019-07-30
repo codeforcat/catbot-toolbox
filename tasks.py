@@ -186,7 +186,7 @@ def xenon(c):
     c.run('xenon --max-absolute B --max-modules A --max-average A .')
 
 
-@task(pre=[radon_cc, radon_mi])
+@task(pre=[radon_cc, radon_mi, xenon])
 def metrics(c):
     """コードメトリクスに関するタスクを実行します。"""
     pass

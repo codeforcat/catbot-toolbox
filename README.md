@@ -24,6 +24,7 @@ Setup
 
 ```
 $ pipenv install --dev
+$ pipenv install xenon  # xenonaはPyYAMLへのpre-release依存関係があるので別途インストール
 ```
 
 gcloud でのプロジェクト設定
