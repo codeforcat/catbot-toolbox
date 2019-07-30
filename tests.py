@@ -107,8 +107,9 @@ class IntentRepositoryTest(unittest.TestCase):
         result = None
         try:
             result = repos.load(file)
-            self.assertEqual(data['project'], result['project'])
-            for i, intent_params in enumerate(data['intents']):
+            # expectationとしてphrase_from等を解決した後のintentsを取得する
+            intents = repos.resolve_all(data['intents'], [])
+            for i, intent_params in enumerate(intents):
                 self.assert_intent(result['intents'][i], intent_params)
         finally:
             if result:
@@ -116,24 +117,19 @@ class IntentRepositoryTest(unittest.TestCase):
                     project, id = repos.parse_intent_name(intent['name'])
                     repos.delete(id)
 
-    def test_load_richmenu_sample(self):
-        file = os.path.join(os.path.dirname(__file__), 'examples', 'richmenu_sample.yml')
+    def test_resolve_all(self):
+        file = os.path.join(os.path.dirname(__file__), 'examples', 'sample.yml')
 
         with open(file) as f:
             data = yaml.full_load(f)
+            intents = data['intents']
 
         repos = IntentRepository(self.project)
-        result = None
-        try:
-            result = repos.load(file)
-            self.assertEqual(data['project'], result['project'])
-            for i, intent_params in enumerate(data['intents']):
-                self.assert_intent(result['intents'][i], intent_params)
-        finally:
-            if result:
-                for intent in result['intents']:
-                    project, id = repos.parse_intent_name(intent['name'])
-                    repos.delete(id)
+        result = repos.resolve_all(intents, [])
+        self.assertEqual(
+            intents[2]['training_phrases'][0],
+            result[1]['messages'][0]['payload']['template']['columns'][0]['actions'][0]['text'],
+        )
 
 
 if __name__ == '__main__':

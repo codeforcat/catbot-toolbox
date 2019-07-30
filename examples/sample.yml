@@ -1,4 +1,3 @@
-project: catbot-test
 intents:
   - display_name: sample
     training_phrases:
@@ -6,3 +5,25 @@ intents:
     messages:
     - これはサンプルインテントです
     more_question: true
+  - display_name: richmenu_select_theme_sample
+    training_phrases:
+    - テーマから選ぼうのサンプル
+    messages:
+    - payload:
+        type: template
+        altText: 何か気になることある？
+        template:
+          type: carousel
+          columns:
+          - title: ご飯どうする
+            text: 食べさせちゃいけないものもあるよ
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_food_thumbnail.jpg
+            actions:
+            - type: message
+              label: どうしよう？
+              text: {phrase_from: richmenu_teacher_quiz_sample}
+  - display_name: richmenu_teacher_quiz_sample
+    training_phrases:
+    - 食べさせちゃいけないもののサンプル
+    messages:
+    - これは食べさせちゃいけないもののサンプルです。

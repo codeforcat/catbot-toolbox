@@ -226,14 +226,13 @@ class IntentRepository:
     def load(self, file: str) -> dict:
         with open(file) as f:
             data = yaml.full_load(f)
-            project = data['project']
             intents = data['intents']
 
         intent_list = self.list_all()
-        result = {'project': project, 'intents': []}
-        repos = IntentRepository(project)
+        result: dict = {'intents': []}
+        intents = self.resolve_all(intents, intent_list=intent_list)
         for intent_params in intents:
-            intent = repos.upsert(intent_list=intent_list, **intent_params)
+            intent = self.upsert(intent_list=intent_list, **intent_params)
             result['intents'].append(intent)
 
         return result
@@ -241,3 +240,28 @@ class IntentRepository:
     def delete(self, id: str) -> None:
         name = self.intents_client.intent_path(self.project, id)
         self.intents_client.delete_intent(name)
+
+    def resolve_all(self, intents: List[dict], intent_list: Optional[List[dict]] = None) -> List:
+        """インテントのリストに対してphrase_fromなどのカスタムフィールドを解決します。"""
+        if intent_list is None:
+            intent_list = self.list_all()
+        return [self.resolve(i, intents + intent_list) for i in intents]
+
+    def resolve(self, branch: Union[List, dict, str], intent_list: List[dict]) -> Union[List, dict, str]:
+        """インテントに対してphrase_fromなどのカスタムフィールドを解決します。"""
+        if isinstance(branch, dict) and 'phrase_from' in branch:
+            return self.resolve_phrase_from(branch['phrase_from'], intent_list)
+        elif isinstance(branch, list):
+            return [self.resolve(sub, intent_list) for sub in branch]
+        elif isinstance(branch, dict):
+            return {k: self.resolve(sub, intent_list) for k, sub in branch.items()}
+        else:
+            return branch
+
+    def resolve_phrase_from(self, key: str, intent_list: List) -> str:
+        """intent_listの中からdisplay_nameがkeyに合致するintentを探索し、先頭のtraining_phraseを返します。"""
+        matches = filter(lambda i: 'display_name' in i and i['display_name'] == key, intent_list)
+        for intent in matches:
+            if 'training_phrases' in intent and len(intent['training_phrases']) > 0:
+                return intent['training_phrases'][0]
+        return ''
