@@ -4,7 +4,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import dialogflow_v2beta1 as dialogflow
 import yaml
 from dialogflow_v2.gapic import enums
-from dialogflow_v2beta1.proto import intent_pb2
+from dialogflow_v2beta1.proto.intent_pb2 import Intent
+from dialogflow_v2beta1.proto.context_pb2 import Context
 from google.api_core.page_iterator import GRPCIterator
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.struct_pb2 import Struct
@@ -52,12 +53,12 @@ class IntentRepository:
 
         payload = Struct()
         payload.update({self.PLATFORMS[self.platform].lower(): self.MORE_QUESTION_PAYLOAD})
-        self.more_question_message = dialogflow.types.intent_pb2.Intent.Message(
+        self.more_question_message = Intent.Message(
             payload=payload,
             platform=self.platform,
         )
 
-        self.more_question_context = dialogflow.types.context_pb2.Context(
+        self.more_question_context = Context(
             name=self.contexts_client.context_path(
                 project=self.project,
                 session='-',
@@ -74,20 +75,20 @@ class IntentRepository:
         else:
             return None, None
 
-    def build_training_phrases(self, training_phrases: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
+    def build_training_phrases(self, training_phrases: List[str]) -> List[Intent.TrainingPhrase]:
         _training_phrases = []
         for training_phrase in training_phrases:
             if isinstance(training_phrase, str):
-                parts = [intent_pb2.Intent.TrainingPhrase.Part(text=training_phrase, user_defined=True)]
+                parts = [Intent.TrainingPhrase.Part(text=training_phrase, user_defined=True)]
             elif isinstance(training_phrase, dict) and 'parts' in training_phrase:
                 parts = [
-                    intent_pb2.Intent.TrainingPhrase.Part(**part, user_defined=True)
+                    Intent.TrainingPhrase.Part(**part, user_defined=True)
                     for part in training_phrase['parts']
                 ]
             else:
                 continue
 
-            training_phrase = intent_pb2.Intent.TrainingPhrase(
+            training_phrase = Intent.TrainingPhrase(
                 parts=parts,
                 type=enums.Intent.TrainingPhrase.Type.EXAMPLE,
             )
@@ -95,34 +96,7 @@ class IntentRepository:
 
         return _training_phrases
 
-    def build_messages(self, payloads: List[Union[str, dict]]) -> List[intent_pb2.Intent.Message]:
-        messages = []
-        for payload in payloads:
-            if isinstance(payload, str):
-                message = intent_pb2.Intent.Message(
-                    text=intent_pb2.Intent.Message.Text(text=[payload]),
-                    platform=self.platform,
-                )
-            elif isinstance(payload, list):
-                message = intent_pb2.Intent.Message(
-                    text=intent_pb2.Intent.Message.Text(text=payload),
-                    platform=self.platform,
-                )
-            elif isinstance(payload, dict) and 'payload' in payload:
-                payload_struct = Struct()
-                payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
-                message = intent_pb2.Intent.Message(
-                    payload=payload_struct,
-                    platform=self.platform,
-                )
-            else:
-                raise AttributeError(f'Invalid payload "{payload}"')
-
-            messages.append(message)
-
-        return messages
-
-    def build_input_context_names(self, context_names: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
+    def build_input_context_names(self, context_names: List[str]) -> List[Intent.TrainingPhrase]:
         _context_names = []
         for context_name in context_names:
             _context_name = self.contexts_client.context_path(
@@ -134,10 +108,10 @@ class IntentRepository:
 
         return _context_names
 
-    def build_output_contexts(self, contexts: List[dict]) -> List[intent_pb2.Intent.TrainingPhrase]:
+    def build_output_contexts(self, contexts: List[dict]) -> List[Intent.TrainingPhrase]:
         _contexts = []
         for context in contexts:
-            _context = dialogflow.types.context_pb2.Context(
+            _context = Context(
                 name=self.contexts_client.context_path(
                     project=self.project,
                     session='-',
@@ -149,6 +123,33 @@ class IntentRepository:
 
         return _contexts
 
+    def build_messages(self, payloads: List[Union[str, dict]]) -> List[Intent.Message]:
+        messages = []
+        for payload in payloads:
+            if isinstance(payload, str):
+                message = Intent.Message(
+                    text=Intent.Message.Text(text=[payload]),
+                    platform=self.platform,
+                )
+            elif isinstance(payload, list):
+                message = Intent.Message(
+                    text=Intent.Message.Text(text=payload),
+                    platform=self.platform,
+                )
+            elif isinstance(payload, dict) and 'payload' in payload:
+                payload_struct = Struct()
+                payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
+                message = Intent.Message(
+                    payload=payload_struct,
+                    platform=self.platform,
+                )
+            else:
+                raise AttributeError(f'Invalid payload "{payload}"')
+
+            messages.append(message)
+
+        return messages
+
     def build_intent(
         self,
         display_name: str,
@@ -159,7 +160,7 @@ class IntentRepository:
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
         more_question: bool = False
-    ) -> intent_pb2.Intent:
+    ) -> Intent:
         _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
         _input_context_names = self.build_input_context_names(input_context_names if input_context_names else [])
         _output_contexts = self.build_output_contexts(output_contexts if output_contexts else [])
@@ -179,7 +180,7 @@ class IntentRepository:
             params['output_contexts'].append(self.more_question_context)
             params['messages'].append(self.more_question_message)
 
-        intent = intent_pb2.Intent(**params)
+        intent = Intent(**params)
 
         return intent
 
