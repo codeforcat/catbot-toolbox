@@ -47,6 +47,9 @@ class IntentRepositoryTest(unittest.TestCase):
         else:
             self.assertEqual([params['display_name']], intent['events'])
 
+        if 'webhook_state' in params:
+            self.assertEqual(params['webhook_state'], intent['webhook_state'])
+
         if params.get('more_question', False):
             self.assertEqual(
                 {'line': IntentRepository.MORE_QUESTION_PAYLOAD},
