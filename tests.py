@@ -23,10 +23,12 @@ class IntentRepositoryTest(unittest.TestCase):
 
     def assert_intent(self, intent, params):
         self.assertEqual(params['display_name'], intent['display_name'])
-        self.assertEqual(
-            params['training_phrases'][0],
-            intent['training_phrases'][0]['parts'][0]['text'],
-        )
+
+        if 'training_phrases' in params:
+            self.assertEqual(
+                params['training_phrases'][0],
+                intent['training_phrases'][0]['parts'][0]['text'],
+            )
 
         if 'messages' in params:
             if isinstance(params['messages'][0], str):
