@@ -39,7 +39,13 @@ class IntentRepositoryTest(unittest.TestCase):
             return
 
         for i, training_phrase in enumerate(params['training_phrases']):
-            self.assertEqual(training_phrase, intent['training_phrases'][i]['parts'][0]['text'])
+            if isinstance(training_phrase, str):
+                self.assertEqual(training_phrase, intent['training_phrases'][i]['parts'][0]['text'])
+            elif isinstance(training_phrase, dict) and 'parts' in training_phrase:
+                for j, part in enumerate(training_phrase['parts']):
+                    self.assertEqual({**part, 'user_defined': True}, intent['training_phrases'][i]['parts'][j])
+            else:
+                continue
 
     def assert_input_context_names(self, intent, params):
         if 'input_context_names' not in params:

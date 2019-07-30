@@ -74,20 +74,26 @@ class IntentRepository:
         else:
             return None, None
 
-    def build_training_phrases(self, texts: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
-        training_phrases = []
-        for text in texts:
-            part = intent_pb2.Intent.TrainingPhrase.Part(
-                text=text,
-                user_defined=True,
-            )
+    def build_training_phrases(self, training_phrases: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
+        _training_phrases = []
+        for training_phrase in training_phrases:
+            if isinstance(training_phrase, str):
+                parts = [intent_pb2.Intent.TrainingPhrase.Part(text=training_phrase, user_defined=True)]
+            elif isinstance(training_phrase, dict) and 'parts' in training_phrase:
+                parts = [
+                    intent_pb2.Intent.TrainingPhrase.Part(**part, user_defined=True)
+                    for part in training_phrase['parts']
+                ]
+            else:
+                continue
+
             training_phrase = intent_pb2.Intent.TrainingPhrase(
-                parts=[part],
+                parts=parts,
                 type=enums.Intent.TrainingPhrase.Type.EXAMPLE,
             )
-            training_phrases.append(training_phrase)
+            _training_phrases.append(training_phrase)
 
-        return training_phrases
+        return _training_phrases
 
     def build_messages(self, payloads: List[Union[str, dict]]) -> List[intent_pb2.Intent.Message]:
         messages = []
