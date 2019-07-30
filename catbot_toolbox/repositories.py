@@ -1,5 +1,5 @@
 import re
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union, Dict, Any
 
 import dialogflow_v2beta1 as dialogflow
 import yaml
@@ -122,21 +122,23 @@ class IntentRepository:
         training_phrases: List[str],
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
+        webhook_state: Optional[str] = None,
         more_question: bool = False
     ) -> intent_pb2.Intent:
         _training_phrases = self.build_training_phrases(training_phrases)
         _messages = self.build_messages(messages if messages else [])
         _events = events if events else []
 
-        params = {
+        params: Dict[str, Any] = {
             'display_name': display_name,
             'training_phrases': _training_phrases,
             'messages': _messages,
             'events': _events,
+            'webhook_state': webhook_state,
         }
         if more_question:
             params['output_contexts'] = [self.more_question_context]
-            params['messages'] = [*params['messages'], self.more_question_message]
+            params['messages'].append(self.more_question_message)
 
         intent = intent_pb2.Intent(**params)
 
@@ -179,10 +181,11 @@ class IntentRepository:
         training_phrases: List[str],
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
+        webhook_state: Optional[str] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, events, more_question)
+        intent = self.build_intent(display_name, training_phrases, messages, events, webhook_state, more_question)
         parent = self.intents_client.project_agent_path(self.project)
         response = self.intents_client.create_intent(parent, intent, intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -194,10 +197,11 @@ class IntentRepository:
         training_phrases: List[str],
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
+        webhook_state: Optional[str] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, events, more_question)
+        intent = self.build_intent(display_name, training_phrases, messages, events, webhook_state, more_question)
         intent.name = self.intents_client.intent_path(self.project, id)
         response = self.intents_client.update_intent(intent, language_code='', intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -208,6 +212,7 @@ class IntentRepository:
         training_phrases: List[str],
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
+        webhook_state: Optional[str] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
         intent_list: Optional[List[dict]] = None,
@@ -226,6 +231,7 @@ class IntentRepository:
             'training_phrases': training_phrases,
             'messages': messages,
             'events': events,
+            'webhook_state': webhook_state,
             'more_question': more_question,
             'intent_view': intent_view,
         }
