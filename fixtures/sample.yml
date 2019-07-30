@@ -47,6 +47,9 @@ intents:
           - quiz_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: quiz_sample
+    output_contexts:
+    - name: quiz_answer
+      lifespan_count: 1
     messages:
     - payload:
         type: template
@@ -61,3 +64,11 @@ intents:
           - type: message
             label: ②
             text: 2
+  - display_name: quiz_answer_sample
+    training_phrases: ['1', '2']
+    input_context_names:
+    - quiz_answer
+    output_contexts:
+    - name: quiz_answer
+    messages:
+    - クイズの解答です

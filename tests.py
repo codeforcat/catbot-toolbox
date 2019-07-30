@@ -22,39 +22,73 @@ class IntentRepositoryTest(unittest.TestCase):
         }
 
     def assert_intent(self, intent, params):
+        self.assert_display_name(intent, params)
+        self.assert_training_phrases(intent, params)
+        self.assert_input_context_names(intent, params)
+        self.assert_output_contexts(intent, params)
+        self.assert_messages(intent, params)
+        self.assert_events(intent, params)
+        self.assert_webhook_state(intent, params)
+        self.assert_more_question(intent, params)
+
+    def assert_display_name(self, intent, params):
         self.assertEqual(params['display_name'], intent['display_name'])
 
-        if 'training_phrases' in params:
-            self.assertEqual(
-                params['training_phrases'][0],
-                intent['training_phrases'][0]['parts'][0]['text'],
-            )
+    def assert_training_phrases(self, intent, params):
+        if 'training_phrases' not in params:
+            return
 
-        if 'messages' in params:
-            if isinstance(params['messages'][0], str):
+        for i, training_phrase in enumerate(params['training_phrases']):
+            self.assertEqual(training_phrase, intent['training_phrases'][i]['parts'][0]['text'])
+
+    def assert_input_context_names(self, intent, params):
+        if 'input_context_names' not in params:
+            return
+
+        for i, context_name in enumerate(params['input_context_names']):
+            self.assertEqual(context_name, os.path.basename(intent['input_context_names'][i]))
+
+    def assert_output_contexts(self, intent, params):
+        if 'output_contexts' not in params:
+            return
+
+        for i, context in enumerate(params['output_contexts']):
+            self.assertEqual(context['name'], os.path.basename(intent['output_contexts'][i]['name']))
+            if 'lifespan_count' in context:
                 self.assertEqual(
-                    params['messages'][0],
-                    intent['messages'][0]['text']['text'][0],
-                )
-            else:
-                self.assertEqual(
-                    params['messages'][0]['payload'],
-                    intent['messages'][0]['payload']['line'],
+                    context['lifespan_count'],
+                    intent['output_contexts'][i]['lifespan_count'],
                 )
 
+    def assert_messages(self, intent, params):
+        if 'messages' not in params:
+            return
+
+        if isinstance(params['messages'][0], str):
+            self.assertEqual(params['messages'][0], intent['messages'][0]['text']['text'][0])
+        else:
+            self.assertEqual(params['messages'][0]['payload'], intent['messages'][0]['payload']['line'])
+
+    def assert_events(self, intent, params):
         if 'events' in params:
             self.assertEqual(params['events'], intent['events'])
         else:
             self.assertEqual([params['display_name']], intent['events'])
 
-        if 'webhook_state' in params:
-            self.assertEqual(params['webhook_state'], intent['webhook_state'])
+    def assert_webhook_state(self, intent, params):
+        if 'webhook_state' not in params:
+            return
 
-        if params.get('more_question', False):
-            self.assertEqual(
-                {'line': IntentRepository.MORE_QUESTION_PAYLOAD},
-                intent['messages'][1]['payload'],
-            )
+        self.assertEqual(params['webhook_state'], intent['webhook_state'])
+
+    def assert_more_question(self, intent, params):
+        if not params.get('more_question', False):
+            return
+
+        self.assertEqual(
+            {'line': IntentRepository.MORE_QUESTION_PAYLOAD},
+            intent['messages'][1]['payload'],
+        )
 
     def test_create_and_update_intent(self):
         repos = IntentRepository(self.project)

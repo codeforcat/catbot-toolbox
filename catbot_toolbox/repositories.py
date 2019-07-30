@@ -63,7 +63,7 @@ class IntentRepository:
                 session='-',
                 context='more_question',
             ),
-            lifespan_count=5,
+            lifespan_count=1,
         )
 
     @staticmethod
@@ -116,28 +116,61 @@ class IntentRepository:
 
         return messages
 
+    def build_input_context_names(self, context_names: List[str]) -> List[intent_pb2.Intent.TrainingPhrase]:
+        _context_names = []
+        for context_name in context_names:
+            _context_name = self.contexts_client.context_path(
+                project=self.project,
+                session='-',
+                context=context_name,
+            )
+            _context_names.append(_context_name)
+
+        return _context_names
+
+    def build_output_contexts(self, contexts: List[dict]) -> List[intent_pb2.Intent.TrainingPhrase]:
+        _contexts = []
+        for context in contexts:
+            _context = dialogflow.types.context_pb2.Context(
+                name=self.contexts_client.context_path(
+                    project=self.project,
+                    session='-',
+                    context=context['name'],
+                ),
+                lifespan_count=context['lifespan_count'] if 'lifespan_count' in context else 0
+            )
+            _contexts.append(_context)
+
+        return _contexts
+
     def build_intent(
         self,
         display_name: str,
         training_phrases: Optional[List[str]] = None,
+        input_context_names: Optional[List[str]] = None,
+        output_contexts: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
         more_question: bool = False
     ) -> intent_pb2.Intent:
         _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
+        _input_context_names = self.build_input_context_names(input_context_names if input_context_names else [])
+        _output_contexts = self.build_output_contexts(output_contexts if output_contexts else [])
         _messages = self.build_messages(messages if messages else [])
         _events = events if events else [display_name]
 
         params: Dict[str, Any] = {
             'display_name': display_name,
             'training_phrases': _training_phrases,
+            'input_context_names': _input_context_names,
+            'output_contexts': _output_contexts,
             'messages': _messages,
             'events': _events,
             'webhook_state': webhook_state,
         }
         if more_question:
-            params['output_contexts'] = [self.more_question_context]
+            params['output_contexts'].append(self.more_question_context)
             params['messages'].append(self.more_question_message)
 
         intent = intent_pb2.Intent(**params)
@@ -179,13 +212,24 @@ class IntentRepository:
         self,
         display_name: str,
         training_phrases: Optional[List[str]] = None,
+        input_context_names: Optional[List[str]] = None,
+        output_contexts: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, events, webhook_state, more_question)
+        intent = self.build_intent(
+            display_name,
+            training_phrases,
+            input_context_names,
+            output_contexts,
+            messages,
+            events,
+            webhook_state,
+            more_question
+        )
         parent = self.intents_client.project_agent_path(self.project)
         response = self.intents_client.create_intent(parent, intent, intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -195,13 +239,24 @@ class IntentRepository:
         id: str,
         display_name: str,
         training_phrases: Optional[List[str]] = None,
+        input_context_names: Optional[List[str]] = None,
+        output_contexts: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, events, webhook_state, more_question)
+        intent = self.build_intent(
+            display_name,
+            training_phrases,
+            input_context_names,
+            output_contexts,
+            messages,
+            events,
+            webhook_state,
+            more_question
+        )
         intent.name = self.intents_client.intent_path(self.project, id)
         response = self.intents_client.update_intent(intent, language_code='', intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -210,6 +265,8 @@ class IntentRepository:
         self,
         display_name: str,
         training_phrases: Optional[List[str]] = None,
+        input_context_names: Optional[List[str]] = None,
+        output_contexts: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -229,6 +286,8 @@ class IntentRepository:
         params = {
             'display_name': display_name,
             'training_phrases': training_phrases,
+            'input_context_names': input_context_names,
+            'output_contexts': output_contexts,
             'messages': messages,
             'events': events,
             'webhook_state': webhook_state,
