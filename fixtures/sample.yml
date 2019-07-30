@@ -38,3 +38,26 @@ intents:
   - display_name: mame_sample
     messages:
     - これは豆知識のサンプルです。
+  - display_name: richmenu_teacher_quiz_sample
+    training_phrases:
+    - 先生と遊ぼうのサンプル
+    messages:
+    - payload:
+        random_events:
+          - quiz_sample
+    webhook_state: WEBHOOK_STATE_ENABLED
+  - display_name: quiz_sample
+    messages:
+    - payload:
+        type: template
+        altText: ここでクイズです
+        template:
+          type: buttons
+          text: 正解を選んでください
+          actions:
+          - type: message
+            label: ①
+            text: 1
+          - type: message
+            label: ②
+            text: 2
