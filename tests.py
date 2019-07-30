@@ -27,16 +27,18 @@ class IntentRepositoryTest(unittest.TestCase):
             params['training_phrases'][0],
             intent['training_phrases'][0]['parts'][0]['text'],
         )
-        if isinstance(params['messages'][0], str):
-            self.assertEqual(
-                params['messages'][0],
-                intent['messages'][0]['text']['text'][0],
-            )
-        else:
-            self.assertEqual(
-                params['messages'][0]['payload'],
-                intent['messages'][0]['payload']['line'],
-            )
+
+        if 'messages' in params:
+            if isinstance(params['messages'][0], str):
+                self.assertEqual(
+                    params['messages'][0],
+                    intent['messages'][0]['text']['text'][0],
+                )
+            else:
+                self.assertEqual(
+                    params['messages'][0]['payload'],
+                    intent['messages'][0]['payload']['line'],
+                )
 
         if params.get('more_question', False):
             self.assertEqual(

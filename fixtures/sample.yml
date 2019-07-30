@@ -21,9 +21,17 @@ intents:
             actions:
             - type: message
               label: どうしよう？
-              text: {phrase_from: richmenu_teacher_quiz_sample}
-  - display_name: richmenu_teacher_quiz_sample
+              text: {phrase_from: food_select_sample}
+  - display_name: food_select_sample
     training_phrases:
     - 食べさせちゃいけないもののサンプル
     messages:
     - これは食べさせちゃいけないもののサンプルです。
+  - display_name: richmenu_teacher_secret_sample
+    training_phrases:
+    - 先生のひみつのサンプル
+  - display_name: mame_sample
+    training_phrases:
+    - 豆知識のサンプル
+    events:
+      - mame_sample

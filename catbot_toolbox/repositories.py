@@ -120,25 +120,25 @@ class IntentRepository:
         self,
         display_name: str,
         training_phrases: List[str],
-        messages: List[Union[str, dict]],
+        messages: Optional[List[Union[str, dict]]] = None,
+        events: Optional[List[str]] = None,
         more_question: bool = False
     ) -> intent_pb2.Intent:
         _training_phrases = self.build_training_phrases(training_phrases)
-        _messages = self.build_messages(messages)
+        _messages = self.build_messages(messages if messages else [])
+        _events = events if events else []
 
+        params = {
+            'display_name': display_name,
+            'training_phrases': _training_phrases,
+            'messages': _messages,
+            'events': _events,
+        }
         if more_question:
-            intent = intent_pb2.Intent(
-                display_name=display_name,
-                output_contexts=[self.more_question_context],
-                training_phrases=_training_phrases,
-                messages=[*_messages, self.more_question_message],
-            )
-        else:
-            intent = intent_pb2.Intent(
-                display_name=display_name,
-                training_phrases=_training_phrases,
-                messages=_messages,
-            )
+            params['output_contexts'] = [self.more_question_context]
+            params['messages'] = [*params['messages'], self.more_question_message]
+
+        intent = intent_pb2.Intent(**params)
 
         return intent
 
@@ -177,11 +177,12 @@ class IntentRepository:
         self,
         display_name: str,
         training_phrases: List[str],
-        messages: List[Union[str, dict]],
+        messages: Optional[List[Union[str, dict]]] = None,
+        events: Optional[List[str]] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, more_question)
+        intent = self.build_intent(display_name, training_phrases, messages, events, more_question)
         parent = self.intents_client.project_agent_path(self.project)
         response = self.intents_client.create_intent(parent, intent, intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -191,11 +192,12 @@ class IntentRepository:
         id: str,
         display_name: str,
         training_phrases: List[str],
-        messages: List[Union[str, dict]],
+        messages: Optional[List[Union[str, dict]]] = None,
+        events: Optional[List[str]] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
     ) -> dict:
-        intent = self.build_intent(display_name, training_phrases, messages, more_question)
+        intent = self.build_intent(display_name, training_phrases, messages, events, more_question)
         intent.name = self.intents_client.intent_path(self.project, id)
         response = self.intents_client.update_intent(intent, language_code='', intent_view=intent_view)
         return MessageToDict(response, preserving_proto_field_name=True)
@@ -204,22 +206,33 @@ class IntentRepository:
         self,
         display_name: str,
         training_phrases: List[str],
-        messages: List[Union[str, dict]],
+        messages: Optional[List[Union[str, dict]]] = None,
+        events: Optional[List[str]] = None,
         more_question: bool = False,
         intent_view: int = enums.IntentView.INTENT_VIEW_FULL,
         intent_list: Optional[List[dict]] = None,
     ) -> dict:
-        """`Intentのupsertを行う。
+        """
+        Intentのupsertを行う。
+
         `project` と `display_name` が一致するIntentがあればupdate、なければcreateを実行します。
         `intent_list` 引数にIntentの一覧を渡すことで、毎回Intentを走査するのを防ぐことができます。
         """
         current_intent = self.find_by_display_name(display_name, intent_list)
-        project, id = self.parse_intent_name(current_intent['name'] if current_intent else '')
+        project, intent_id = self.parse_intent_name(current_intent['name'] if current_intent else '')
 
-        if id:
-            intent = self.update(id, display_name, training_phrases, messages, more_question, intent_view)
+        params = {
+            'display_name': display_name,
+            'training_phrases': training_phrases,
+            'messages': messages,
+            'events': events,
+            'more_question': more_question,
+            'intent_view': intent_view,
+        }
+        if intent_id:
+            intent = self.update(intent_id, **params)  # type: ignore
         else:
-            intent = self.create(display_name, training_phrases, messages, more_question)
+            intent = self.create(**params)  # type: ignore
 
         return intent
 
