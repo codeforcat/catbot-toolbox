@@ -1,5 +1,5 @@
 import re
-from typing import List, Optional, Tuple, Union, Dict, Any
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import dialogflow_v2beta1 as dialogflow
 import yaml
@@ -119,13 +119,13 @@ class IntentRepository:
     def build_intent(
         self,
         display_name: str,
-        training_phrases: List[str],
+        training_phrases: Optional[List[str]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
         more_question: bool = False
     ) -> intent_pb2.Intent:
-        _training_phrases = self.build_training_phrases(training_phrases)
+        _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
         _messages = self.build_messages(messages if messages else [])
         _events = events if events else []
 
@@ -178,7 +178,7 @@ class IntentRepository:
     def create(
         self,
         display_name: str,
-        training_phrases: List[str],
+        training_phrases: Optional[List[str]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -194,7 +194,7 @@ class IntentRepository:
         self,
         id: str,
         display_name: str,
-        training_phrases: List[str],
+        training_phrases: Optional[List[str]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -209,7 +209,7 @@ class IntentRepository:
     def upsert(
         self,
         display_name: str,
-        training_phrases: List[str],
+        training_phrases: Optional[List[str]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
