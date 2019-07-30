@@ -81,5 +81,9 @@ intents:
       entity_type_display_name: '@sys.number'
       value: '$number'
     messages:
-    - クイズの解答です
+    - choices:
+      - numbers: [1]
+        text: '正解です'
+      - numbers: [2]
+        text: '不正解です'
     webhook_state: WEBHOOK_STATE_ENABLED
