@@ -31,9 +31,8 @@ intents:
     training_phrases:
     - 先生のひみつのサンプル
     messages:
-    - payload:
-        random_events:
-          - mame_sample
+    - random_events:
+      - mame_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: mame_sample
     messages:
@@ -42,9 +41,8 @@ intents:
     training_phrases:
     - 先生と遊ぼうのサンプル
     messages:
-    - payload:
-        random_events:
-          - quiz_sample
+    - random_events:
+      - quiz_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: quiz_sample
     output_contexts:

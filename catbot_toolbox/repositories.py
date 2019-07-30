@@ -143,9 +143,13 @@ class IntentRepository:
                     text=Intent.Message.Text(text=payload),
                     platform=self.platform,
                 )
-            elif isinstance(payload, dict) and 'payload' in payload:
+            elif isinstance(payload, dict):
                 payload_struct = Struct()
-                payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
+                if 'payload' in payload:
+                    payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
+                else:
+                    payload_struct.update(payload)
+
                 message = Intent.Message(
                     payload=payload_struct,
                     platform=self.platform,

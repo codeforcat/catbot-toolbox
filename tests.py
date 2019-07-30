@@ -79,10 +79,14 @@ class IntentRepositoryTest(unittest.TestCase):
         if 'messages' not in params:
             return
 
-        if isinstance(params['messages'][0], str):
-            self.assertEqual(params['messages'][0], intent['messages'][0]['text']['text'][0])
-        else:
-            self.assertEqual(params['messages'][0]['payload'], intent['messages'][0]['payload']['line'])
+        for i, message in enumerate(params['messages']):
+            if isinstance(message, str):
+                self.assertEqual(message, intent['messages'][i]['text']['text'][0])
+            elif isinstance(message, dict):
+                if 'payload' in message:
+                    self.assertEqual(message['payload'], intent['messages'][i]['payload']['line'])
+                else:
+                    self.assertEqual(message, intent['messages'][i]['payload'])
 
     def assert_events(self, intent, params):
         if 'events' in params:
