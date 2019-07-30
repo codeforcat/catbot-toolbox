@@ -30,9 +30,12 @@ intents:
   - display_name: richmenu_teacher_secret_sample
     training_phrases:
     - 先生のひみつのサンプル
+    messages:
+    - payload:
+        random_events:
+          - mame_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: mame_sample
-    training_phrases:
-    - 豆知識のサンプル
-    events:
-      - mame_sample
+    events: [mame_sample]
+    messages:
+    - これは豆知識のサンプルです。
