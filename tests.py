@@ -26,6 +26,7 @@ class IntentRepositoryTest(unittest.TestCase):
         self.assert_training_phrases(intent, params)
         self.assert_input_context_names(intent, params)
         self.assert_output_contexts(intent, params)
+        self.assert_parameters(intent, params)
         self.assert_messages(intent, params)
         self.assert_events(intent, params)
         self.assert_webhook_state(intent, params)
@@ -65,6 +66,14 @@ class IntentRepositoryTest(unittest.TestCase):
                     context['lifespan_count'],
                     intent['output_contexts'][i]['lifespan_count'],
                 )
+
+    def assert_parameters(self, intent, params):
+        if 'parameters' not in params:
+            return
+
+        for i, parameter in enumerate(params['parameters']):
+            _parameter = {k: v for k, v in intent['parameters'][i].items() if k not in ['name']}
+            self.assertTrue(parameter, _parameter)
 
     def assert_messages(self, intent, params):
         if 'messages' not in params:

@@ -123,6 +123,13 @@ class IntentRepository:
 
         return _contexts
 
+    def build_parameters(self, parameters: List[str]) -> List[Intent.TrainingPhrase]:
+        _parameters = []
+        for parameter in parameters:
+            _parameters.append(Intent.Parameter(**parameter))
+
+        return _parameters
+
     def build_messages(self, payloads: List[Union[str, dict]]) -> List[Intent.Message]:
         messages = []
         for payload in payloads:
@@ -156,6 +163,7 @@ class IntentRepository:
         training_phrases: Optional[List[str]] = None,
         input_context_names: Optional[List[str]] = None,
         output_contexts: Optional[List[dict]] = None,
+        parameters: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -164,6 +172,7 @@ class IntentRepository:
         _training_phrases = self.build_training_phrases(training_phrases if training_phrases else [])
         _input_context_names = self.build_input_context_names(input_context_names if input_context_names else [])
         _output_contexts = self.build_output_contexts(output_contexts if output_contexts else [])
+        _parameters = self.build_parameters(parameters if parameters else [])
         _messages = self.build_messages(messages if messages else [])
         _events = events if events else [display_name]
 
@@ -172,6 +181,7 @@ class IntentRepository:
             'training_phrases': _training_phrases,
             'input_context_names': _input_context_names,
             'output_contexts': _output_contexts,
+            'parameters': _parameters,
             'messages': _messages,
             'events': _events,
             'webhook_state': webhook_state,
@@ -221,6 +231,7 @@ class IntentRepository:
         training_phrases: Optional[List[str]] = None,
         input_context_names: Optional[List[str]] = None,
         output_contexts: Optional[List[dict]] = None,
+        parameters: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -232,10 +243,11 @@ class IntentRepository:
             training_phrases,
             input_context_names,
             output_contexts,
+            parameters,
             messages,
             events,
             webhook_state,
-            more_question
+            more_question,
         )
         parent = self.intents_client.project_agent_path(self.project)
         response = self.intents_client.create_intent(parent, intent, intent_view=intent_view)
@@ -248,6 +260,7 @@ class IntentRepository:
         training_phrases: Optional[List[str]] = None,
         input_context_names: Optional[List[str]] = None,
         output_contexts: Optional[List[dict]] = None,
+        parameters: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -259,10 +272,11 @@ class IntentRepository:
             training_phrases,
             input_context_names,
             output_contexts,
+            parameters,
             messages,
             events,
             webhook_state,
-            more_question
+            more_question,
         )
         intent.name = self.intents_client.intent_path(self.project, id)
         response = self.intents_client.update_intent(intent, language_code='', intent_view=intent_view)
@@ -274,6 +288,7 @@ class IntentRepository:
         training_phrases: Optional[List[str]] = None,
         input_context_names: Optional[List[str]] = None,
         output_contexts: Optional[List[dict]] = None,
+        parameters: Optional[List[dict]] = None,
         messages: Optional[List[Union[str, dict]]] = None,
         events: Optional[List[str]] = None,
         webhook_state: Optional[str] = None,
@@ -295,6 +310,7 @@ class IntentRepository:
             'training_phrases': training_phrases,
             'input_context_names': input_context_names,
             'output_contexts': output_contexts,
+            'parameters': parameters,
             'messages': messages,
             'events': events,
             'webhook_state': webhook_state,

@@ -64,7 +64,7 @@ intents:
           - type: message
             label: ②
             text: '2'
-  - display_name: quiz_answer_sample2
+  - display_name: quiz_answer_sample
     training_phrases:
     - parts:
       - text: '1'
@@ -78,5 +78,10 @@ intents:
     - quiz_answer
     output_contexts:
     - name: quiz_answer
+    parameters:
+    - display_name: number
+      entity_type_display_name: '@sys.number'
+      value: '$number'
     messages:
     - クイズの解答です
+    webhook_state: WEBHOOK_STATE_ENABLED
