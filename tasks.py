@@ -91,7 +91,7 @@ def load_intents(c, file, project='catbot-test'):
     """YAMLファイルからIntentをロードします。
 
     Examples:
-        $ pipenv run inv load-intents --file examples/sample.yml
+        $ pipenv run inv load-intents --file fixtures/sample.yml
     """
     repos = IntentRepository(project)
     response = repos.load(file)
@@ -103,7 +103,7 @@ def yaml2json(c, file):
     """YAML形式のファイルを読み込み、JSON形式で出力します。
 
     Examples:
-        $ pipenv run inv yaml2json -f sample.yml | jq
+        $ pipenv run inv yaml2json -f fixtures/sample.yml | jq
     """
     with open(file) as f:
         print(json.dumps(yaml.full_load(f), ensure_ascii=False))
@@ -171,13 +171,13 @@ def lint(c):
 @task
 def radon_cc(c):
     """循環的複雑度(Cyclomatic Complexity)を算出します。"""
-    c.run('radon cc -s -a -e tasks.py -i examples .')
+    c.run('radon cc -s -a -e tasks.py -i fixtures .')
 
 
 @task
 def radon_mi(c):
     """保守性指数(Maintainability Index)を算出します。"""
-    c.run('radon mi -s -e tasks.py -i examples .')
+    c.run('radon mi -s -e tasks.py -i fixtures .')
 
 
 @task

@@ -98,7 +98,7 @@ class IntentRepositoryTest(unittest.TestCase):
                 repos.delete(id)
 
     def test_load(self):
-        file = os.path.join(os.path.dirname(__file__), 'examples', 'sample.yml')
+        file = os.path.join(os.path.dirname(__file__), 'fixtures', 'sample.yml')
 
         with open(file) as f:
             data = yaml.full_load(f)
@@ -118,7 +118,7 @@ class IntentRepositoryTest(unittest.TestCase):
                     repos.delete(id)
 
     def test_resolve_all(self):
-        file = os.path.join(os.path.dirname(__file__), 'examples', 'sample.yml')
+        file = os.path.join(os.path.dirname(__file__), 'fixtures', 'sample.yml')
 
         with open(file) as f:
             data = yaml.full_load(f)
