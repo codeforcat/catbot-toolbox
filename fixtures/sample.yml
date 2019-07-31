@@ -21,7 +21,7 @@ intents:
             actions:
             - type: message
               label: どうしよう？
-              text: {phrase_from: food_select_sample}
+              text: '%food_select_sample.training_phrases.0'
   - display_name: food_select_sample
     training_phrases:
     - 食べさせちゃいけないもののサンプル
@@ -77,7 +77,7 @@ intents:
     parameters:
     - display_name: number
       entity_type_display_name: '@sys.number'
-      value: '$number'
+      value: $number
     messages:
     - choices:
       - numbers: [1]

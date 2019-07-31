@@ -172,7 +172,7 @@ class IntentRepositoryTest(unittest.TestCase):
         result = None
         try:
             result = repos.load(file)
-            # expectationとしてphrase_from等を解決した後のintentsを取得する
+            # expectationとしてresolve_allを通した後のintentsを取得する
             intents = repos.resolve_all(data['intents'], [])
             for i, intent_params in enumerate(intents):
                 self.assert_intent(result['intents'][i], intent_params)

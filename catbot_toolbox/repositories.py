@@ -4,8 +4,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import dialogflow_v2beta1 as dialogflow
 import yaml
 from dialogflow_v2.gapic import enums
-from dialogflow_v2beta1.proto.intent_pb2 import Intent
 from dialogflow_v2beta1.proto.context_pb2 import Context
+from dialogflow_v2beta1.proto.intent_pb2 import Intent
 from google.api_core.page_iterator import GRPCIterator
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.struct_pb2 import Struct
@@ -123,7 +123,7 @@ class IntentRepository:
 
         return _contexts
 
-    def build_parameters(self, parameters: List[str]) -> List[Intent.TrainingPhrase]:
+    def build_parameters(self, parameters: List[dict]) -> List[Intent.TrainingPhrase]:
         _parameters = []
         for parameter in parameters:
             _parameters.append(Intent.Parameter(**parameter))
@@ -362,8 +362,8 @@ class IntentRepository:
 
     def resolve(self, branch: Union[List, dict, str], intent_list: List[dict]) -> Union[List, dict, str]:
         """インテントに対してphrase_fromなどのカスタムフィールドを解決します。"""
-        if isinstance(branch, dict) and 'phrase_from' in branch:
-            return self.resolve_phrase_from(branch['phrase_from'], intent_list)
+        if isinstance(branch, str) and branch.startswith('%'):
+            return self.resolve_path(branch.lstrip('%'), intent_list)
         elif isinstance(branch, list):
             return [self.resolve(sub, intent_list) for sub in branch]
         elif isinstance(branch, dict):
@@ -371,10 +371,27 @@ class IntentRepository:
         else:
             return branch
 
-    def resolve_phrase_from(self, key: str, intent_list: List) -> str:
-        """intent_listの中からdisplay_nameがkeyに合致するintentを探索し、先頭のtraining_phraseを返します。"""
-        matches = filter(lambda i: 'display_name' in i and i['display_name'] == key, intent_list)
+    def resolve_path(self, path: str, intent_list: List[dict]) -> Any:
+        keys = path.split('.')
+        display_name = keys.pop(0)
+        matches = filter(lambda i: 'display_name' in i and i['display_name'] == display_name, intent_list)
+
+        def traverse(branch: Any, _keys: List) -> Any:
+            if not _keys:
+                return branch
+            try:
+                if isinstance(branch, dict):
+                    return traverse(branch[_keys[0]], _keys[1:])
+                elif isinstance(branch, list):
+                    return traverse(branch[int(_keys[0])], _keys[1:])
+                else:
+                    return None
+            except (KeyError, IndexError, ValueError):
+                return None
+
         for intent in matches:
-            if 'training_phrases' in intent and len(intent['training_phrases']) > 0:
-                return intent['training_phrases'][0]
-        return ''
+            value = traverse(intent, keys)
+            if value is not None:
+                return value
+
+        return None
