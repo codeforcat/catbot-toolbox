@@ -85,6 +85,8 @@ class IntentRepositoryTest(unittest.TestCase):
             elif isinstance(message, dict):
                 if 'payload' in message:
                     self.assertEqual(message['payload'], intent['messages'][i]['payload']['line'])
+                elif 'choice_buttons' in message:
+                    pass
                 else:
                     self.assertEqual(message, intent['messages'][i]['payload'])
 

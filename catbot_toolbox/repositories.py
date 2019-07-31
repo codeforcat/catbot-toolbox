@@ -147,6 +147,9 @@ class IntentRepository:
                 payload_struct = Struct()
                 if 'payload' in payload:
                     payload_struct.update({self.PLATFORMS[self.platform].lower(): payload['payload']})
+                elif 'choice_buttons' in payload:
+                    _payload = self.build_choice_buttons(payload['choice_buttons'])
+                    payload_struct.update({self.PLATFORMS[self.platform].lower(): _payload})
                 else:
                     payload_struct.update(payload)
 
@@ -160,6 +163,20 @@ class IntentRepository:
             messages.append(message)
 
         return messages
+
+    def build_choice_buttons(self, payload: dict) -> dict:
+        _payload = {
+            'type': 'template',
+            'altText': payload['text'],
+            'template': {
+                'type': 'buttons',
+                'text': payload['text'],
+                'actions': [
+                    {'type': 'message', 'label': l, 'text': i + 1} for i, l in enumerate(payload['buttons'])
+                ]
+            }
+        }
+        return _payload
 
     def build_intent(
         self,
@@ -355,7 +372,7 @@ class IntentRepository:
         self.intents_client.delete_intent(name)
 
     def resolve_all(self, intents: List[dict], intent_list: Optional[List[dict]] = None) -> List:
-        """インテントのリストに対してphrase_fromなどのカスタムフィールドを解決します。"""
+        """インテントのリストに対して%pathなどのカスタムフィールドを解決します。"""
         if intent_list is None:
             intent_list = self.list_all()
         return [self.resolve(i, intents + intent_list) for i in intents]

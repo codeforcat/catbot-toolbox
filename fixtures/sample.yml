@@ -21,6 +21,7 @@ intents:
             actions:
             - type: message
               label: どうしよう？
+              # display_name=food_select_sample の training_phrases[0] に置き換えられる
               text: '%food_select_sample.training_phrases.0'
   - display_name: food_select_sample
     training_phrases:
@@ -40,26 +41,33 @@ intents:
     - 先生と遊ぼうのサンプル
     messages:
     - random_choices:
-      - followup_event: quiz_sample
+      - messages:
+        - followup_event: quiz_sample
     webhook_state: WEBHOOK_STATE_ENABLED
   - display_name: quiz_sample
     output_contexts:
     - name: quiz_answer
       lifespan_count: 1
     messages:
-    - payload:
-        type: template
-        altText: ここでクイズです
-        template:
-          type: buttons
-          text: 正解を選んでください
-          actions:
-          - type: message
-            label: ①
-            text: '1'
-          - type: message
-            label: ②
-            text: '2'
+    - choice_buttons:
+        text: 正解を選んでください
+        buttons:
+        - ① 選択肢1
+        - ② 選択肢2
+#  choice_buttonsaは下記のpayloadに展開される
+#    - payload:
+#        type: template
+#        altText: ここでクイズです
+#        template:
+#          type: buttons
+#          text: 正解を選んでください
+#          actions:
+#          - type: message
+#            label: ① 選択肢1
+#            text: 1
+#          - type: message
+#            label: ② 選択肢2
+#            text: 2
   - display_name: quiz_answer_sample
     training_phrases:
     - parts:
