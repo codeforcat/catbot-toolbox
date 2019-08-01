@@ -2,6 +2,7 @@ import re
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import dialogflow_v2beta1 as dialogflow
+import packaging.version
 import yaml
 from dialogflow_v2.gapic import enums
 from dialogflow_v2beta1.proto.context_pb2 import Context
@@ -9,6 +10,8 @@ from dialogflow_v2beta1.proto.intent_pb2 import Intent
 from google.api_core.page_iterator import GRPCIterator
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.struct_pb2 import Struct
+
+from . import __version__, FormatVersionError
 
 
 class IntentRepository:
@@ -372,7 +375,11 @@ class IntentRepository:
     def load(self, file: str) -> dict:
         with open(file) as f:
             data = yaml.full_load(f)
+            version = data.get('version', __version__)
             intents = data['intents']
+
+        if packaging.version.parse(version) > packaging.version.parse(__version__):
+            raise FormatVersionError(f'Invalid data format version {version}')
 
         intent_list = self.list_all()
         result: dict = {'intents': []}
