@@ -1,0 +1,109 @@
+version: 0.1.0
+intents:
+  - display_name: richmenu_select_theme
+    training_phrases:
+    - テーマから選ぼう
+    messages:
+    - payload:
+        type: template
+        altText: 何か気になることある？
+        template:
+          type: carousel
+          columns:
+          - title: ご飯どうする
+            text: 食べさせちゃいけないものもあるよ
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_food_thumbnail.jpg
+            actions:
+            - type: message
+              label: どうしよう？
+              text: '%food_select.training_phrases.0'
+
+          - title: トイレの用意
+            text: 考えないといけないことがたくさん！
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_toilet_thumbnail.jpg
+            actions:
+            - type: message
+              label: これが気になる
+              text: '%toilet_select.training_phrases.0'
+
+          - title: 環境づくり
+            text: 快適な場所を作ってほしいな
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_environment_thumbnail.jpg
+            actions:
+            - type: message
+              label: 好きな場所
+              text: '%environment_select.training_phrases.0'
+
+          - title: お留守番
+            text: いろんな注意点があるよ
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_housesitting_thumbnail.jpg
+            actions:
+            - type: message
+              label: できるかな？
+              text: '%housesitting_select.training_phrases.0'
+
+          - title: ネコあるある
+            text: 気になるしぐさや習慣があるよね
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_aruaru_thumbnail.jpg
+            actions:
+            - type: message
+              label: なんだろう？
+              text: '%aruaru_select.training_phrases.0'
+
+          - title: 仲良くなりたい
+            text: 気持ちをわかってほしい
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_friendly_thumbnail.jpg
+            actions:
+            - type: message
+              label: なれるかな？
+              text: '%friendly_select.training_phrases.0'
+
+          - title: 大切にしたい
+            text: 身体のケアを忘れないでね
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_care_thumbnail.jpg
+            actions:
+            - type: message
+              label: できるかな？
+              text: '%care_select.training_phrases.0'
+
+  - display_name: food_select
+    training_phrases:
+    - なにを食べさせちゃいけないの？
+    messages:
+    - hogehoge
+
+  - display_name: toilet_select
+    training_phrases:
+    - トイレはどうしてあげればいいのかな？
+    messages:
+    - hogehoge
+
+  - display_name: environment_select
+    training_phrases:
+      - どんな環境がいいのかな？
+    messages:
+    - hogehoge
+
+  - display_name: housesitting_select
+    training_phrases:
+    - いい子でお留守番できるかな？
+    messages:
+    - hogehoge
+
+  - display_name: aruaru_select
+    training_phrases:
+    - どんなあるあるがあるかな？
+    messages:
+    - hogehoge
+
+  - display_name: friendly_select
+    training_phrases:
+    - 仲良くなれるかな？
+    messages:
+    - hogehoge
+
+  - display_name: care_select
+    training_phrases:
+    - どんなケアをしてあげればいいのかな？
+    messages:
+    - hogehoge
