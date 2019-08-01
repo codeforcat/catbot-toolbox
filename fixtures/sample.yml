@@ -54,10 +54,10 @@ intents:
         buttons:
         - ① 選択肢1
         - ② 選択肢2
-#  choice_buttonsaは下記のpayloadに展開される
+#  choice_buttonsは下記のpayloadに展開される
 #    - payload:
 #        type: template
-#        altText: ここでクイズです
+#        altText: 正解を選んでください
 #        template:
 #          type: buttons
 #          text: 正解を選んでください
@@ -70,22 +70,27 @@ intents:
 #            text: 2
   - display_name: quiz_answer_sample
     training_phrases:
-    - parts:
-      - text: '1'
-        entity_type: '@sys.number'
-        alias: number
-    - parts:
-      - text: '2'
-        entity_type: '@sys.number'
-        alias: number
+    - number: 1
+    - number: 2
+#  training_phrases.numberは下記のpartsに展開される
+#    - parts:
+#      - text: '1'
+#        entity_type: '@sys.number'
+#        alias: number
+#    - parts:
+#      - text: '2'
+#        entity_type: '@sys.number'
+#        alias: number
     input_context_names:
     - quiz_answer
     output_contexts:
     - name: quiz_answer
     parameters:
-    - display_name: number
-      entity_type_display_name: '@sys.number'
-      value: $number
+    - number
+#  parameters.number は下記のpartsに展開される
+#    - display_name: number
+#      entity_type_display_name: '@sys.number'
+#      value: $number
     messages:
     - choices:
       - numbers: [1]

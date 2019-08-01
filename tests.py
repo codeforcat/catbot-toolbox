@@ -72,6 +72,8 @@ class IntentRepositoryTest(unittest.TestCase):
             return
 
         for i, parameter in enumerate(params['parameters']):
+            if isinstance(parameter, str) and 'number' in parameter:
+                continue
             _parameter = {k: v for k, v in intent['parameters'][i].items() if k not in ['name']}
             self.assertTrue(parameter, _parameter)
 

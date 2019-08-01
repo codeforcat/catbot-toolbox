@@ -85,6 +85,15 @@ class IntentRepository:
                     Intent.TrainingPhrase.Part(**part, user_defined=True)
                     for part in training_phrase['parts']
                 ]
+            elif isinstance(training_phrase, dict) and 'number' in training_phrase:
+                parts = [
+                    Intent.TrainingPhrase.Part(
+                        text=str(training_phrase['number']),
+                        entity_type='@sys.number',
+                        alias='number',
+                        user_defined=True,
+                    )
+                ]
             else:
                 continue
 
@@ -126,7 +135,14 @@ class IntentRepository:
     def build_parameters(self, parameters: List[dict]) -> List[Intent.TrainingPhrase]:
         _parameters = []
         for parameter in parameters:
-            _parameters.append(Intent.Parameter(**parameter))
+            if isinstance(parameter, str) and parameter == 'number':
+                _parameters.append(Intent.Parameter(
+                    display_name='number',
+                    entity_type_display_name='@sys.number',
+                    value='$number',
+                ))
+            else:
+                _parameters.append(Intent.Parameter(**parameter))
 
         return _parameters
 
