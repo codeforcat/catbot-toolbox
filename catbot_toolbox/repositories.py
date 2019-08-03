@@ -154,12 +154,12 @@ class IntentRepository:
         for payload in payloads:
             if isinstance(payload, str):
                 message = Intent.Message(
-                    text=Intent.Message.Text(text=[payload]),
+                    text=Intent.Message.Text(text=[payload.strip()]),
                     platform=self.platform,
                 )
             elif isinstance(payload, list):
                 message = Intent.Message(
-                    text=Intent.Message.Text(text=payload),
+                    text=Intent.Message.Text(text=[text.strip() for text in payload]),
                     platform=self.platform,
                 )
             elif isinstance(payload, dict):
