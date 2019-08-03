@@ -1,0 +1,243 @@
+version: 0.1.0
+intents:
+# richmenu
+  - display_name: richmenu_select_theme
+    training_phrases:
+    - テーマから選ぼう
+    messages:
+    - payload:
+        type: template
+        altText: 何か気になることある？
+        template:
+          type: carousel
+          columns:
+          - title: ご飯どうする
+            text: 食べさせちゃいけないものもあるよ
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_food_thumbnail.jpg
+            actions:
+            - type: message
+              label: どうしよう？
+              text: '%food_select.training_phrases.0'
+
+          - title: トイレの用意
+            text: 考えないといけないことがたくさん！
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_toilet_thumbnail.jpg
+            actions:
+            - type: message
+              label: これが気になる
+              text: '%toilet_select.training_phrases.0'
+
+          - title: 環境づくり
+            text: 快適な場所を作ってほしいな
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_environment_thumbnail.jpg
+            actions:
+            - type: message
+              label: 好きな場所
+              text: '%environment_select.training_phrases.0'
+
+          - title: お留守番
+            text: いろんな注意点があるよ
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_housesitting_thumbnail.jpg
+            actions:
+            - type: message
+              label: できるかな？
+              text: '%housesitting_select.training_phrases.0'
+
+          - title: ネコあるある
+            text: 気になるしぐさや習慣があるよね
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_aruaru_thumbnail.jpg
+            actions:
+            - type: message
+              label: なんだろう？
+              text: '%aruaru_select.training_phrases.0'
+
+          - title: 仲良くなりたい
+            text: 気持ちをわかってほしい
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_friendly_thumbnail.jpg
+            actions:
+            - type: message
+              label: なれるかな？
+              text: '%friendly_select.training_phrases.0'
+
+          - title: 大切にしたい
+            text: 身体のケアを忘れないでね
+            thumbnailImageUrl: https://code4cat.org/catbot/theme_care_thumbnail.jpg
+            actions:
+            - type: message
+              label: できるかな？
+              text: '%care_select.training_phrases.0'
+
+# food_select
+  - display_name: food_select
+    training_phrases:
+    - "なにを食べさせちゃいけないの？"
+    messages:
+    - payload:
+        type: template
+        altText: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+        template:
+          type: buttons
+          text: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+          actions:
+          - type: message
+            label: "ご飯の基本"
+            text: '%food_select_basic.training_phrases.0'
+          - type: message
+            label: "いろんな種類があるけど？"
+            text: '%food_select_donteat.training_phrases.0'
+          - type: message
+            label: "水のあげ方は？"
+            text: '%food_select_water.training_phrases.0'
+
+  - display_name: food_select_basic
+    training_phrases:
+    - 'ご飯の基本を教えて！'
+    messages:
+    - payload:
+        type: template
+        altText: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: '何をあげればいいの？'
+            text: '%food_answer_dry.training_phrases.0'
+          - type: message
+            label: "いつあげればいいの？"
+            text: '%food_answer_when.training_phrases.0'
+          - type: message
+            label: "おやつは？"
+            text: '%food_answer_snack.training_phrases.0'
+
+  - display_name: food_answer_dry
+    training_phrases:
+    - 'ご飯は何をあげればいいの？'
+    messages:
+    - 'カリカリ（ドライ）と缶詰パウチ（ウェット）があるけど、ドライが基本かな。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'ドライもいろいろ'
+            text: '%food_answer_whichdry.training_phrases.0'
+          - type: message
+            label: "缶詰ダメなの？"
+            text: '%food_answer_can.training_phrases.0'
+
+  - display_name: food_answer_whichdry
+    training_phrases:
+    - 'ドライもいろいろあるけど？'
+    messages:
+    - 'ネコの年齢や体調に合ったドライを選んでね。'
+    more_question: true
+
+  - display_name: food_answer_can
+    training_phrases:
+    - '缶詰ダメなの？'
+    messages:
+    - '缶詰のあげすぎは、歯周病の原因になるので、あげすぎには注意してね。おやつくらいの感覚かな。'
+    more_question: true
+
+  - display_name: food_answer_when
+    training_phrases:
+    - 'ご飯はいつあげればいいの？'
+    messages:
+    - 'ご飯は、朝夕２回が基本だけど、猫は、犬と違って、ダラダラと食べるので、置きっぱなしでも大丈夫。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '置きっぱなし？'
+            text: '%food_answer_leave.training_phrases.0'
+
+  - display_name: food_answer_leave
+    training_phrases:
+    - 'どのぐらい置きっぱなしでも大丈夫？'
+    messages:
+    - 'ドライなら置きっぱなしでも大丈夫だけど、酸化する前に、交換してね。目安は6時間くらいかな。'
+    more_question: true
+
+  - display_name: food_answer_snack
+    training_phrases:
+    - 'おやつはあげてもいいの？'
+    messages:
+    - 'おやつをあげてもいいけど、あげすぎに注意。ご飯食べなくなるから。'
+    more_question: true
+
+  - display_name: food_select_donteat
+    training_phrases:
+    - 'どんなものを食べさせていいの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: '何をあげればいいの？'
+            text: 'food_select_basic.training_phrases.0'
+          - type: message
+            label: "いつあげればいいの？"
+            text: 'food_select_donteat.training_phrases.0'
+          - type: message
+            label: "おやつは？"
+            text: 'food_select_water.training_phrases.0'
+
+  - display_name: food_select_water
+    training_phrases:
+    - "どんなものを食べさせていいの？"
+    messages:
+    - food_select_water
+
+# toilet
+  - display_name: toilet_select
+    training_phrases:
+    - トイレはどうしてあげればいいのかな？
+    messages:
+    - hogehoge
+
+# environment
+  - display_name: environment_select
+    training_phrases:
+      - どんな環境がいいのかな？
+    messages:
+    - hogehoge
+
+# housesitting
+  - display_name: housesitting_select
+    training_phrases:
+    - いい子でお留守番できるかな？
+    messages:
+    - hogehoge
+
+# aruaru
+  - display_name: aruaru_select
+    training_phrases:
+    - どんなあるあるがあるかな？
+    messages:
+    - hogehoge
+
+# friendly
+  - display_name: friendly_select
+    training_phrases:
+    - 仲良くなれるかな？
+    messages:
+    - hogehoge
+
+# care
+  - display_name: care_select
+    training_phrases:
+    - どんなケアをしてあげればいいのかな？
+    messages:
+    - hogehoge
