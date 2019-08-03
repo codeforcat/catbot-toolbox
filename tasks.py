@@ -21,7 +21,7 @@ def list_intents(c, project='catbot-test', display_name_regex='.*'):
     下記の実行例で `name` の `intents/` 以降がIntentのIDです。
 
     Examples:
-        $ invoke list-intent --display-name-regex '^sample$' | jq
+        $ invoke list-intents --display-name-regex '^sample$' | jq
         {
           "name": "projects/catbot-test/agent/intents/1c5e9b44-1822-4b7a-9e97-f00e789c0ff3",
           "displayName": "sample",
@@ -37,7 +37,7 @@ def list_intents(c, project='catbot-test', display_name_regex='.*'):
 @task
 def get_intent(c, intent_id, project='catbot-test', intent_view=enums.IntentView.INTENT_VIEW_FULL):
     """Intent IDを指定してIntentを一件取得します。
-    IntentのIDがわかっている場合は、 `list-intent` ではなくこちらを利用してください。
+    IntentのIDがわかっている場合は、 `list-intents` ではなくこちらを利用してください。
 
     Examples:
         $ pipenv run inv get-intent --intent-id 1c5e9b44-1822-4b7a-9e97-f00e789c0ff3 | jq
