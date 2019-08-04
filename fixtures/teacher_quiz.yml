@@ -1,0 +1,271 @@
+version: 0.1.0
+intents:
+# richmenu
+  - display_name: richmenu_teacher_quiz
+    training_phrases:
+    - 先生と遊ぼう
+    messages:
+    - random_choices:
+      - messages:
+        - followup_event: food_quiz_noteat
+      - messages:
+        - followup_event: food_quiz_plate
+      - messages:
+        - followup_event: toilet_quiz_do
+      - messages:
+        - followup_event: environment_quiz_like
+      - messages:
+        - followup_event: environment_quiz_notroom
+      - messages:
+        - followup_event: aruaru_quiz_sign
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# food_quiz_noteat
+  - display_name: food_quiz_noteat
+    output_contexts:
+    - name: food_quiz_noteat_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: ここで、クイズです。このなかで、ネコに食べさせたらダメなものは？
+        buttons:
+        - ①玉ねぎ
+        - ②チョコレート
+        - ③イカ
+
+  - display_name: food_quiz_noteat_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - food_quiz_noteat_answer
+    output_contexts:
+    - name: food_quiz_noteat_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1, 2, 3]
+        messages:
+        - |
+          ピンポン！正解です。
+          玉ねぎ、ネギ、にんにく、チョコレート、イカなど、人間の食べ物は塩気が多いのでだめです。あと、生ものも避けようね。
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# food_quiz_plate
+  - display_name: food_quiz_plate
+    output_contexts:
+    - name: food_quiz_plate_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: ここで、クイズです。水の器、大きいのと小さいのとどっちがいい？
+        buttons:
+        - ①大きい器
+        - ②小さい器
+
+  - display_name: food_quiz_plate_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - food_quiz_plate_answer
+    output_contexts:
+    - name: food_quiz_plate_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1]
+        messages:
+        - |
+          ピンポン！正解です。
+          水を飲むとき、ひげが器にあたることを嫌うネコもいるので、口が広めの器がいいよ。
+      - numbers: [2]
+        messages:
+        - |
+          ブッブー！不正解です。
+          水を飲むとき、ひげが器にあたることを嫌うネコもいるので、口が広めの器がいいよ。
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# toilet_quiz_do
+  - display_name: toilet_quiz_do
+    output_contexts:
+    - name: toilet_quiz_do_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: トイレの時こんなことないですか？
+        buttons:
+        - ①砂をかけずに急いで出る
+        - ②ヘリや壁をカリカリかく
+        - ③空中をかく
+        - ④ヘリに足をかけて排泄
+
+  - display_name: toilet_quiz_do_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - toilet_quiz_do_answer
+    output_contexts:
+    - name: toilet_quiz_do_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1, 2]
+        messages:
+        - そういう行動は、トイレの砂が気に入らないときだよ。
+      - numbers: [3, 4]
+        messages:
+        - そういう行動は、トイレの形や大きさが気に入らないときだよ。
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# environment_quiz_like
+  - display_name: environment_quiz_like
+    output_contexts:
+    - name: environment_quiz_like_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: ネコが好きな場所は、どこでしょう？
+        buttons:
+        - ①高いところ
+        - ②狭いところ
+        - ③ダンボール
+
+  - display_name: environment_quiz_like_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - environment_quiz_like_answer
+    output_contexts:
+    - name: environment_quiz_like_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1, 2, 3]
+        messages:
+        - payload:
+            type: template
+            altText: 全部正解だよ！
+            template:
+              type: buttons
+              text: 全部正解だよ、具体的には何が知りたい？
+              actions:
+              - type: message
+                label: "なぜ高いところ？"
+                text: '%environment_answer_high.training_phrases.0'
+              - type: message
+                label: "なぜ狭いところ？"
+                text: '%environment_answer_narrow.training_phrases.0'
+              - type: message
+                label: "なぜダンボール？"
+                text: '%environment_answer_cardboard.training_phrases.0'
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+  - display_name: environment_answer_high
+    training_phrases:
+    - どうして高いところが好きなの？
+    messages:
+    - 野生の名残らしいよ。野生のネコは地上の敵から襲われにくく、獲物を狙いやすい木の上で暮らしてたからだよ。お家では、タンスやテーブルの上が指定席なのはそういうこと。キャットタワー置いてあげるといいよ。
+    - payload:
+        type: template
+        altText: 他にも気になることある？
+        template:
+          type: buttons
+          text: 他にも気になることある？
+          actions:
+          - type: message
+            label: キャットタワーの設置
+            text: '%environment_answer_cattower.training_phrases.0'
+
+  - display_name: environment_answer_cattower
+    training_phrases:
+    - キャットタワーはどこに設置したらいいの？
+    messages:
+    - キャットタワーは、窓際に置いてあげると、高いところから外が見られて、ご機嫌だよ。
+    more_question: true
+
+  - display_name: environment_answer_narrow
+    training_phrases:
+    - どうして狭いところが好きなの？
+    messages:
+    - イエネコの祖先だと言われているリビアヤマネコは、狭くて暗いところを寝床にしていたからだよ。ソファの下が好きなのはそういうことだよ。
+    more_question: true
+
+  - display_name: environment_answer_cardboard
+    training_phrases:
+    - どうしてダンボールが好きなの？
+    messages:
+    - 狭いところがネコの基本。ネコの目は平面で、左右や後部の視界はないので、壁が1面より2面、3面ある場所が落ち着く。
+    more_question: true
+
+# environment_quiz_notroom
+  - display_name: environment_quiz_notroom
+    output_contexts:
+    - name: environment_quiz_notroom_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: ネコと暮らすのに、部屋に置いちゃいけないものはどれでしょう？
+        buttons:
+        - ①花・観葉植物
+        - ②アロマオイル・サプリメント
+        - ③タバコ
+        - ④柑橘系のニオイ
+
+  - display_name: environment_quiz_notroom_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - environment_quiz_notroom_answer
+    output_contexts:
+    - name: environment_quiz_notroom_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1, 2, 3, 4]
+        messages:
+        - |
+          全部正解だよ！
+          ①花・観葉植物
+          ゆり科、ネギ類など毒になる植物は数百種類もあるよ!
+          ②アロマオイル・サプリメント
+          ネコには刺激が強すぎるし、毒になることもあるよ！
+          ③タバコ
+          もちろんダメだよ!
+          ④柑橘系のニオイ
+          大嫌いだよ!
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# aruaru_quiz_sign
+  - display_name: aruaru_quiz_sign
+    output_contexts:
+    - name: aruaru_quiz_sign_answer
+      lifespan_count: 1
+    messages:
+    - choice_buttons:
+        text: ネコのゴロゴロって鳴き声は何のサインでしょう？
+        buttons:
+        - ①ご機嫌
+        - ②ご飯ちょうだい
+        - ③カラダの具合が悪い
+
+  - display_name: aruaru_quiz_sign_answer
+    training_phrases:
+    - number: 1
+    input_context_names:
+    - aruaru_quiz_sign_answer
+    output_contexts:
+    - name: aruaru_quiz_sign_answer
+    parameters:
+    - number
+    messages:
+    - choices:
+      - numbers: [1, 2, 3]
+        messages:
+        - |
+          全部正解だよ！
+          ゴロゴロという鳴き声には、いろんな意味があるよ。大体は、ご機嫌なときのゴロゴロなんだけど、「ご飯ちょうだい」などの要求がらみのものやカラダの具合が悪いときにもゴロゴロするので、気をつけて見ておいてね。
+    webhook_state: WEBHOOK_STATE_ENABLED
