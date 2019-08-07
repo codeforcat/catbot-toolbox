@@ -451,14 +451,117 @@ intents:
 # environment
   - display_name: environment_select
     training_phrases:
-    - どんな環境がいいのかな？
+    - 'どんな環境がいいのかな？'
     messages:
-    - hogehoge
+    - payload:
+        type: template
+        altText: '環境づくりについて気になるんだね。どんなことかな？'
+        template:
+          type: buttons
+          text: '環境づくりについて気になるんだね。どんなことかな？'
+          actions:
+          - type: message
+            label: '好きな場所'
+            text: '%environment_select_like.training_phrases.0'
+          - type: message
+            label: 'ネコベッド？'
+            text: '%environment_answer_bed.training_phrases.0'
+          - type: message
+            label: '居心地の悪いサイン？'
+            text: '%environment_answer_uncomfortable.training_phrases.0'
+
+  - display_name: environment_select_like
+    training_phrases:
+    - '好きな場所ってどんなところ？'
+    messages:
+    - payload:
+        type: template
+        altText: 'こんな場所が好きなんだよ。どれが気になる？'
+        template:
+          type: buttons
+          text: 'こんな場所が好きなんだよ。どれが気になる？'
+          actions:
+          - type: message
+            label: 'なぜ高いところ？'
+            text: '%environment_answer_high.training_phrases.0'
+          - type: message
+            label: 'なぜ狭いところ？'
+            text: '%environment_answer_narrow.training_phrases.0'
+          - type: message
+            label: 'なぜダンボール？'
+            text: '%environment_answer_cardboard.training_phrases.0'
+
+  - display_name: environment_answer_high
+    training_phrases:
+    - 'なぜ高いところが好きなの？'
+    messages:
+    - '野生の名残らしいよ。野生のネコは地上の敵から襲われにくく、獲物を狙いやすい木の上で暮らしてたからだよ。お家では、タンスやテーブルの上が指定席なのはそういうこと。キャットタワー置いてあげるといいよ。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'キャットタワーの設置'
+            text: '%environment_answer_cattower.training_phrases.0'
+
+  - display_name: environment_answer_cattower
+    training_phrases:
+    - 'キャットタワーはどこに設置すればいい？'
+    messages:
+    - 'キャットタワーは、窓際に置いてあげると、高いところから外が見られて、ご機嫌だよ。'
+    more_question: true
+
+  - display_name: environment_answer_narrow
+    training_phrases:
+    - 'なぜ狭いところが好きなの？'
+    messages:
+    - 'イエネコの祖先だと言われているリビアヤマネコは、狭くて暗いところを寝床にしていたからだよ。ソファの下が好きなのはそういうことだよ。'
+    more_question: true
+
+  - display_name: environment_answer_cardboard
+    training_phrases:
+    - 'なぜダンボールが好きなの？'
+    messages:
+    - '狭いところがネコの基本。ネコの目は平面で、左右や後部の視界はないので、壁が1面より2面、3面ある場所が落ち着く。'
+    more_question: true
+
+  - display_name: environment_answer_bed
+    training_phrases:
+    - 'ネコベッドは用意したほうがいい？'
+    messages:
+    - '高価なネコベットを用意しても、ダンボールや毛布のほうがお気に入りということもあるけど、置くところ変えてみるとか、いろいろ試してみて。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'どこに置くといい？'
+            text: '%environment_answer_wherebed.training_phrases.0'
+
+  - display_name: environment_answer_wherebed
+    training_phrases:
+    - 'ネコベッドはどこに置くといい？'
+    messages:
+    - '人が動き回る動線は避けたほうがいいですが、人の気配が感じられる場所と一人で静かにいられる場所の両方が必要だよ。季節や一日の時間帯によっても変わるよ。'
+    more_question: true
+
+  - display_name: environment_answer_uncomfortable
+    training_phrases:
+    - '居心地の悪いサイン？'
+    messages:
+    - '何度も寝返りしたり、しっぽをずっとパタンパタンしたり、移動を繰り返したりは、居心地の悪いサインだよ。'
+    more_question: true
 
 # housesitting
   - display_name: housesitting_select
     training_phrases:
-    - いい子でお留守番できるかな？
+    - 'いい子でお留守番できるかな？'
     messages:
     - hogehoge
 
