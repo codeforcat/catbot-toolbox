@@ -976,9 +976,363 @@ intents:
 # friendly
   - display_name: friendly_select
     training_phrases:
-    - 仲良くなれるかな？
+    - '仲良くなれるかな？'
     messages:
-    - hogehoge
+    - payload:
+        type: template
+        altText: '仲良くなりたいよね。どれが気になるかな？'
+        template:
+          type: buttons
+          text: '仲良くなりたいよね。どれが気になるかな？'
+          actions:
+          - type: message
+            label: 'ネコのうれしいことをする'
+            text: '%friendly_select_pleasure.training_phrases.0'
+          - type: message
+            label: 'ネコに嫌がることをしない'
+            text: '%friendly_select_dont.training_phrases.0'
+          - type: message
+            label: 'コミュニケーション'
+            text: '%friendly_select_communication.training_phrases.0'
+
+  - display_name: friendly_select_pleasure
+    training_phrases:
+    - 'ネコのうれしいことをする'
+    messages:
+    - payload:
+        type: template
+        altText: 'こんなことがうれしい！どれが気になる？'
+        template:
+          type: buttons
+          text: 'こんなことがうれしい！どれが気になる？'
+          actions:
+          - type: message
+            label: 'おもちゃ追いかけ隠れんぼ'
+            text: '%friendly_select_goods.training_phrases.0'
+          - type: message
+            label: 'マッサージブラシ撫で'
+            text: '%friendly_select_massage.training_phrases.0'
+
+  - display_name: friendly_select_goods
+    training_phrases:
+    - 'おもちゃ・追いかけっこ・かくれんぼ'
+    messages:
+    - payload:
+        type: template
+        altText: '教えてあげるよ！'
+        template:
+          type: buttons
+          text: '教えてあげるよ！'
+          actions:
+          - type: message
+            label: 'おもちゃで遊ぶ'
+            text: '%friendly_answer_goods.training_phrases.0'
+          - type: message
+            label: '追いかけっこ'
+            text: '%friendly_answer_chase.training_phrases.0'
+          - type: message
+            label: 'かくれんぼ'
+            text: '%friendly_answer_hide.training_phrases.0'
+
+  - display_name: friendly_answer_goods
+    training_phrases:
+    - 'どんなおもちゃが好き？'
+    messages:
+    - 'お気に入りのおもちゃで遊んだり、丸めたレジ袋やリボンでじゃらしたり、形にはこだわらず、ネコの好奇心を刺激してあげましょう。'
+    more_question: true
+
+  - display_name: friendly_answer_chase
+    training_phrases:
+    - '急に追いかけっこが始まったら？'
+    messages:
+    - 'ネコが目の前で急にダッシュしたら、追いかけっこのお誘いです。すばやく追いかける→振り払って逃げる。この組み合わせがときめきのリズムです。'
+    more_question: true
+
+  - display_name: friendly_answer_hide
+    training_phrases:
+    - 'かくれんぼしているの？'
+    messages:
+    - 'ネコが物陰でじっとこちらを見つめていたら、見つけてほしいのサインです。あなたもカーテンの裏などに隠れて、小さく名前を呼んだりしてみて。'
+    more_question: true
+
+  - display_name: friendly_select_massage
+    training_phrases:
+    - 'マッサージ・ブラッシング・撫でる'
+    messages:
+    - payload:
+        type: template
+        altText: '教えてあげるよ！'
+        template:
+          type: buttons
+          text: '教えてあげるよ！'
+          actions:
+          - type: message
+            label: 'マッサージ'
+            text: '%friendly_answer_massage.training_phrases.0'
+          - type: message
+            label: 'ブラッシング'
+            text: '%friendly_answer_brushing.training_phrases.0'
+          - type: message
+            label: '撫でる'
+            text: '%friendly_answer_stroke.training_phrases.0'
+
+  - display_name: friendly_answer_massage
+    training_phrases:
+    - 'マッサージしてあげたい'
+    messages:
+    - '肩やしっぽのつけ根へのマッサージを喜ぶネコが多いようです。最初は軽く、様子を見ながら気持ちいいツボを探してあげましょう。'
+    more_question: true
+
+  - display_name: friendly_answer_brushing
+    training_phrases:
+    - 'ブラッシングしてあげたい'
+    messages:
+    - 'ブラシの横でゴロンとして「ブラッシングして」というネコもいるくらい。嫌がるようなら道具を変えて試してみて。'
+    more_question: true
+
+  - display_name: friendly_answer_stroke
+    training_phrases:
+    - '撫でてあげたい'
+    messages:
+    - '多くのネコはやさしく撫でてもらうのが大好きです。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコが多いようです。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてあげて。'
+    more_question: true
+
+  - display_name: friendly_select_dont
+    training_phrases:
+    - 'ネコに嫌がることをしない'
+    messages:
+    - payload:
+        type: template
+        altText: '嫌なことはしてほしくないな。どれが気になる？'
+        template:
+          type: buttons
+          text: '嫌なことはしてほしくないな。どれが気になる？'
+          actions:
+          - type: message
+            label: '見つめ追いかけ暴く'
+            text: '%friendly_select_gaze.training_phrases.0'
+          - type: message
+            label: '触られ大声大きな動作'
+            text: '%friendly_select_touch.training_phrases.0'
+
+  - display_name: friendly_select_gaze
+    training_phrases:
+    - '見つめる・追いかける・隠れ場所を暴く'
+    messages:
+    - payload:
+        type: template
+        altText: '教えてあげるよ！'
+        template:
+          type: buttons
+          text: '教えてあげるよ！'
+          actions:
+          - type: message
+            label: 'じっと見つめる'
+            text: '%friendly_answer_gaze.training_phrases.0'
+          - type: message
+            label: '追いかける'
+            text: '%friendly_answer_follow.training_phrases.0'
+          - type: message
+            label: '隠れ場所を暴く'
+            text: '%friendly_answer_hidingplace.training_phrases.0'
+
+  - display_name: friendly_answer_gaze
+    training_phrases:
+    - 'じっと見つめちゃだめなの？'
+    messages:
+    - 'ネコの世界では相手の目を見つめるのは宣戦布告を意味します。まさに、ガンをつける状態。目が合ったときには、ゆっくり瞬きすれば、愛のサインになりますよ。'
+    more_question: true
+
+  - display_name: friendly_answer_follow
+    training_phrases:
+    - '追いかけちゃだめなの？'
+    messages:
+    - 'ネコの行くところについて回るのは、鬱陶しがられるもとです。ネコの方から「来て」と誘われた場合以外は、ネコの移動には見て見ぬふりをしましょう。'
+    more_question: true
+
+  - display_name: friendly_answer_hidingplace
+    training_phrases:
+    - '隠れ場所を暴いちゃだめなの？'
+    messages:
+    - '隠れながらもあなたを見つめていたり、脚を出して動かしたり、そんな場合以外は、隠れていたい気分なので、そっとしてあげましょう。'
+    more_question: true
+
+  - display_name: friendly_select_touch
+    training_phrases:
+    - 'しつこく触られる・大声・大きな動作'
+    messages:
+    - payload:
+        type: template
+        altText: '教えてあげるよ！'
+        template:
+          type: buttons
+          text: '教えてあげるよ！'
+          actions:
+          - type: message
+            label: 'しつこく触られる'
+            text: '%friendly_answer_hold.training_phrases.0'
+          - type: message
+            label: '大声を出される'
+            text: '%friendly_answer_loud.training_phrases.0'
+          - type: message
+            label: '急に大きな動作をされる'
+            text: '%friendly_answer_move.training_phrases.0'
+
+  - display_name: friendly_answer_hold
+    training_phrases:
+    - 'しつこく触っちゃだめなの？'
+    messages:
+    - '抱っこや撫でが好きなネコでも気分じゃないときは嫌なもの。触られるのが嫌いなネコならなおさらです。特にしっぽや肉球は嫌がるポイントです。'
+    more_question: true
+
+  - display_name: friendly_answer_loud
+    training_phrases:
+    - '大声を出しちゃだめなの？'
+    messages:
+    - 'ネコは大きな声や音が嫌いです。歌を歌うと怒るネコ、くしゃみや咳を嫌がるネコもいます。'
+    more_question: true
+
+  - display_name: friendly_answer_move
+    training_phrases:
+    - '急に大きな動作をしちゃだめなの？'
+    messages:
+    - '突然大きな動作をされるとびっくりしてそれがストレスになります。常に落ち着いた態度で接したいものです。'
+    more_question: true
+
+  - display_name: friendly_select_dont
+    training_phrases:
+    - 'ネコとのコミュニケーション'
+    messages:
+    - payload:
+        type: template
+        altText: 'うまくコミュニケーションをとろうね。どれが気になる？'
+        template:
+          type: buttons
+          text: 'うまくコミュニケーションをとろうね。どれが気になる？'
+          actions:
+          - type: message
+            label: 'ネコの気持ちを読み取る'
+            text: '%friendly_select_feeling.training_phrases.0'
+          - type: message
+            label: 'コミュニケーション'
+            text: '%friendly_select_playcat.training_phrases.0'
+          - type: message
+            label: 'ネコの不思議'
+            text: '%friendly_select_why.training_phrases.0'
+
+  - display_name: friendly_select_feeling
+    training_phrases:
+    - 'ネコの気持ちを読み取るにはどうしたらいいの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'ネコの気持ちを読み取るには、こんな方法があるよ！'
+        template:
+          type: buttons
+          text: 'ネコの気持ちを読み取るには、こんな方法があるよ！'
+          actions:
+          - type: message
+            label: 'ボディランゲージ'
+            text: '%friendly_answer_bodylanguage.training_phrases.0'
+          - type: message
+            label: '鳴き声'
+            text: '%friendly_answer_meow.training_phrases.0'
+          - type: message
+            label: '姿勢'
+            text: '%friendly_answer_pose.training_phrases.0'
+
+  - display_name: friendly_answer_bodylanguage
+    training_phrases:
+    - 'ボディランゲージにはどんな意味がある？'
+    messages:
+    - 'よく動く大きな瞳はネコならではのチャームポイントです。ネコの瞳は豊かな表情を見せてくれます。ネコの耳は普通前向きですが、不安や恐怖なので感情が揺れるほど横から後ろに倒れていきます。ヒゲは方向感覚を保つ、空気の流れを察知するなど重大な役割があります。'
+    more_question: true
+
+  - display_name: friendly_answer_meow
+    training_phrases:
+    - '鳴き声にはどんな意味がある？'
+    messages:
+    - 'ネコにはおよそ20通りの鳴き声があると言われています。次の鳴き声には、どんな意味があるかわかりますか？'
+    - |
+      ①にゃ〜＝希望と要求
+      ②ゴロゴロ＝リラックス
+      ③ニャ＝返事と挨拶
+      ④シャー＝威嚇
+      ⑤ギャー＝痛い
+      ⑥ウニャウニャ＝美味しい
+      ⑦カカカカカ＝関心興奮
+      ⑧アーオー＝発情期
+      ⑨フーフッ＝ひと安心
+    more_question: true
+
+  - display_name: friendly_answer_pose
+    training_phrases:
+    - '姿勢にはどんな意味がある？'
+    messages:
+    - 'ネコは大きく見せて敵を威嚇、怖いとカラダが縮こまります。丸くなってたら、リラックスのしるし。季節によっても姿勢が変わりますよ。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'こんな歩き方は注意'
+            text: '%friendly_answer_walkstylecaution.training_phrases.0'
+
+  - display_name: friendly_answer_walkstylecaution
+    training_phrases:
+    - 'こんな歩き方をしていたら注意'
+    messages:
+    - |
+      ①かかとをつけて歩いていたら、病気のサイン。
+      ②顔としっぽを下げてとぼとぼ歩いていたら、ストレスがたまっている証拠。
+    more_question: true
+
+  - display_name: friendly_select_playcat
+    training_phrases:
+    - 'コミュニケーションをとるにはどうしたらいいの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'コミュニケーションは大事。こんな方法があるよ！'
+        template:
+          type: buttons
+          text: 'コミュニケーションは大事。こんな方法があるよ！'
+          actions:
+          - type: message
+            label: '遊び方'
+            text: '%friendly_answer_play.training_phrases.0'
+          - type: message
+            label: '抱っこ'
+            text: '%friendly_answer_nohold.training_phrases.0'
+          - type: message
+            label: '撫で方'
+            text: '%friendly_answer_touch.training_phrases.0'
+
+  - display_name: friendly_answer_play
+    training_phrases:
+    - '遊び方を知りたい'
+    messages:
+    - '生来のハンターであるネコは、遊びを通して狩りの方法を学びます。ネコと遊ぶときには、獲物となる小動物の動きを取り入れるなど、ネコの狩猟本能を刺激してあげると、夢中になります。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'すぐ飽きるんですけど'
+            text: '%friendly_answer_fedupplay.training_phrases.0'
+
+  - display_name: friendly_answer_fedupplay
+    training_phrases:
+    - '遊んでいてもすぐ飽きるんですけど'
+    messages:
+    - 'ネコは基本的に飽きっぽいので、一度に遊ぶ時間は短くてオッケー。その代り、遊ぶ回数を増やしてあげましょう。'
+    more_question: true
 
 # care
   - display_name: care_select
