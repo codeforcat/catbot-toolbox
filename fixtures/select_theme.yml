@@ -1334,6 +1334,62 @@ intents:
     - 'ネコは基本的に飽きっぽいので、一度に遊ぶ時間は短くてオッケー。その代り、遊ぶ回数を増やしてあげましょう。'
     more_question: true
 
+  - display_name: friendly_answer_nohold
+    training_phrases:
+    - '抱っこのしかたを知りたい'
+    messages:
+    - '基本的にネコは抱っこが苦手だと認識しましょう。爪切りなどで抱っこの必要がある場合には、ネコ思いな抱っこをしましょう。'
+    more_question: true
+
+  - display_name: friendly_answer_touch
+    training_phrases:
+    - '撫で方を知りたい'
+    messages:
+    - '多くのネコはやさしく撫でてもらうのが大好きです。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコが多いようです。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてあげて。'
+    more_question: true
+
+  - display_name: friendly_select_why
+    training_phrases:
+    - 'ネコの不思議にはどんなものがあるの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'ネコには不思議がいっぱい。どれが気になる？'
+        template:
+          type: buttons
+          text: 'ネコには不思議がいっぱい。どれが気になる？'
+          actions:
+          - type: message
+            label: '肉球タッチ'
+            text: '%friendly_answer_pad.training_phrases.0'
+          - type: message
+            label: '鏡に映る自分を見ている'
+            text: '%friendly_answer_mirror.training_phrases.0'
+          - type: message
+            label: 'テレビを見ている'
+            text: '%friendly_answer_tv.training_phrases.0'
+
+  - display_name: friendly_answer_pad
+    training_phrases:
+    - '肉球タッチしたい'
+    messages:
+    - 'ネコのカラダで唯一、汗腺があるのが肉球です。汗をかくことで体温を調節するほか、衝撃を吸収する、足音を消す、滑り止めなど、大切な役割を担っています。それだけに、とてもデリケートなので、様子を見ながらタッチしてください。'
+    more_question: true
+
+  - display_name: friendly_answer_mirror
+    training_phrases:
+    - '鏡に映る自分を見ている'
+    messages:
+    - '猫は鏡に映った何かを認識することはできます。鏡の中に映った何かに反応して威嚇してみたり、話かけてみたり、一緒に遊ぶような素振りを見せたりします。しかし、鏡の中に映るのが自分だと猫は理解することができません。'
+    more_question: true
+
+  - display_name: friendly_answer_tv
+    training_phrases:
+    - 'テレビを見ている'
+    messages:
+    - 'テレビの見えるネコと見えないネコがいるみたいです。見えていてもただの画像だと分かって興味がないだけかも知れませんが。'
+    more_question: true
+
 # care
   - display_name: care_select
     training_phrases:
