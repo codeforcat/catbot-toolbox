@@ -1690,6 +1690,199 @@ intents:
 # chiikineko
   - display_name: chiikineko_select
     training_phrases:
-    - 地域猫って知ってる？
+    - '地域猫って知ってる？'
     messages:
-    - hogehoge
+    - payload:
+        type: template
+        altText: '地域猫について知ろう！'
+        template:
+          type: buttons
+          text: '地域猫について知ろう！'
+          actions:
+          - type: message
+            label: '地域猫とは'
+            text: '%chiikineko_select_what.training_phrases.0'
+          - type: message
+            label: '地域猫ルール'
+            text: '%chiikineko_select_rule.training_phrases.0'
+          - type: message
+            label: '猫の繁殖力'
+            text: '%chiikineko_select_breed.training_phrases.0'
+          - type: message
+            label: 'そと猫トラブル'
+            text: '%chiikineko_select_trouble.training_phrases.0'
+
+  - display_name: chiikineko_select_what
+    training_phrases:
+    - '地域猫は、そと猫・のら猫とどう違うの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'どれが気になる？'
+        template:
+          type: buttons
+          text: 'どれが気になる？'
+          actions:
+          - type: message
+            label: '地域猫'
+            text: '%chiikineko_answer_chiikineko.training_phrases.0'
+          - type: message
+            label: 'そと猫'
+            text: '%chiikineko_answer_outside.training_phrases.0'
+          - type: message
+            label: 'のら猫'
+            text: '%chiikineko_answer_nora.training_phrases.0'
+          - type: message
+            label: 'うち猫'
+            text: '%chiikineko_answer_house.training_phrases.0'
+
+  - display_name: chiikineko_answer_chiikineko
+    training_phrases:
+    - '地域猫の定義とは'
+    messages:
+    - '不妊去勢手術後、地域住民によって、適切に管理されている猫'
+
+  - display_name: chiikineko_answer_outside
+    training_phrases:
+    - 'そと猫の定義とは'
+    messages:
+    - '外飼いの猫、出入り自由の猫'
+
+  - display_name: chiikineko_answer_nora
+    training_phrases:
+    - 'のら猫の定義とは'
+    messages:
+    - '飼い主のいない猫'
+
+  - display_name: chiikineko_answer_house
+    training_phrases:
+    - 'うち猫の定義とは'
+    messages:
+    - '完全室内飼育の猫'
+    - payload:
+        type: template
+        altText: 'どういうこと？'
+        template:
+          type: buttons
+          text: 'どういうこと？'
+          actions:
+          - type: message
+            label: 'うち猫のルール'
+            text: '%chiikineko_answer_houserule.training_phrases.0'
+
+  - display_name: chiikineko_answer_houserule
+    training_phrases:
+    - 'うち猫のルールってなに？'
+    messages:
+    - |
+      ①外に出さない（室内で排泄させる）
+      ②首輪（飼い主の明示・迷子防止）
+      ③不妊去勢手術（増やさない）
+
+  - display_name: chiikineko_select_rule
+    training_phrases:
+    - '地域猫のルールってどんなものがあるの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'どれが気になる？'
+        template:
+          type: buttons
+          text: 'どれが気になる？'
+          actions:
+          - type: message
+            label: '不妊去勢手術'
+            text: '%chiikineko_answer_neuter.training_phrases.0'
+          - type: message
+            label: 'エサのルール'
+            text: '%chiikineko_answer_food.training_phrases.0'
+          - type: message
+            label: '環境美化'
+            text: '%chiikineko_answer_environment.training_phrases.0'
+          - type: message
+            label: 'トイレの設置'
+            text: '%chiikineko_answer_toilet.training_phrases.0'
+
+  - display_name: chiikineko_answer_neuter
+    training_phrases:
+    - '不妊去勢手術について知りたい'
+    messages:
+    - '不妊去勢手術をしているので子猫は生まれません。不妊去勢手術済みの印が耳カット、「さくらみみ」と言います。耳カットされた猫を「さくらねこ」と言います。'
+    - payload:
+        type: template
+        altText: '不妊去勢手術をすれば？'
+        template:
+          type: buttons
+          text: '不妊去勢手術をすれば？'
+          actions:
+          - type: message
+            label: '不妊去勢手術の効果'
+            text: '%chiikineko_answer_neutering.training_phrases.0'
+
+  - display_name: chiikineko_answer_neutering
+    training_phrases:
+    - '不妊去勢手術の効果にはどんなものがあるの？'
+    messages:
+    - |
+      ①新たな子猫は生まれない
+      ②発情期の鳴き声やケンカが減る
+      ③尿スプレーの抑制、尿の臭いの軽減
+      ④生殖器系の病気の予防
+
+  - display_name: chiikineko_answer_food
+    training_phrases:
+    - 'エサのルールについて知りたい'
+    messages:
+    - '置きエサをしない、させない環境づくりが大切です。'
+
+  - display_name: chiikineko_answer_environment
+    training_phrases:
+    - '環境美化について知りたい'
+    messages:
+    - 'フンの掃除'
+
+  - display_name: chiikineko_answer_toilet
+    training_phrases:
+    - 'トイレの設置について知りたい'
+    messages:
+    - '立ち寄る場所に、複数のトイレを設置して、こまめに掃除しましょう。'
+    - payload:
+        type: template
+        altText: 'どんなトイレ？'
+        template:
+          type: buttons
+          text: 'どんなトイレ？'
+          actions:
+          - type: message
+            label: 'トイレの種類'
+            text: '%chiikineko_answer_toilettype.training_phrases.0'
+
+  - display_name: chiikineko_answer_toilettype
+    training_phrases:
+    - '地域猫活動で必要なトイレはどんなものが必要？'
+    messages:
+    - '大きめで、屋根のないもの、猫砂は鉱物系がオススメです。'
+
+  - display_name: chiikineko_select_breed
+    training_phrases:
+    - '猫の繁殖力について知りたい'
+    messages:
+    - payload:
+        type: template
+        altText: 'どれが気になる？'
+        template:
+          type: buttons
+          text: 'どれが気になる？'
+          actions:
+          - type: message
+            label: '妊娠率'
+            text: '%chiikineko_answer_rate.training_phrases.0'
+          - type: message
+            label: '妊娠期間'
+            text: '%chiikineko_answer_period.training_phrases.0'
+          - type: message
+            label: '一度に何匹生む？'
+            text: '%chiikineko_answer_howmany.training_phrases.0'
+          - type: message
+            label: '不妊手術をしていないと？'
+            text: '%chiikineko_answer_howmany_quiz.training_phrases.0'
