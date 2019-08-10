@@ -1,0 +1,297 @@
+version: 0.1.0
+intents:
+  - display_name: care_select
+    training_phrases:
+    - 'どんなケアをしてあげればいいのかな？'
+    messages:
+    - payload:
+        type: template
+        altText: '日頃のケアが大事。どれが気になるかな？'
+        template:
+          type: buttons
+          text: '日頃のケアが大事。どれが気になるかな？'
+          actions:
+          - type: message
+            label: '爪とぎ'
+            text: '%care_select_nail.training_phrases.0'
+          - type: message
+            label: 'ブラシシャンプー歯磨き'
+            text: '%care_select_brushing.training_phrases.0'
+          - type: message
+            label: '爪切りマッサージ毛玉'
+            text: '%care_select_cutnail.training_phrases.0'
+
+  - display_name: care_select_nail
+    training_phrases:
+    - '爪とぎについて知りたい'
+    messages:
+    - payload:
+        type: template
+        altText: '爪とぎの謎。どれが気になる？'
+        template:
+          type: buttons
+          text: '爪とぎの謎。どれが気になる？'
+          actions:
+          - type: message
+            label: 'どうしてするの？'
+            text: '%care_answer_whyclaw.training_phrases.0'
+          - type: message
+            label: '困る？'
+            text: '%care_answer_clawtrouble.training_phrases.0'
+          - type: message
+            label: '爪とぎ板？'
+            text: '%care_answer_clawboard.training_phrases.0'
+
+  - display_name: care_answer_whyclaw
+    training_phrases:
+    - 'どうして爪とぎをするの？'
+    messages:
+    - 'ネコが爪とぎをする第一の理由は、古くなった外側の層の爪を剥がすため。ほかにも、自分のニオイをこすりつけ、縄張りを主張するという意味もあります。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'しなくなったら？'
+            text: '%care_answer_notclaw.training_phrases.0'
+
+  - display_name: care_answer_notclaw
+    training_phrases:
+    - '爪とぎしなくなったら？'
+    messages:
+    - '関節痛かもしれないので、注意してあげて。'
+    more_question: true
+
+  - display_name: care_answer_clawtrouble
+    training_phrases:
+    - '爪とぎされて困っているんだけど？'
+    messages:
+    - '爪とぎの本能は止められないので、やる場所を与えてあげましょう。守りたい場所にはネコが嫌う香りのスプレーや保護シートを、その代わり、ネコ好みの魅力的な爪とぎ板などを用意してあげましょう。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'しつけできる？'
+            text: '%care_answer_clawlesson.training_phrases.0'
+
+  - display_name: care_answer_clawlesson
+    training_phrases:
+    - '爪とぎはしつけできる？'
+    messages:
+    - '子ネコのうちにレッスンするのがいいですね。前脚をやさしく持って、爪とぎでとぐ仕草を真似させます。さりげなく何度も教えるうちに、自分のニオイのついた爪とぎを使うようになりますよ。'
+    more_question: true
+
+  - display_name: care_answer_clawboard
+    training_phrases:
+    - '爪とぎ板はなにがいい？'
+    messages:
+    - '材質も、木製、ダンボール、縄など様々なので、いろいろ試してお気に入りを探してあげてください。好みがつかめたら、それに合わせた設置場所や角度、材質の工夫を。古くなった爪とぎは引っかかりが悪くなるので、爪をとぐ醍醐味が減ってしまいます。高価なものでなくてもいいので、こまめに取り換えてあげましょう。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '設置場所は？'
+            text: '%care_answer_whichclawboard.training_phrases.0'
+
+  - display_name: care_answer_whichclawboard
+    training_phrases:
+    - '爪とぎ板の設置場所は？'
+    messages:
+    - 'ネコが爪をとぎたがるところ、落ち着いてリラックスできる場所、布や籐製の家具の近く、食事場の近く。'
+    more_question: true
+
+  - display_name: care_select_brushing
+    training_phrases:
+    - 'ブラッシング・シャンプー・歯磨き'
+    messages:
+    - payload:
+        type: template
+        altText: 'どれが気になる？'
+        template:
+          type: buttons
+          text: 'どれが気になる？'
+          actions:
+          - type: message
+            label: 'ブラッシング'
+            text: '%care_answer_brushing.training_phrases.0'
+          - type: message
+            label: 'シャンプー'
+            text: '%care_answer_shampoo.training_phrases.0'
+          - type: message
+            label: '歯磨き'
+            text: '%care_answer_toothbrushing.training_phrases.0'
+
+  - display_name: care_answer_brushing
+    training_phrases:
+    - 'ブラッシングは必要？'
+    messages:
+    - '定期的なブラッシングは、お手入れの基本です。抜け毛や汚れを取り除き、病気の原因となる毛玉を防ぐだけでなく、マッサージ効果で血流がよくなり、健康増進にも役立ちます。スキンシップの意味もありますよ。'
+    - '長毛種は、毎日、短毛種でも週に一度はブラッシングタイムをつくりましょう。母ネコが舌で子ネコの毛づくろいをするように、毛並みに沿って丁寧に。カラダに触れることで、皮膚病などの早期発見にもつながります。'
+    - payload:
+        type: template
+        altText: '毛の種類によって道具が変わってくるよ'
+        template:
+          type: buttons
+          text: '毛の種類によって道具が変わってくるよ'
+          actions:
+          - type: message
+            label: '長毛種は？'
+            text: '%care_answer_brushlonghairtype.training_phrases.0'
+          - type: message
+            label: '短毛種は？'
+            text: '%care_answer_brushshorthairtype.training_phrases.0'
+
+  - display_name: care_answer_brushlonghairtype
+    training_phrases:
+    - '長毛種をブラッシングする道具は？'
+    messages:
+    - '長毛種ならコームやとかす部分が長めのスリッカーがおすすめ。'
+    more_question: true
+
+  - display_name: care_answer_brushshorthairtype
+    training_phrases:
+    - '短毛種をブラッシングする道具は？'
+    messages:
+    - '短毛種ならラバーブラシを気に入る子が多いようですが、ブラッシングを嫌がるようなら道具を変えてみましょう。'
+    more_question: true
+
+  - display_name: care_answer_shampoo
+    training_phrases:
+    - 'シャンプーは必要？'
+    messages:
+    - '基本的にネコにシャンプーは必要ありません。ネコは皮脂腺が発達していないから体を洗わなくても体臭は感じないはず。体の表面の油分は少ないから、シャワーで洗ってしまうと、皮膚そのものの抵抗力も低下してしまう。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '長毛種は？'
+            text: '%care_answer_shampoolong.training_phrases.0'
+
+  - display_name: care_answer_shampoolong
+    training_phrases:
+    - '長毛種のシャンプーはどうすればいい？'
+    messages:
+    - '長毛種は毛づくろいが全身に届かないので、月に一度のシャンプーを。人間とネコでは皮膚のpHが違うので、必ずネコ専用のシャンプーを使ってください。'
+    more_question: true
+
+  - display_name: care_answer_toothbrushing
+    training_phrases:
+    - '歯磨きは必要？'
+    messages:
+    - '大きな硬い肉や骨を噛むことで自然に歯磨き効果をいる野生のネコとは異なり、フード育ちの飼い猫は歯垢がたまりやすいのです。とくに老猫の間では歯磨きの重要性が高まっています。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '歯磨きポイント？'
+            text: '%care_answer_toothbrushingpoint.training_phrases.0'
+
+  - display_name: care_answer_toothbrushingpoint
+    training_phrases:
+    - '歯磨きのポイントはある？'
+    messages:
+    - 'いきなり歯ブラシで磨くのは難しいので、湿らせたガーゼで拭くようにします。歯磨き用のウエットシートもありますよ。ネコにとってはストレスになるケアなので、少しずつ慣らしたいもの。犬歯と臼歯は特に念入りに。'
+    more_question: true
+
+  - display_name: care_select_cutnail
+    training_phrases:
+    - '爪切り・マッサージ・毛玉'
+    messages:
+    - payload:
+        type: template
+        altText: 'お手入れしてね！どれが気になる？'
+        template:
+          type: buttons
+          text: 'お手入れしてね！どれが気になる？'
+          actions:
+          - type: message
+            label: '爪切り'
+            text: '%care_answer_cutclaw.training_phrases.0'
+          - type: message
+            label: 'もみもみマッサージ'
+            text: '%care_answer_massage.training_phrases.0'
+          - type: message
+            label: '毛玉'
+            text: '%care_answer_furball.training_phrases.0'
+
+  - display_name: care_answer_cutclaw
+    training_phrases:
+    - '爪切りは必要？'
+    messages:
+    - '鋭く尖った爪は、飼い主さんのカラダを傷つけたり家具をボロボロにしてしまう困りものです。爪切りを嫌がって暴れたり、逃げ出したりするネコも少なくありません。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'いつやれば？'
+            text: '%care_answer_whencutclaw.training_phrases.0'
+          - type: message
+            label: '注意点？'
+            text: '%care_answer_cutclawcaution.training_phrases.0'
+
+  - display_name: care_answer_whencutclaw
+    training_phrases:
+    - '爪切りはいつやればいい？'
+    messages:
+    - 'ひなたぼっこやうたた寝の隙きを狙うこと。ネコがぼんやりしている間に手早く片付けてしまいましょう。'
+    more_question: true
+
+  - display_name: care_answer_cutclawcaution
+    training_phrases:
+    - '爪切りの注意点ってなに？'
+    messages:
+    - '深爪注意。爪を光に透かすと赤い筋がはっきり見えます。それが血管なので、傷つけると、出血します。そこまでは神経が通っているので、痛みも感じます。ギリギリではなく、余裕をもって、それより先の部分を切りましょう。'
+    more_question: true
+
+  - display_name: care_answer_massage
+    training_phrases:
+    - 'もみもみマッサージは必要？'
+    messages:
+    - '撫でられたり、ブラッシングされたりするのが好きなネコは、マッサージも大好き。肩こりなど無縁と思えるネコですが、よく動かす首回りや背中などは案外凝ってるようなので、やさしく揉みほぐしてあげましょう。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'マッサージの手順は？'
+            text: '%care_answer_howtomassage.training_phrases.0'
+
+  - display_name: care_answer_howtomassage
+    training_phrases:
+    - 'マッサージの手順は？'
+    messages:
+    - 'ネコマッサージに決まった手順はありません。気持ちのいいツボも力加減もネコそれぞれ。うっとり目を閉じていたら、うまくできている証拠です。そのうち、自分からおねだりするようになりますよ。'
+    more_question: true
+
+  - display_name: care_answer_furball
+    training_phrases:
+    - '毛玉を飲み込ませないようにするには？'
+    messages:
+    - '吐かせるのではなく、口に入らないようにすべきです。下毛の多いネコは先にコームで取り除いてから、ラバーブラシでちょっと固い毛を抜いてあげるのが基本。'
+    more_question: true

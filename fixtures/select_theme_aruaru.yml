@@ -1,0 +1,253 @@
+version: 0.1.0
+intents:
+  - display_name: aruaru_select
+    training_phrases:
+    - 'どんなあるあるがあるかな？'
+    messages:
+    - payload:
+        type: template
+        altText: 'どのネコあるあるが気になるかな？'
+        template:
+          type: buttons
+          text: 'どのネコあるあるが気になるかな？'
+          actions:
+          - type: message
+            label: '毛づくろい'
+            text: '%aruaru_answer_grooming.training_phrases.0'
+          - type: message
+            label: 'ふみふみ'
+            text: '%aruaru_answer_fumifumi.training_phrases.0'
+          - type: message
+            label: 'スリスリ'
+            text: '%aruaru_answer_surisuri.training_phrases.0'
+          - type: message
+            label: 'カカカッ'
+            text: '%aruaru_answer_kakaka.training_phrases.0'
+    - payload:
+        type: template
+        altText: 'つづきだよ！'
+        template:
+          type: buttons
+          text: 'つづきだよ！'
+          actions:
+          - type: message
+            label: '甘噛み'
+            text: '%aruaru_answer_bite.training_phrases.0'
+          - type: message
+            label: 'ゆっくり瞬き'
+            text: '%aruaru_answer_blink.training_phrases.0'
+          - type: message
+            label: '後ろ脚キック'
+            text: '%aruaru_answer_kick.training_phrases.0'
+          - type: message
+            label: '夜の運動会'
+            text: '%aruaru_answer_run.training_phrases.0'
+    - payload:
+        type: template
+        altText: 'つづきだよ！'
+        template:
+          type: buttons
+          text: 'つづきだよ！'
+          actions:
+          - type: message
+            label: '机のものを落とす'
+            text: '%aruaru_answer_drop.training_phrases.0'
+
+  - display_name: aruaru_answer_grooming
+    training_phrases:
+    - '毛づくろいするのはなぜ？'
+    messages:
+    - |
+      落ち着くためにしてるんだよ。
+      ネコの祖先が体温調節のために全身を舐めていたことが習性として残っていると言われてるんだ。毛づくろいしなくなったら、病気やケガをしてることがあるから、注意してあげてね。
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '母ネコが子ネコにするのは'
+            text: '%aruaru_answer_groomchild.training_phrases.0'
+
+  - display_name: aruaru_answer_groomchild
+    training_phrases:
+    - '母ネコが子ネコに毛づくろいするのは？'
+    messages:
+    - '子ネコは自分で毛づくろいができないので、母ネコが代わりにやってあげてるんだよ。マッサージ効果もあるから、気持ちよさそうだよね。毛づくろいで落ち着くというのは、その幸せの記憶が作用してるかもしれないね。'
+    more_question: true
+
+  - display_name: aruaru_answer_fumifumi
+    training_phrases:
+    - 'ふみふみするのはなぜ？'
+    messages:
+    - |
+      ふみふみは、赤ちゃん時代の思い出。
+      ネコは母乳を飲むとき、より母乳が出やすくなるように前脚で母親のおっぱいをマッサージするようにしながら飲みます。その時の心地よさや安心感を思い出すのか、大人になってからも、毛布や布団などのやわらかくて気持ちのいいものに触れると、ふみふみしたくなるみたいですね。
+    more_question: true
+
+  - display_name: aruaru_answer_surisuri
+    training_phrases:
+    - 'スリスリするのはなぜ？'
+    messages:
+    - |
+      縄張りの安心を得るためのマーキング。
+      自分の縄張りにあるものや人に自分のにおいをつけるマーキング行動だよ。自分のにおいがついていないと落ち着かないんだね、きっと。
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '家具にも人にもするのは？'
+            text: '%aruaru_answer_groomother.training_phrases.0'
+          - type: message
+            label: '他のネコとするのは？'
+            text: '%aruaru_answer_groomothercat.training_phrases.0'
+
+  - display_name: aruaru_answer_groomother
+    training_phrases:
+    - '家具にも人にもスリスリするのは？'
+    messages:
+    - 'ネコは身の回りにあるものすべてを、自分の知ってるにおいにしたいので、その意味では、家具も人も同列だね。'
+    more_question: true
+
+  - display_name: aruaru_answer_groomothercat
+    training_phrases:
+    - '他のネコとスリスリするのは？'
+    messages:
+    - 'お互い安心するための、においの交換みたいなもんだね。'
+    more_question: true
+
+  - display_name: aruaru_answer_kakaka
+    training_phrases:
+    - 'カカカッと鳴くのはなぜ？'
+    messages:
+    - 'ネコが窓に向かって、「カカカッ」といった鳴き声を出してることを聞いたことがありませんか？これは、獲物に対して、ネコが興奮しているときの反応で、クラッキングと言います。ちなみに、ライオンやトラは、同じネコ科の動物ですが、クラッキングはしません。'
+    more_question: true
+
+  - display_name: aruaru_answer_bite
+    training_phrases:
+    - parts:
+      - text: 甘噛み
+        entity_type: '@biting'
+        alias: biting
+      - text: するのはなぜ？
+    messages:
+    - |
+      頻繁な甘噛みはストレスのサインです。
+      甘噛み本来は狩りの練習と考えられますが、ストレスによる攻撃の場合もありますので、頻繁に行われるときには注意してあげてね。
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '対処法ある？'
+            text: '%aruaru_answer_approachbite.training_phrases.0'
+
+  - display_name: aruaru_answer_approachbite
+    training_phrases:
+    - '甘噛みの対処法はある？'
+    messages:
+    - 'ネコが人を噛んだ場合には、無反応・無視を徹底しましょう。ネコに「噛むと遊んでもらえない」ということを学習させることで、噛みクセがつくのを防ぎましょう。'
+    more_question: true
+
+  - display_name: aruaru_answer_blink
+    training_phrases:
+    - 'ゆっくり瞬きするのはなぜ？'
+    messages:
+    - |
+      ゆっくり瞬きは、好きのサイン。
+      ネコが飼い主に対して瞬きするのは、心を許しているサインです。リラックスしているときは、瞬きのほかに、両目をギュッと閉じたりすることも。
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '目を見開いて見つめてる'
+            text: '%aruaru_answer_spreadeyes.training_phrases.0'
+
+  - display_name: aruaru_answer_spreadeyes
+    training_phrases:
+    - '目を見開いてじっと見つめているのはなぜ？'
+    messages:
+    - 'それは、緊張しているときかもしれませんね。ネコ同士のケンカでも、どちらかが目をそらすまで瞬きはしません。'
+    more_question: true
+
+  - display_name: aruaru_answer_kick
+    training_phrases:
+    - '後ろ脚キックするのはなぜ？'
+    messages:
+    - '後ろ脚キックも狩りのトレーニングです。後ろ脚から繰り出される強烈なネコキックは、狩猟本能によるもの。獲物を仕留めたあと、相手を疲れさせることが目的なので、一度始まるとなかなか止まりません。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '機嫌が悪いの？'
+            text: '%aruaru_answer_kickmood.training_phrases.0'
+
+  - display_name: aruaru_answer_kickmood
+    training_phrases:
+    - '機嫌が悪いときに蹴られる気がする'
+    messages:
+    - 'そうですね。遊びたいときや不機嫌なときにもネコキックすることがありますので、要注意です。あまりにも痛いときには、付き合わず、そっと離れましょう。'
+    more_question: true
+
+  - display_name: aruaru_answer_run
+    training_phrases:
+    - '夜に運動会するのはなぜ？'
+    messages:
+    - '夜の運動会は狩りのシミュレーションです。飼い主が寝ようとすると、ネコが鳴いたり、走り回ったり、あるいは、明け方、ネコが騒ぎ出して、起こされたり。複数のネコを飼っている場合には追っかけっこして、さながら、夜の運動会と化します。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '対処法ある？'
+            text: '%aruaru_answer_coperun.training_phrases.0'
+
+  - display_name: aruaru_answer_coperun
+    training_phrases:
+    - '夜の運動会の対処法はある？'
+    messages:
+    - '寝る前に、しっかり遊ばせることで、飼い主もネコもぐっすり眠れるでしょう。'
+    more_question: true
+
+  - display_name: aruaru_answer_drop
+    training_phrases:
+    - '机の上のものを落とすのはなぜ？'
+    messages:
+    - 'なぜ、机の上のものを落とすか、それは楽しいからです。落とすものによって、その様子は様々、ネコは獲物を想起させるものが好きなので、落下の動きが楽しいのです。また、モノを落とすと飼い主さんが来たり、声を出したりするので、その反応も楽しんでいます。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '対処法ある？'
+            text: '%aruaru_answer_copedrop.training_phrases.0'
+
+  - display_name: aruaru_answer_copedrop
+    training_phrases:
+    - '机の上のものを落とすのを防ぐ方法はある？'
+    messages:
+    - 'ネコがモノを落とすことを防ぐのは無理なので、落とされたら困るものを置かないようにする、これしかありません。'
+    more_question: true

@@ -1,0 +1,135 @@
+version: 0.1.0
+intents:
+  - display_name: housesitting_select
+    training_phrases:
+    - 'いい子でお留守番できるかな？'
+    messages:
+    - payload:
+        type: template
+        altText: 'お留守番について気になるんだね。どんなことかな？'
+        template:
+          type: buttons
+          text: 'お留守番について気になるんだね。どんなことかな？'
+          actions:
+          - type: message
+            label: 'お留守番できる？'
+            text: '%housesitting_select_can.training_phrases.0'
+          - type: message
+            label: '散歩と逃げない工夫'
+            text: '%housesitting_select_walk.training_phrases.0'
+
+  - display_name: housesitting_select_can
+    training_phrases:
+    - 'お留守番させても大丈夫？'
+    messages:
+    - payload:
+        type: template
+        altText: 'お留守番については、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: 'お留守番については、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: 'お留守番できる？'
+            text: '%housesitting_answer_outhome.training_phrases.0'
+          - type: message
+            label: '留守中の安全ポイント'
+            text: '%housesitting_answer_safe.training_phrases.0'
+
+  - display_name: housesitting_answer_outhome
+    training_phrases:
+    - 'お留守番できる？'
+    messages:
+    - '1泊2日くらいなら大丈夫だけど、それ以上になるときは、キャットシッターさんに頼んで、来てもらってください。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '注意するところは？'
+            text: '%housesitting_answer_outhomecaution.training_phrases.0'
+
+  - display_name: housesitting_answer_outhomecaution
+    training_phrases:
+    - '留守中に気をつけるところは？'
+    messages:
+    - '安全・快適・清潔の３つが環境づくりのポイント。ドライフードと水を多め入れて、何か所かに、トイレを複数置きましょう。'
+    more_question: true
+
+  - display_name: housesitting_answer_safe
+    training_phrases:
+    - '留守中の安全ポイントは？'
+    messages:
+    - '電源コードの差しっぱなし、風呂の水の入れっぱなしに注意、あと、ドアは締め切らずに、少し開けておきましょう。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '留守中の窓'
+            text: '%housesitting_answer_opencartain.training_phrases.0'
+
+  - display_name: housesitting_answer_opencartain
+    training_phrases:
+    - '留守中の窓やカーテン'
+    messages:
+    - 'ネコは窓辺で景色を眺めるのが好きです。小鳥や虫など、ネコの好奇心をくすぐるものがいっぱい。でも、外に出たいわけではありません。だから、カーテンは開けておいてあげてね。'
+    more_question: true
+
+  - display_name: housesitting_select_walk
+    training_phrases:
+    - '散歩と逃げない工夫'
+    messages:
+    - payload:
+        type: template
+        altText: '散歩については、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: '散歩については、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: '散歩させなくていい？'
+            text: '%housesitting_answer_walk.training_phrases.0'
+          - type: message
+            label: '逃げない工夫を教えて'
+            text: '%housesitting_answer_runaway.training_phrases.0'
+
+  - display_name: housesitting_answer_walk
+    training_phrases:
+    - '散歩させなくていい？'
+    messages:
+    - '散歩はさせないほうがいいです。移動しながら探しものをするのはイヌの習性、ネコは待ち伏せ型なので、毎日同じ場所に構えて待っているのが本来の習性です。'
+    more_question: true
+
+  - display_name: housesitting_answer_runaway
+    training_phrases:
+    - '逃げない工夫を教えて'
+    messages:
+    - |
+      玄関、窓、ベランダに注意しましょう。
+      玄関をあけるときは、手前のドアは必ず閉めておきましょう。
+      窓は、開けっ放しにしない。網戸、ストッパーなどをつけましょう。
+      ベランダに出す場合には、網、柵などで、逃亡防止しましょう。
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '逃げちゃったら？'
+            text: '%housesitting_answer_howtoback.training_phrases.0'
+
+  - display_name: housesitting_answer_howtoback
+    training_phrases:
+    - '逃げちゃったら？'
+    messages:
+    - 'ネコ自身もパニックになって、近くで、隠れていることがありますから、慌てずに、まず、近所を、大声を出さず、いつも呼んでるように、名前を呼びながら探しましょう。いつも遊んでいるおもちゃや寝ている毛布なども持っていきましょう。いつも使ってるキャリーケースがあれば、それも。'
+    more_question: true

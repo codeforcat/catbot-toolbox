@@ -1,0 +1,181 @@
+version: 0.1.0
+intents:
+# food_select
+  - display_name: food_select
+    training_phrases:
+    - "なにを食べさせちゃいけないの？"
+    messages:
+    - payload:
+        type: template
+        altText: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+        template:
+          type: buttons
+          text: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+          actions:
+          - type: message
+            label: "ご飯の基本"
+            text: '%food_select_basic.training_phrases.0'
+          - type: message
+            label: "いろんな種類があるけど？"
+            text: '%food_select_donteat.training_phrases.0'
+          - type: message
+            label: "水のあげ方は？"
+            text: '%food_select_water.training_phrases.0'
+
+  - display_name: food_select_basic
+    training_phrases:
+    - 'ご飯の基本を教えて！'
+    messages:
+    - payload:
+        type: template
+        altText: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: '何をあげればいいの？'
+            text: '%food_answer_dry.training_phrases.0'
+          - type: message
+            label: "いつあげればいいの？"
+            text: '%food_answer_when.training_phrases.0'
+          - type: message
+            label: "おやつは？"
+            text: '%food_answer_snack.training_phrases.0'
+
+  - display_name: food_answer_dry
+    training_phrases:
+    - 'ご飯は何をあげればいいの？'
+    messages:
+    - 'カリカリ（ドライ）と缶詰パウチ（ウェット）があるけど、ドライが基本かな。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: 'ドライもいろいろ'
+            text: '%food_answer_whichdry.training_phrases.0'
+          - type: message
+            label: "缶詰ダメなの？"
+            text: '%food_answer_can.training_phrases.0'
+
+  - display_name: food_answer_whichdry
+    training_phrases:
+    - 'ドライもいろいろあるけど？'
+    messages:
+    - 'ネコの年齢や体調に合ったドライを選んでね。'
+    more_question: true
+
+  - display_name: food_answer_can
+    training_phrases:
+    - '缶詰ダメなの？'
+    messages:
+    - '缶詰のあげすぎは、歯周病の原因になるので、あげすぎには注意してね。おやつくらいの感覚かな。'
+    more_question: true
+
+  - display_name: food_answer_when
+    training_phrases:
+    - 'ご飯はいつあげればいいの？'
+    messages:
+    - 'ご飯は、朝夕２回が基本だけど、猫は、犬と違って、ダラダラと食べるので、置きっぱなしでも大丈夫。'
+    - payload:
+        type: template
+        altText: '他にも気になることある？'
+        template:
+          type: buttons
+          text: '他にも気になることある？'
+          actions:
+          - type: message
+            label: '置きっぱなし？'
+            text: '%food_answer_leave.training_phrases.0'
+
+  - display_name: food_answer_leave
+    training_phrases:
+    - 'どのぐらい置きっぱなしでも大丈夫？'
+    messages:
+    - 'ドライなら置きっぱなしでも大丈夫だけど、酸化する前に、交換してね。目安は6時間くらいかな。'
+    more_question: true
+
+  - display_name: food_answer_snack
+    training_phrases:
+    - 'おやつはあげてもいいの？'
+    messages:
+    - 'おやつをあげてもいいけど、あげすぎに注意。ご飯食べなくなるから。'
+    more_question: true
+
+  - display_name: food_select_donteat
+    training_phrases:
+    - 'どんなものを食べさせていいの？'
+    messages:
+    - payload:
+        type: template
+        altText: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: 'かつおぶしは？'
+            text: '%food_answer_katsuo.training_phrases.0'
+          - type: message
+            label: "牛乳は？"
+            text: '%food_answer_milk.training_phrases.0'
+          - type: message
+            label: "他には？"
+            text: '%food_answer_donteat.training_phrases.0'
+
+  - display_name: food_answer_katsuo
+    training_phrases:
+    - 'かつおぶしはあげてもいいの？'
+    messages:
+    - 'かつおぶしは、塩分、ミネラル分があるので、あげちゃだめだよ。ご飯を食べないとき、ごく少量のトッピング程度ならオッケー。'
+    more_question: true
+
+  - display_name: food_answer_milk
+    training_phrases:
+    - '牛乳はあげてもいいの？'
+    messages:
+    - '牛乳はダメ。ネコは乳糖を分解できないので、ネコ用のミルクにしてね'
+    more_question: true
+
+  - display_name: food_answer_donteat
+    training_phrases:
+    - '食べさせてはいけないものは？'
+    messages:
+    - '玉ねぎ、ネギ、にんにく、チョコレート、イカなど、人間の食べ物は塩気が多いのでだめです。あと、生ものも避けようね。'
+    more_question: true
+
+  - display_name: food_select_water
+    training_phrases:
+      - 'どんなものを食べさせていいの？'
+    messages:
+    - payload:
+        type: template
+        altText: '水のあげ方は、こんなことがあるよ。何を知りたい？'
+        template:
+          type: buttons
+          text: '水のあげ方は、こんなことがあるよ。何を知りたい？'
+          actions:
+          - type: message
+            label: '水の種類？'
+            text: '%food_answer_water.training_phrases.0'
+          - type: message
+            label: "置き場所？"
+            text: '%food_answer_wherewater.training_phrases.0'
+
+  - display_name: food_answer_water
+    training_phrases:
+    - '水はどんなものをあげればいいの？'
+    messages:
+    - '新鮮な水をあげるのが基本。ネコによって好みが違います。水道水いいネコ、ミネルウォーターが好きなネコ、冷たい水が好きなネコ、温めが好きなネコがいるので、いろいろ試してみて、好みを見つけてあげて。'
+    more_question: true
+
+  - display_name: food_answer_wherewater
+    training_phrases:
+    - '水はどこに置いたらいい？'
+    messages:
+    - 'ネコは決まった場所で水を飲む習慣がないので、家の複数の場所に、水の入った器を置くことで、飲む回収が増えるようにしましょう。トイレとは離しておこうね。フードと離しても大丈夫。ネコはご飯と水を一緒に取らないので。'
+    more_question: true
