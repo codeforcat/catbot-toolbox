@@ -27,10 +27,10 @@ intents:
     messages:
     - payload:
         type: template
-        altText: 'トイレの基本は、こんなことがあるよ。何を知りたい？'
+        altText: 'トイレの基本はこんなことがあるよ。何を知りたい？'
         template:
           type: buttons
-          text: 'トイレの基本は、こんなことがあるよ。何を知りたい？'
+          text: 'トイレの基本はこんなことがあるよ。何を知りたい？'
           actions:
           - type: message
             label: '何を用意すればいい？'

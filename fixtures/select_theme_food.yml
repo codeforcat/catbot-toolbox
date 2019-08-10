@@ -3,20 +3,20 @@ intents:
 # food_select
   - display_name: food_select
     training_phrases:
-    - "なにを食べさせちゃいけないの？"
+    - "ご飯はどうすればいいのかな？"
     messages:
     - payload:
         type: template
-        altText: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+        altText: "ご飯が気になるんだね。どんなことかな？"
         template:
           type: buttons
-          text: "ご飯が気になるんだね、ご飯のどういったところが気になっているのかな？"
+          text: "ご飯が気になるんだね。どんなことかな？"
           actions:
           - type: message
             label: "ご飯の基本"
             text: '%food_select_basic.training_phrases.0'
           - type: message
-            label: "いろんな種類があるけど？"
+            label: "あげちゃいけないもの"
             text: '%food_select_donteat.training_phrases.0'
           - type: message
             label: "水のあげ方は？"
@@ -28,10 +28,10 @@ intents:
     messages:
     - payload:
         type: template
-        altText: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+        altText: 'ご飯の基本はこんなことがあるよ。何を知りたい？'
         template:
           type: buttons
-          text: 'ご飯の基本は、こんなことがあるよ。何を知りたい？'
+          text: 'ご飯の基本はこんなことがあるよ。何を知りたい？'
           actions:
           - type: message
             label: '何をあげればいいの？'
@@ -108,14 +108,14 @@ intents:
 
   - display_name: food_select_donteat
     training_phrases:
-    - 'どんなものを食べさせていいの？'
+    - 'あげちゃいけないものはなに？'
     messages:
     - payload:
         type: template
-        altText: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+        altText: 'あげちゃいけないものにはこんなものがあるよ。何を知りたい？'
         template:
           type: buttons
-          text: 'あげちゃいけないものには、こんなことがあるよ。何を知りたい？'
+          text: 'あげちゃいけないものにはこんなものがあるよ。何を知りたい？'
           actions:
           - type: message
             label: 'かつおぶしは？'
@@ -150,14 +150,14 @@ intents:
 
   - display_name: food_select_water
     training_phrases:
-      - 'どんなものを食べさせていいの？'
+      - '水のあげ方はどうすればいいの？'
     messages:
     - payload:
         type: template
-        altText: '水のあげ方は、こんなことがあるよ。何を知りたい？'
+        altText: '水のあげ方はこんなことがあるよ。何を知りたい？'
         template:
           type: buttons
-          text: '水のあげ方は、こんなことがあるよ。何を知りたい？'
+          text: '水のあげ方はこんなことがあるよ。何を知りたい？'
           actions:
           - type: message
             label: '水の種類？'
