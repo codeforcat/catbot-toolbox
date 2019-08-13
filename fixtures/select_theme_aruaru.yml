@@ -131,6 +131,7 @@ intents:
 
   - display_name: aruaru_answer_bite
     training_phrases:
+    - '甘噛みするのはなぜ？'
     - parts:
       - text: 甘噛み
         entity_type: '@biting'
