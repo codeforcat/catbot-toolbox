@@ -15,11 +15,30 @@ intents:
             label: '爪とぎ'
             text: '%care_select_nail.training_phrases.0'
           - type: message
-            label: 'ブラシシャンプー歯磨き'
-            text: '%care_select_brushing.training_phrases.0'
+            label: 'ブラッシング'
+            text: '%care_answer_brushing.training_phrases.0'
           - type: message
-            label: '爪切りマッサージ毛玉'
-            text: '%care_select_cutnail.training_phrases.0'
+            label: 'シャンプー'
+            text: '%care_answer_shampoo.training_phrases.0'
+          - type: message
+            label: '歯磨き'
+            text: '%care_answer_toothbrushing.training_phrases.0'
+    - payload:
+        type: template
+        altText: 'つづきだよ！'
+        template:
+          type: buttons
+          text: 'つづきだよ！'
+          actions:
+          - type: message
+            label: '爪切り'
+            text: '%care_answer_cutclaw.training_phrases.0'
+          - type: message
+            label: 'もみもみマッサージ'
+            text: '%care_answer_massage.training_phrases.0'
+          - type: message
+            label: '毛玉'
+            text: '%care_answer_furball.training_phrases.0'
 
   - display_name: care_select_nail
     training_phrases:
@@ -111,27 +130,6 @@ intents:
     - 'ネコが爪をとぎたがるところ、落ち着いてリラックスできる場所、布や籐製の家具の近く、食事場の近く。'
     more_question: true
 
-  - display_name: care_select_brushing
-    training_phrases:
-    - 'ブラッシング・シャンプー・歯磨き'
-    messages:
-    - payload:
-        type: template
-        altText: 'どれが気になる？'
-        template:
-          type: buttons
-          text: 'どれが気になる？'
-          actions:
-          - type: message
-            label: 'ブラッシング'
-            text: '%care_answer_brushing.training_phrases.0'
-          - type: message
-            label: 'シャンプー'
-            text: '%care_answer_shampoo.training_phrases.0'
-          - type: message
-            label: '歯磨き'
-            text: '%care_answer_toothbrushing.training_phrases.0'
-
   - display_name: care_answer_brushing
     training_phrases:
     - 'ブラッシングは必要？'
@@ -211,27 +209,6 @@ intents:
     messages:
     - 'いきなり歯ブラシで磨くのは難しいので、湿らせたガーゼで拭くようにします。歯磨き用のウエットシートもありますよ。ネコにとってはストレスになるケアなので、少しずつ慣らしたいもの。犬歯と臼歯は特に念入りに。'
     more_question: true
-
-  - display_name: care_select_cutnail
-    training_phrases:
-    - '爪切り・マッサージ・毛玉'
-    messages:
-    - payload:
-        type: template
-        altText: 'お手入れしてね！どれが気になる？'
-        template:
-          type: buttons
-          text: 'お手入れしてね！どれが気になる？'
-          actions:
-          - type: message
-            label: '爪切り'
-            text: '%care_answer_cutclaw.training_phrases.0'
-          - type: message
-            label: 'もみもみマッサージ'
-            text: '%care_answer_massage.training_phrases.0'
-          - type: message
-            label: '毛玉'
-            text: '%care_answer_furball.training_phrases.0'
 
   - display_name: care_answer_cutclaw
     training_phrases:
