@@ -1,0 +1,608 @@
+  - display_name: card_game_trouble_shiro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 白猫がこまっているよ！
+    - payload:
+        type: template
+        altText: エサの置きっぱなしは鳥とか虫とか来ちゃうにゃ。。
+        template:
+          type: confirm
+          text: エサの置きっぱなしは鳥とか虫とか来ちゃうにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_kuro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 黒猫がこまっているよ！
+    - payload:
+        type: template
+        altText: ふん尿は誰かが掃除してほしいにゃ。。
+        template:
+          type: confirm
+          text: ふん尿は誰かが掃除してほしいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_gray
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - グレー猫がこまっているよ！
+    - payload:
+        type: template
+        altText: 仲間の交通事故が多発してるにゃなんとかして。。
+        template:
+          type: confirm
+          text: 仲間の交通事故が多発してるにゃなんとかして。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_kiji
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - キジトラ猫がこまっているよ！
+    - payload:
+        type: template
+        altText: ソトにいる仲間は感染症とかいろんな病気にかかるにゃ。。
+        template:
+          type: confirm
+          text: ソトにいる仲間は感染症とかいろんな病気にかかるにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_saba
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - サバトラ猫がこまっているよ！
+    - payload:
+        type: template
+        altText: 木にひっかけたりすりむいたりあちこちケガだらけにゃ。。
+        template:
+          type: confirm
+          text: 木にひっかけたりすりむいたりあちこちケガだらけにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_cha
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 茶トラ猫がこまっているよ！
+    - payload:
+        type: template
+        altText: ソトに長くいるとどうしてもノミやダニがついてしまうにゃ。。
+        template:
+          type: confirm
+          text: ソトに長くいるとどうしてもノミやダニがついてしまうにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_kuroshiro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 黒白猫がこまっているよ！
+    - payload:
+        type: template
+        altText: クルマを見るとどうしてもいたずらしたくなるにゃ。。
+        template:
+          type: confirm
+          text: クルマを見るとどうしてもいたずらしたくなるにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_mike
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 三毛猫がこまっているよ！
+    - payload:
+        type: template
+        altText: 仲間同士の諍いカラス戦争などケンカが絶えないにゃ。。
+        template:
+          type: confirm
+          text: 仲間同士の諍いカラス戦争などケンカが絶えないにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_sabi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - サビがこまっているよ！
+    - payload:
+        type: template
+        altText: 誰かがゴミをあさるのでゴミが散乱して汚いにゃ。。
+        template:
+          type: confirm
+          text: 誰かがゴミをあさるのでゴミが散乱して汚いにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_kijishiro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - キジ白がこまっているよ！
+    - payload:
+        type: template
+        altText: どうも迷子になったみたいだにゃ。。
+        template:
+          type: confirm
+          text: どうも迷子になったみたいだにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_sabashiro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - サバシロがこまっているよ！
+    - payload:
+        type: template
+        altText: 他人の庭にトイレしに入っただけなのに怒られたにゃ。。
+        template:
+          type: confirm
+          text: 他人の庭にトイレしに入っただけなのに怒られたにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_chashiro
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 茶白がこまっているよ！
+    - payload:
+        type: template
+        altText: 子猫がいっぱい生まれちゃったにゃどうしよ。。
+        template:
+          type: confirm
+          text: 子猫がいっぱい生まれちゃったにゃどうしよ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_hachiware
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - ハチワレがこまっているよ！
+    - payload:
+        type: template
+        altText: 多頭飼育おばあさん家には仲間が８０匹もいるらしいにゃ。。
+        template:
+          type: confirm
+          text: 多頭飼育おばあさん家には仲間が８０匹もいるらしいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_kutsushita
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - クツシタがこまっているよ！
+    - payload:
+        type: template
+        altText: 猫アレルギーで困ってるにゃ。。
+        template:
+          type: confirm
+          text: 猫アレルギーで困ってるにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_shirokurotobi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 白黒トビがこまっているよ！
+    - payload:
+        type: template
+        altText: カラスが怖いんですけどどうしたらいいにゃ。。
+        template:
+          type: confirm
+          text: カラスが怖いんですけどどうしたらいいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_graytobi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - グレートビがこまっているよ！
+    - payload:
+        type: template
+        altText: イヌに追いかけられるんですけどどうしたらいいにゃ。。
+        template:
+          type: confirm
+          text: イヌに追いかけられるんですけどどうしたらいいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_chashirotobi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - 茶白トビがこまっているよ！
+    - payload:
+        type: template
+        altText: 危なそうなおじさんがご飯くれるってどうしたらいいにゃ。。
+        template:
+          type: confirm
+          text: 危なそうなおじさんがご飯くれるってどうしたらいいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_tobikiji
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - トビキジがこまっているよ！
+    - payload:
+        type: template
+        altText: 首輪が木に引っかかって取れないにゃ。。
+        template:
+          type: confirm
+          text: 首輪が木に引っかかって取れないにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_sabashirotobi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - サバ白トビがこまっているよ！
+    - payload:
+        type: template
+        altText: お父さんが誰だかわからないにゃ。。
+        template:
+          type: confirm
+          text: お父さんが誰だかわからないにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_tobimike
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - トビミケがこまっているよ！
+    - payload:
+        type: template
+        altText: 首輪についた鈴がうるさくてノイローゼになるにゃ。。
+        template:
+          type: confirm
+          text: 首輪についた鈴がうるさくてノイローゼになるにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_cream
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - クリームがこまっているよ！
+    - payload:
+        type: template
+        altText: お腹すいたにゃ。。
+        template:
+          type: confirm
+          text: お腹すいたにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_graytora
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - グレートラがこまっているよ！
+    - payload:
+        type: template
+        altText: 最近増えたアライグマが怖いにゃ。。
+        template:
+          type: confirm
+          text: 最近増えたアライグマが怖いにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_pastelmike
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - パステルミケがこまっているよ！
+    - payload:
+        type: template
+        altText: 引っ越しに連れて行ってもらえなかったにゃ。。
+        template:
+          type: confirm
+          text: 引っ越しに連れて行ってもらえなかったにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_graysabi
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - グレーサビがこまっているよ！
+    - payload:
+        type: template
+        altText: うちの人が施設に入ったら置き去りになったにゃ。。
+        template:
+          type: confirm
+          text: うちの人が施設に入ったら置き去りになったにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_scottish
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - スコティッシュがこまっているよ！
+    - payload:
+        type: template
+        altText: 仲間の鳴き声がうるさくて眠れないにゃ。。
+        template:
+          type: confirm
+          text: 仲間の鳴き声がうるさくて眠れないにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_munchkin
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - マンチカンがこまっているよ！
+    - payload:
+        type: template
+        altText: 宇宙人に遭遇どうしたらいいにゃ。。
+        template:
+          type: confirm
+          text: 宇宙人に遭遇どうしたらいいにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_ameshort
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - アメショがこまっているよ！
+    - payload:
+        type: template
+        altText: 坂道を歩いてたら猛スピードの自転車に引っ掛けられたにゃ。。
+        template:
+          type: confirm
+          text: 坂道を歩いてたら猛スピードの自転車に引っ掛けられたにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_persia
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - ペルシャがこまっているよ！
+    - payload:
+        type: template
+        altText: エイズとか流行ってるし感染症が心配だにゃ。。
+        template:
+          type: confirm
+          text: エイズとか流行ってるし感染症が心配だにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_russian
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - ロシアンがこまっているよ！
+    - payload:
+        type: template
+        altText: クルマ見ると危ないとわかってても下に入りたくなるにゃ。。
+        template:
+          type: confirm
+          text: クルマ見ると危ないとわかってても下に入りたくなるにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_bengal
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - ベンガルがこまっているよ！
+    - payload:
+        type: template
+        altText: 集会の仲間はずれにされたにゃ。。
+        template:
+          type: confirm
+          text: 集会の仲間はずれにされたにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_ocicat
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - オシキャットがこまっているよ！
+    - payload:
+        type: template
+        altText: 帰り道がわからなくなったにゃ。。
+        template:
+          type: confirm
+          text: 帰り道がわからなくなったにゃ。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく
+  - display_name: card_game_trouble_serval
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - サーバルがこまっているよ！
+    - payload:
+        type: template
+        altText: 寒い寒い寒い。。
+        template:
+          type: confirm
+          text: 寒い寒い寒い。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく

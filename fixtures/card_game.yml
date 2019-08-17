@@ -1,0 +1,317 @@
+version: 0.1.0
+intents:
+# card_game
+  - display_name: card_game
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    training_phrases:
+    - カードゲーム
+    - こまった？
+    - こまってる？
+    - こまってない？
+    - こまった子はいねが？
+    - 困った？
+    - 困ってる？
+    - 困ってない？
+    - 困った子はいねが？
+    - parts:
+      - text: こまってる
+      - text: ネコ
+        entity_type: '@cat'
+        alias: cat
+      - text: はいないかな？
+    messages:
+    - random_choices:
+      - messages:
+        - followup_event: card_game_trouble_shiro
+      - messages:
+        - followup_event: card_game_trouble_kuro
+      - messages:
+        - followup_event: card_game_trouble_gray
+      - messages:
+        - followup_event: card_game_trouble_kiji
+      - messages:
+        - followup_event: card_game_trouble_saba
+      - messages:
+        - followup_event: card_game_trouble_cha
+      - messages:
+        - followup_event: card_game_trouble_kuroshiro
+      - messages:
+        - followup_event: card_game_trouble_mike
+      - messages:
+        - followup_event: card_game_trouble_sabi
+      - messages:
+        - followup_event: card_game_trouble_kijishiro
+      - messages:
+        - followup_event: card_game_trouble_sabashiro
+      - messages:
+        - followup_event: card_game_trouble_chashiro
+      - messages:
+        - followup_event: card_game_trouble_hachiware
+      - messages:
+        - followup_event: card_game_trouble_kutsushita
+      - messages:
+        - followup_event: card_game_trouble_shirokurotobi
+      - messages:
+        - followup_event: card_game_trouble_graytobi
+      - messages:
+        - followup_event: card_game_trouble_chashiro
+      - messages:
+        - followup_event: card_game_trouble_tobikiji
+      - messages:
+        - followup_event: card_game_trouble_sabashirotobi
+      - messages:
+        - followup_event: card_game_trouble_tobimike
+      - messages:
+        - followup_event: card_game_trouble_cream
+      - messages:
+        - followup_event: card_game_trouble_graytora
+      - messages:
+        - followup_event: card_game_trouble_pastelmike
+      - messages:
+        - followup_event: card_game_trouble_graysabi
+      - messages:
+        - followup_event: card_game_trouble_scottish
+      - messages:
+        - followup_event: card_game_trouble_munchkin
+      - messages:
+        - followup_event: card_game_trouble_ameshort
+      - messages:
+        - followup_event: card_game_trouble_persia
+      - messages:
+        - followup_event: card_game_trouble_russian
+      - messages:
+        - followup_event: card_game_trouble_bengal
+      - messages:
+        - followup_event: card_game_trouble_ocicat
+      - messages:
+        - followup_event: card_game_trouble_serval
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+# troubles - See card_game_troubles.yml
+
+# card_game_play
+  - display_name: card_game_play_yes
+    input_context_names:
+    - card_game_play
+    output_contexts:
+    - name: card_game_play
+    training_phrases:
+    - 助ける！
+    messages:
+    - choices_min: 1
+      choices_max: 3
+      first_message:
+      - これを駆使して助けよう！
+      random_multiple_choices:
+#      Text Example:
+#      - messages:
+#        - ホヤ
+#      Image Example:
+#      - messages:
+#        - payload:
+#            type: image
+#            originalContentUrl: https://code4cat.org/catbot/card-game/hoya.jpg
+#            previewImageUrl: https://code4cat.org/catbot/card-game/hoya.jpg
+#      Flex Example:
+#      - messages:
+#        - payload:
+#            type: flex
+#            altText: ホヤ
+#            contents:
+#              type: bubble
+#              hero:
+#                type: image
+#                url: https://code4cat.org/catbot/card-game/hoya.jpg
+#                size: full
+#              body:
+#                type: box
+#                layout: vertical
+#                contents:
+#                - type: text
+#                  text: ホヤ
+#      Buttons Example:
+#      - messages:
+#        - payload:
+#            type: template
+#            altText: ホヤ
+#            template:
+#              type: buttons
+#              thumbnailImageUrl: https://code4cat.org/catbot/card-game/hoya.jpg
+#              text: ホヤ
+#              defaultAction:
+#                type: uri
+#                label: image
+#                uri: https://code4cat.org/catbot/card-game/hoya.jpg
+#              actions:
+#              - type: uri
+#                label: 画像
+#                uri: https://code4cat.org/catbot/card-game/hoya.jpg
+#      Location Example:
+#      - messages:
+#        - payload:
+#            type: location
+#            title: イトナブ
+#            address: 〒986-0822 ２丁目-１０-２１ 中央 石巻市 宮城県 986-0822
+#            latitude: 38.4315962
+#            longitude: 141.3072447
+
+      - messages:
+        - 日和山公園
+      - messages:
+        - 羽黒山鳥屋神社
+      - messages:
+        - イオン蛇田店
+      - messages:
+        - コンビニ
+      - messages:
+        - 石巻市役所
+      - messages:
+        - 駅前駐車場
+      - messages:
+        - 特産品
+      - messages:
+        - 石巻工業高校
+      - messages:
+        - 花壇
+      - messages:
+        - 立町商店街
+      - messages:
+        - ネコ愛護団体
+      - messages:
+        - エサやりおばさん
+      - messages:
+        - キャットシッター
+      - messages:
+        - 獣医師
+      - messages:
+        - 看護師
+      - messages:
+        - 保健所
+      - messages:
+        - 石巻市長
+      - messages:
+        - 田代島
+      - messages:
+        - payload:
+            type: location
+            title: イトナブ
+            address: 〒986-0822 ２丁目-１０-２１ 中央 石巻市 宮城県 986-0822
+            latitude: 38.4315962
+            longitude: 141.3072447
+      - messages:
+        - ペットショップ
+      - messages:
+        - はまぐり浜
+      - messages:
+        - 仮面ライダー
+      - messages:
+        - ラジオ石巻
+      - messages:
+        - 石巻日日新聞
+      - messages:
+        - お祭り
+      - messages:
+        - サンファン号
+      - messages:
+        - 魚市場
+      - messages:
+        - 萬画館
+      - messages:
+        - 銅像
+      - messages:
+        - 教会
+      - messages:
+        - 石巻工房
+      - messages:
+        - フィッシャーマンジャパン
+      - messages:
+        - カリカリ
+      - messages:
+        - 猫缶
+      - messages:
+        - ねこじゃらし
+      - messages:
+        - クッション
+      - messages:
+        - ハンモック
+      - messages:
+        - トイレ
+      - messages:
+        - キャットタワー
+      - messages:
+        - ねずみ
+      - messages:
+        - コタツ
+      - messages:
+        - 爪とぎ
+      - messages:
+        - けん玉
+      - messages:
+        - 弓矢
+      - messages:
+        - 自転車
+      - messages:
+        - payload:
+            type: flex
+            altText: ホヤ
+            contents:
+              type: bubble
+              hero:
+                type: image
+                url: https://code4cat.org/catbot/card-game/hoya.jpg
+                size: full
+              body:
+                type: box
+                layout: vertical
+                contents:
+                - type: text
+                  text: ホヤ
+      - messages:
+        - 薬
+      - messages:
+        - カラス
+      - messages:
+        - サッカーボール
+      - messages:
+        - 仏像
+      - messages:
+        - 口紅
+      - messages:
+        - キャベツ
+      - messages:
+        - ドローン
+      - messages:
+        - バス
+      - messages:
+        - 帽子
+      - messages:
+        - 魔法の杖
+      - messages:
+        - チュール
+      - messages:
+        - 握り寿司
+      - messages:
+        - 金華さば
+      - messages:
+        - トラック
+      - messages:
+        - 石巻焼きそば
+      - messages:
+        - タクシー
+      - messages:
+        - 地酒
+      - messages:
+        - スマホ
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+  - display_name: card_game_play_no
+    input_context_names:
+    - card_game_play
+    output_contexts:
+    - name: card_game_play
+    training_phrases:
+    - ほっとく
+    messages:
+    - ひ、、ひどいにゃ

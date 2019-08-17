@@ -196,3 +196,26 @@ def metrics(c):
 def ci(c):
     """CI関連タスクを実行します。"""
     pass
+
+
+@task
+def card_game_generate_trouble_yaml(c, suffix, cat, trouble):
+    print(f'''  - display_name: card_game_trouble_{suffix}
+    output_contexts:
+    - name: card_game_play
+      lifespan_count: 1
+    messages:
+    - {cat}が困っているよ！
+    - payload:
+        type: template
+        altText: {trouble}。。
+        template:
+          type: confirm
+          text: {trouble}。。
+          actions:
+          - type: message
+            label: 助ける！
+            text: 助ける！
+          - type: message
+            label: ほっとく
+            text: ほっとく''')
