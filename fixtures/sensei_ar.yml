@@ -1,0 +1,19 @@
+version: 0.1.0
+intents:
+  - display_name: sensei_ar
+    training_phrases:
+    - 'ネコ先生'
+    - '猫先生'
+    - 'ねこ先生'
+    messages:
+      - payload:
+          type: template
+          altText: 'ネコ先生を召喚するよ！'
+          template:
+            type: buttons
+            thumbnailImageUrl: https://code4cat.org/catbot/catbot-03_thumbnail.jpg
+            text: 'ネコ先生を召喚するよ！'
+            actions:
+              - type: uri
+                label: 出てきて！ネコ先生！
+                uri: https://codeforcat.github.io/sensei_ar/index.html
