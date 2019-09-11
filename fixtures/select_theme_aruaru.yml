@@ -56,6 +56,22 @@ intents:
   - display_name: aruaru_answer_grooming
     training_phrases:
     - '毛づくろいするのはなぜ？'
+    - parts:
+        - text: 毛づくろい
+          entity_type: '@grooming'
+          alias: grooming
+        - text: するのはなぜ
+    - parts:
+        - text: なぜ
+        - text: 毛づくろい
+          entity_type: '@grooming'
+          alias: grooming
+        - text: するの
+    - parts:
+        - text: 毛づくろい
+          entity_type: '@grooming'
+          alias: grooming
+        - text: はなぜするの
     messages:
     - |
       落ち着くためにしてるんだよ。
@@ -74,6 +90,28 @@ intents:
   - display_name: aruaru_answer_groomchild
     training_phrases:
     - '母ネコが子ネコに毛づくろいするのは？'
+    - parts:
+        - text: 母ネコ
+          entity_type: '@mother-cat'
+          alias: mother-cat
+        - text: が
+        - text: 子ネコ
+          entity_type: '@kitten'
+          alias: kitten
+        - text: に
+        - text: 毛づくろい
+          entity_type: '@grooming'
+          alias: grooming
+        - text: するのは
+    - parts:
+        - text: 子ネコ
+          entity_type: '@kitten'
+          alias: kitten
+        - text: に
+        - text: 毛づくろい
+          entity_type: '@grooming'
+          alias: grooming
+        - text: するのは
     messages:
     - '子ネコは自分で毛づくろいができないので、母ネコが代わりにやってあげてるんだよ。マッサージ効果もあるから、気持ちよさそうだよね。毛づくろいで落ち着くというのは、その幸せの記憶が作用してるかもしれないね。'
     more_question: true
@@ -81,6 +119,8 @@ intents:
   - display_name: aruaru_answer_fumifumi
     training_phrases:
     - 'ふみふみするのはなぜ？'
+    - 'ふみふみ'
+    - 'フミフミ'
     messages:
     - |
       ふみふみは、赤ちゃん時代の思い出。
@@ -90,6 +130,8 @@ intents:
   - display_name: aruaru_answer_surisuri
     training_phrases:
     - 'スリスリするのはなぜ？'
+    - 'スリスリ'
+    - 'すりすり'
     messages:
     - |
       縄張りの安心を得るためのマーキング。
@@ -111,6 +153,11 @@ intents:
   - display_name: aruaru_answer_groomother
     training_phrases:
     - '家具にも人にもスリスリするのは？'
+    - '家具にも人にもすりすりするのは'
+    - '家具にスリスリするのは'
+    - '家具にすりすりするのは'
+    - '人にスリスリするのは'
+    - '人にすりすりするのは'
     messages:
     - 'ネコは身の回りにあるものすべてを、自分の知ってるにおいにしたいので、その意味では、家具も人も同列だね。'
     more_question: true
@@ -118,6 +165,18 @@ intents:
   - display_name: aruaru_answer_groomothercat
     training_phrases:
     - '他のネコとスリスリするのは？'
+    - parts:
+        - text: 他の
+        - text: ネコ
+          entity_type: '@cat'
+          alias: cat
+        - text: とスリスリするのは
+    - parts:
+        - text: 他の
+        - text: ネコ
+          entity_type: '@cat'
+          alias: cat
+        - text: とすりすりするのは
     messages:
     - 'お互い安心するための、においの交換みたいなもんだね。'
     more_question: true
@@ -125,6 +184,7 @@ intents:
   - display_name: aruaru_answer_kakaka
     training_phrases:
     - 'カカカッと鳴くのはなぜ？'
+    - 'カカカッ'
     messages:
     - 'ネコが窓に向かって、「カカカッ」といった鳴き声を出してることを聞いたことがありませんか？これは、獲物に対して、ネコが興奮しているときの反応で、クラッキングと言います。ちなみに、ライオンやトラは、同じネコ科の動物ですが、クラッキングはしません。'
     more_question: true
@@ -133,10 +193,15 @@ intents:
     training_phrases:
     - '甘噛みするのはなぜ？'
     - parts:
-      - text: 甘噛み
-        entity_type: '@biting'
-        alias: biting
-      - text: するのはなぜ？
+        - text: 甘噛み
+          entity_type: '@biting'
+          alias: biting
+        - text: するのはなぜ
+    - parts:
+        - text: 甘噛み
+          entity_type: '@biting'
+          alias: biting
+        - text: する
     messages:
     - |
       頻繁な甘噛みはストレスのサインです。
@@ -155,6 +220,17 @@ intents:
   - display_name: aruaru_answer_approachbite
     training_phrases:
     - '甘噛みの対処法はある？'
+    - parts:
+        - text: 甘噛み
+          entity_type: '@biting'
+          alias: biting
+        - text: の対処法
+    - parts:
+        - text: 甘噛み
+          entity_type: '@biting'
+          alias: biting
+        - text: はどうすれば
+    - '噛みクセをなおしたい'
     messages:
     - 'ネコが人を噛んだ場合には、無反応・無視を徹底しましょう。ネコに「噛むと遊んでもらえない」ということを学習させることで、噛みクセがつくのを防ぎましょう。'
     more_question: true
@@ -162,6 +238,18 @@ intents:
   - display_name: aruaru_answer_blink
     training_phrases:
     - 'ゆっくり瞬きするのはなぜ？'
+    - parts:
+        - text: ゆっくり
+        - text: 瞬き
+          entity_type: '@blink'
+          alias: blink
+        - text: するのはなぜ
+    - parts:
+        - text: ゆっくり
+        - text: 瞬き
+          entity_type: '@blink'
+          alias: blink
+        - text: する
     messages:
     - |
       ゆっくり瞬きは、好きのサイン。
@@ -180,6 +268,7 @@ intents:
   - display_name: aruaru_answer_spreadeyes
     training_phrases:
     - '目を見開いてじっと見つめているのはなぜ？'
+    - '目を見開いているのはなぜ'
     messages:
     - 'それは、緊張しているときかもしれませんね。ネコ同士のケンカでも、どちらかが目をそらすまで瞬きはしません。'
     more_question: true
@@ -187,6 +276,10 @@ intents:
   - display_name: aruaru_answer_kick
     training_phrases:
     - '後ろ脚キックするのはなぜ？'
+    - '後ろ脚キック'
+    - '足で蹴ってくる'
+    - '後ろ足で蹴る'
+    - '足で蹴られる'
     messages:
     - '後ろ脚キックも狩りのトレーニングです。後ろ脚から繰り出される強烈なネコキックは、狩猟本能によるもの。獲物を仕留めたあと、相手を疲れさせることが目的なので、一度始まるとなかなか止まりません。'
     - payload:
@@ -203,6 +296,9 @@ intents:
   - display_name: aruaru_answer_kickmood
     training_phrases:
     - '機嫌が悪いときに蹴られる気がする'
+    - '機嫌が悪いときに蹴られる'
+    - '機嫌が悪い時蹴ってくる'
+    - '不機嫌なときに蹴る'
     messages:
     - 'そうですね。遊びたいときや不機嫌なときにもネコキックすることがありますので、要注意です。あまりにも痛いときには、付き合わず、そっと離れましょう。'
     more_question: true
@@ -210,6 +306,10 @@ intents:
   - display_name: aruaru_answer_run
     training_phrases:
     - '夜に運動会するのはなぜ？'
+    - '夜の運動会'
+    - '運動会がはじまる'
+    - '夜に走り回る'
+    - '夜にかけっこがはじまる'
     messages:
     - '夜の運動会は狩りのシミュレーションです。飼い主が寝ようとすると、ネコが鳴いたり、走り回ったり、あるいは、明け方、ネコが騒ぎ出して、起こされたり。複数のネコを飼っている場合には追っかけっこして、さながら、夜の運動会と化します。'
     - payload:
@@ -226,6 +326,9 @@ intents:
   - display_name: aruaru_answer_coperun
     training_phrases:
     - '夜の運動会の対処法はある？'
+    - '夜の運動会の対処法'
+    - '夜に走り回らないようにする'
+    - '夜のかけっこをやめさせる'
     messages:
     - '寝る前に、しっかり遊ばせることで、飼い主もネコもぐっすり眠れるでしょう。'
     more_question: true
@@ -233,6 +336,12 @@ intents:
   - display_name: aruaru_answer_drop
     training_phrases:
     - '机の上のものを落とすのはなぜ？'
+    - parts:
+        - text: 机
+          entity_type: '@desk'
+          alias: desk
+        - text: の上のものを落とすのはなぜ
+    - '上のものを落とす'
     messages:
     - 'なぜ、机の上のものを落とすか、それは楽しいからです。落とすものによって、その様子は様々、ネコは獲物を想起させるものが好きなので、落下の動きが楽しいのです。また、モノを落とすと飼い主さんが来たり、声を出したりするので、その反応も楽しんでいます。'
     - payload:
@@ -249,6 +358,17 @@ intents:
   - display_name: aruaru_answer_copedrop
     training_phrases:
     - '机の上のものを落とすのを防ぐ方法はある？'
+    - parts:
+        - text: 机
+          entity_type: '@desk'
+          alias: desk
+        - text: の上のものを落とすのを防ぐ
+    - parts:
+        - text: 机
+          entity_type: '@desk'
+          alias: desk
+        - text: のものを落とす対処法
+    - '上のものを落とさないようにする'
     messages:
     - 'ネコがモノを落とすことを防ぐのは無理なので、落とされたら困るものを置かないようにする、これしかありません。'
     more_question: true
