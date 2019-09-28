@@ -1,3 +1,5 @@
+version: 0.1.0
+intents:
   - display_name: card_game_trouble_shiro
     output_contexts:
     - name: card_game_play
