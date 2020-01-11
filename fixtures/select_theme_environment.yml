@@ -45,8 +45,9 @@ intents:
   - display_name: environment_answer_high
     training_phrases:
     - 'なぜ高いところが好きなの？'
+    - '高いところ'
     messages:
-    - '野生の名残らしいよ。野生のネコは地上の敵から襲われにくく、獲物を狙いやすい木の上で暮らしてたからだよ。お家では、タンスやテーブルの上が指定席なのはそういうこと。キャットタワー置いてあげるといいよ。'
+    - '野生の名残らしいね。野生のネコは地上の敵から襲われにくく、獲物を狙いやすい木の上で暮らしてたからだよ。タンスやテーブルの上が指定席なのはそういうこと。キャットタワー置いてあげるといいよ。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -61,29 +62,35 @@ intents:
   - display_name: environment_answer_cattower
     training_phrases:
     - 'キャットタワーはどこに設置すればいい？'
+    - 'キャットタワー'
     messages:
-    - 'キャットタワーは、窓際に置いてあげると、高いところから外が見られて、ご機嫌だよ。'
+    - 'キャットタワーは、窓際に置いてあげると、高いところから外が見られて、ご機嫌のはずだよ。'
     more_question: true
 
   - display_name: environment_answer_narrow
     training_phrases:
     - 'なぜ狭いところが好きなの？'
+    - '狭いところ'
+    - 'ソファの下'
     messages:
-    - 'イエネコの祖先だと言われているリビアヤマネコは、狭くて暗いところを寝床にしていたからだよ。ソファの下が好きなのはそういうことだよ。'
+    - 'イエネコの祖先だと言われているリビアヤマネコは、狭くて暗いところを寝床にしてたからだって。'
     more_question: true
 
   - display_name: environment_answer_cardboard
     training_phrases:
     - 'なぜダンボールが好きなの？'
+    - 'ダンボール'
     messages:
-    - '狭いところがネコの基本。ネコの目は平面で、左右や後部の視界はないので、壁が1面より2面、3面ある場所が落ち着く。'
+    - '狭いところがネコの基本。ネコの目は平面で、左右や後部の視界はないので、壁が1面より2面、3面ある場所が落ち着くんだよ。'
     more_question: true
 
   - display_name: environment_answer_bed
     training_phrases:
     - 'ネコベッドは用意したほうがいい？'
+    - 'ネコベッド'
+    - '猫ベッド'
     messages:
-    - '高価なネコベットを用意しても、ダンボールや毛布のほうがお気に入りということもあるけど、置くところ変えてみるとか、いろいろ試してみて。'
+    - '高価なネコベッドを用意しても、ダンボールや毛布のほうがお気に入りということもあるけど、置くところ変えてみるとか、いろいろ試してみて。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -98,13 +105,16 @@ intents:
   - display_name: environment_answer_wherebed
     training_phrases:
     - 'ネコベッドはどこに置くといい？'
+    - '寝る場所'
+    - '寝床'
     messages:
-    - '人が動き回る動線は避けたほうがいいですが、人の気配が感じられる場所と一人で静かにいられる場所の両方が必要だよ。季節や一日の時間帯によっても変わるよ。'
+    - '人が動き回る動線は避けたほうがいいけど、人の気配が感じられる場所と一人で静かにいられる場所の両方が必要だね。季節や一日の時間帯によっても変わるよ。'
     more_question: true
 
   - display_name: environment_answer_uncomfortable
     training_phrases:
     - '居心地の悪いサイン？'
+    - '寝返り'
     messages:
     - '何度も寝返りしたり、しっぽをずっとパタンパタンしたり、移動を繰り返したりは、居心地の悪いサインだよ。'
     more_question: true
