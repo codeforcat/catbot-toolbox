@@ -54,6 +54,7 @@ intents:
       lifespan_count: 1
     training_phrases:
     - '地域猫の定義とは'
+    - '地域猫'
     messages:
     - '不妊去勢手術後、地域住民によって、適切に管理されている猫'
     - payload:
@@ -139,7 +140,7 @@ intents:
     messages:
     - |
       ①外に出さない（室内で排泄させる）
-      ②首輪（飼い主の明示・迷子防止）
+      ②マイクロチップ
       ③不妊去勢手術（増やさない）
     - payload:
         type: template
@@ -182,8 +183,10 @@ intents:
   - display_name: chiikineko_answer_neuter
     training_phrases:
     - '不妊去勢手術について知りたい'
+    - 'さくらみみ'
+    - 'さくらねこ'
     messages:
-    - '不妊去勢手術をしているので子猫は生まれません。不妊去勢手術済みの印が耳カット、「さくらみみ」と言います。耳カットされた猫を「さくらねこ」と言います。'
+    - '不妊去勢手術をしているので子猫は生まれません。不妊去勢手術済みの印が耳カット、「さくらみみ」と言います。耳カットされた猫を「さくらねこ」と言うんだよ。'
     - payload:
         type: template
         altText: '不妊去勢手術をすれば？'
@@ -228,7 +231,7 @@ intents:
     training_phrases:
     - 'エサのルールについて知りたい'
     messages:
-    - '置きエサをしない、させない環境づくりが大切です。'
+    - '置きエサをしない、させない環境づくりが大切だね。'
     - payload:
         type: template
         altText: もっと知りたい？
@@ -250,7 +253,7 @@ intents:
     training_phrases:
     - '環境美化について知りたい'
     messages:
-    - 'フンの掃除'
+    - 'うんち（糞便）の掃除'
     - payload:
         type: template
         altText: もっと知りたい？
@@ -269,7 +272,7 @@ intents:
     training_phrases:
     - 'トイレの設置について知りたい'
     messages:
-    - '立ち寄る場所に、複数のトイレを設置して、こまめに掃除しましょう。'
+    - '立ち寄る場所に、複数のトイレを設置して、こまめに掃除してあげて。'
     - payload:
         type: template
         altText: 'どんなトイレ？'
@@ -286,9 +289,9 @@ intents:
     - name: chiikineko_more_question
       lifespan_count: 1
     training_phrases:
-    - '地域猫活動で必要なトイレはどんなものが必要？'
+    - '地域猫活動で必要なトイレはどんなものがいい？'
     messages:
-    - '大きめで、屋根のないもの、猫砂は鉱物系がオススメです。'
+    - '大きめで、屋根のないもの、猫砂は鉱物系がオススメ。'
     - payload:
         type: template
         altText: もっと知りたい？
@@ -323,9 +326,6 @@ intents:
           - type: message
             label: '一度に何匹生む？'
             text: '%chiikineko_answer_howmany.training_phrases.0'
-          - type: message
-            label: '不妊手術をしていないと？'
-            text: '%chiikineko_answer_howmany_quiz.training_phrases.0'
 
   - display_name: chiikineko_answer_rate
     output_contexts:
@@ -334,7 +334,7 @@ intents:
     training_phrases:
     - '妊娠率はどうなの？'
     messages:
-    - '猫は後尾排卵なので、妊娠率100％。'
+    - '猫は交尾排卵なので、妊娠率が高いんだよ。'
     - payload:
         type: template
         altText: もっと知りたい？
@@ -378,31 +378,7 @@ intents:
     training_phrases:
     - '一度に何匹生む？'
     messages:
-    - '生後半年過ぎれば１年に２〜３回、１年に４〜５匹生みます。'
-    - payload:
-        type: template
-        altText: もっと知りたい？
-        template:
-          type: confirm
-          text: もっと知りたい？
-          actions:
-          - type: message
-            label: はい
-            text: はい
-          - type: message
-            label: いいえ
-            text: いいえ
-
-  - display_name: chiikineko_answer_howmany_quiz
-    output_contexts:
-    - name: chiikineko_more_question
-      lifespan_count: 1
-    training_phrases:
-    - '不妊手術をしていないとどうなるの？'
-    messages:
-    - '不妊手術をしていないメスの子猫がソト猫だとすると、１年に何匹になると思いますか？'
-    - '正解は91匹だよ。'
-    - '１匹のメスが、年に3回、5匹のメスを生んで、15匹。その半年後、15匹のメスが５匹のメスを生むと、90匹、親、子、孫合わせて、91匹となります。'
+    - '生後半年過ぎれば1年に2〜3回、1年に4〜5匹生むんだ。'
     - payload:
         type: template
         altText: もっと知りたい？
@@ -424,7 +400,7 @@ intents:
     training_phrases:
     - 'そと猫トラブルにはどんなものがあるの？'
     messages:
-    - どんなトラブルがある？困ったと言うだけでは何も解決しませんよ。
+    - どんなトラブルがある？困ったと言うだけでは何も解決しないよ。
     - |
       ①置きエサ（カラス・虫）
       ②フン尿（臭い）
@@ -507,13 +483,14 @@ intents:
       lifespan_count: 1
     training_phrases:
     - 'TNRってなに？'
+    - 'TNR'
     messages:
     - |
-      TNRって知ってますか？
+      TNRって知ってる？
       T＝Trap（つかまえて）
       N＝Neuter（不妊去勢手術して）
       R＝Return（元の場所に返す）
-      手術をしても、エサ場の管理やトイレの始末をしないとトラブルの元になります。
+      手術をしても、エサ場の管理やトイレの始末をしないとトラブルの元になるだけだよ。
     - payload:
         type: template
         altText: もっと知りたい？
