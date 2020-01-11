@@ -15,7 +15,7 @@ intents:
             label: 'トイレの基本'
             text: '%toilet_select_basic.training_phrases.0'
           - type: message
-            label: '猫砂と掃除'
+            label: 'ネコ砂と掃除'
             text: '%toilet_select_cleaning.training_phrases.0'
           - type: message
             label: '回数としつけ'
@@ -45,8 +45,10 @@ intents:
   - display_name: toilet_answer_multi
     training_phrases:
     - 'トイレは何を用意すればいいの？'
+    - 'トイレ'
+    - 'トイレの数'
     messages:
-    - '複数設置が基本です。ネコの数より1つ多く置いてあげてね。1匹なら2個、2匹なら3個という具合です。'
+    - 'トイレは複数設置が基本だよ。ネコの数より1つ多く置いてあげてね。1匹なら2個、2匹なら3個という具合にね。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -61,37 +63,42 @@ intents:
   - display_name: toilet_answer_whymulti
     training_phrases:
     - 'トイレはどうして複数必要なの？'
+    - 'トイレ複数'
     messages:
-    - 'あなたの留守中や夜間などお掃除できないことがありますよね。そんなときでも、清潔なトイレを利用できるように、複数設置してあげてください。'
+    - 'あなたの留守中や夜間などお掃除できないことがあるよね。そんなときでも、清潔なトイレを利用できるように、複数設置してあげてね。'
     more_question: true
 
   - display_name: toilet_answer_size
     training_phrases:
     - 'トイレはいろんな種類があるけど？'
+    - 'トイレの種類'
+    - 'トイレの大きさ'
     messages:
-    - '猫がのびのびできるよう、屋根がないタイプで、大きさは、カラダの向きをかえられるくらい、猫の1.5倍くらいが目安。'
+    - 'トイレはネコがのびのびできるよう、屋根がないタイプで、大きさは、カラダの向きをかえられるくらい。ネコの1.5倍くらいが目安にして。'
     more_question: true
 
   - display_name: toilet_answer_where
     training_phrases:
     - 'トイレはどこに置いたらいい？'
+    - 'トイレの場所'
+    - 'トイレの置き場所'
     messages:
-    - '人の出入りが少ない、猫が落ち着ける場所がいいですね。でも、いつもいるところからあんまり離れたとこだと、我慢しちゃうかも。'
+    - 'トイレの場所は、人の出入りが少ない、ネコが落ち着ける場所がいいね。でも、いつもいるところからあんまり離れたとこだと、我慢しちゃうかも。'
     more_question: true
 
   - display_name: toilet_select_cleaning
     training_phrases:
-    - '猫砂と掃除について知りたい'
+    - 'ネコ砂と掃除について知りたい'
     messages:
     - payload:
         type: template
-        altText: '猫砂と掃除についてだよ。何を知りたい？'
+        altText: 'ネコ砂と掃除についてだよ。何を知りたい？'
         template:
           type: buttons
-          text: '猫砂と掃除についてだよ。何を知りたい？'
+          text: 'ネコ砂と掃除についてだよ。何を知りたい？'
           actions:
           - type: message
-            label: '猫砂について'
+            label: 'ネコ砂について'
             text: '%toilet_answer_sand.training_phrases.0'
           - type: message
             label: 'トイレの掃除は？'
@@ -99,9 +106,12 @@ intents:
 
   - display_name: toilet_answer_sand
     training_phrases:
-    - '猫砂はなにがいいの？'
+    - 'ネコ砂はなにがいいの？'
+    - '猫砂'
+    - 'ネコ砂'
+    - 'トイレの砂'
     messages:
-    - '一般的には、自然の砂に近い「鉱物系」を好む傾向があるようだけど、いろいろ試してみて、猫に合う猫砂を選んであげてね。'
+    - '一般的には、自然の砂に近い「鉱物系」を好む傾向があるようだけど、いろいろ試してみて、ネコに合うネコ砂を選んであげてね。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -115,16 +125,24 @@ intents:
 
   - display_name: toilet_answer_sandtype
     training_phrases:
-    - '猫砂の種類にはどんなものがあるの？'
+    - 'ネコ砂の種類にはどんなものがあるの？'
+    - 'ネコ砂の種類'
+    - '鉱物'
+    - '木材'
+    - 'おから'
+    - '紙'
+    - '流せる'
+    - '消臭'
     messages:
-    - '素材で分けると、鉱物系の他に、木材系、おから系、紙系があります。機能では、そのままトイレに流せるもの、尿がかかると色がかわるもの、消臭成分が含まれているものなどがあります。'
+    - '素材で分けると、鉱物系の他に、木材系、おから系、紙系があるよ。機能では、そのままトイレに流せるもの、尿がかかると色がかわるもの、消臭成分が含まれているものなど。'
     more_question: true
 
   - display_name: toilet_answer_cleaning
     training_phrases:
     - 'トイレの掃除はどうする？'
+    - 'トイレ掃除'
     messages:
-    - 'トイレの汚れはストレスのもと。いつもきれいなトイレを保つよう、掃除はこまめに。月に一度は、猫砂を全部取り替え、丸洗いしましょう。'
+    - 'トイレの汚れはストレスのもと。いつもきれいなトイレを保つよう、掃除はこまめにね。月に一度は、ネコ砂を全部取り替え、丸洗いしてあげて。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -139,8 +157,10 @@ intents:
   - display_name: toilet_answer_cleaner
     training_phrases:
     - 'トイレ掃除の洗剤はなにがいい？'
+    - 'トイレ洗剤'
+    - 'トイレの臭い'
     messages:
-    - 'ネコはニオイに敏感なので、香りのキツイ洗剤を使うのはやめましょう。とくに、ネコが嫌う柑橘系は絶対ダメ。無臭が基本です。'
+    - 'ネコはニオイに敏感なので、香りのキツイ洗剤を使うのはやめてね。とくに、ネコが嫌う柑橘系は絶対ダメ。無臭が基本だよ。'
     more_question: true
 
   - display_name: toilet_select_frequency
@@ -158,14 +178,21 @@ intents:
             label: 'トイレの回数は？'
             text: '%toilet_answer_times.training_phrases.0'
           - type: message
-            label: 'トイレのしつけ'
-            text: '%toilet_answer_how.training_phrases.0'
+            label: '子ネコのトイレしつけ'
+            text: '%toilet_answer_howkitten.training_phrases.0'
+          - type: message
+            label: '大人ネコのトイレしつけ'
+            text: '%toilet_answer_howadultcat.training_phrases.0'
 
   - display_name: toilet_answer_times
     training_phrases:
     - 'トイレの回数は？'
+    - '尿'
+    - '尿の回数'
+    - '尿が多い'
+    - '尿が少ない'
     messages:
-    - '尿は1日2〜4回程度。尿の回数が2日に1回以下だったり、7回以上の日が続いたら、病気の疑いがあります。'
+    - '尿は1日2〜4回程度。尿の回数が2日に1回以下だったり、5回以上排尿したら、病気の疑いがあるので、お医者さんに相談してみて。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -180,14 +207,23 @@ intents:
   - display_name: toilet_answer_poo
     training_phrases:
     - 'ウンチの回数は？'
+    - 'ウンチ'
     messages:
-    - 'ウンチは1日1回が健康の証です。ただし、2〜3日に1回でも、ネコが元気であれば問題ありません。4日以上出なかったら、お医者さんに相談しましょう。'
+    - 'ウンチは1日1回が健康の証。ただし、2〜3日に1回でも、ネコが元気であれば問題ないよ。4日以上出なかったら、お医者さんに相談してね。'
     more_question: true
 
-  - display_name: toilet_answer_how
+  - display_name: toilet_answer_howkitten
     training_phrases:
-    - 'トイレのしつけはどうすればいい？'
+    - '子ネコのトイレのしつけはどうすればいい？'
+    - '子ネコのトイレしつけ'
     messages:
-    - '子ネコの場合、トイレしそうな時に、猫砂に連れて行って、おしりをポンポン。'
-    - '大人のネコの場合、トイレをいつもきれいにして、人目につかないところに置いてみよう。ダンボールで囲ってみるのも効果あり。'
+    - '子ネコの場合、排尿しそうになったら、トイレに連れて行くだけで、大丈夫だよ。'
+    more_question: true
+
+  - display_name: toilet_answer_howadultcat
+    training_phrases:
+    - '大人ネコのトイレのしつけはどうすればいい？'
+    - '大人のネコのトイレしつけ'
+    messages:
+    - '大人のネコの場合、トイレをいつもきれいにして、人目につかないところに置いてみるとか、ダンボールで囲ってみるのも効果あるよ。'
     more_question: true
