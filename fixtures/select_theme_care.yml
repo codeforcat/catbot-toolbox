@@ -60,13 +60,6 @@ intents:
           - type: message
             label: '爪とぎ板'
             text: '%care_answer_clawboard.training_phrases.0'
-    - payload:
-        type: template
-        altText: 'つづきだよ！'
-        template:
-          type: buttons
-          text: 'つづきだよ！'
-          actions:
           - type: message
             label: 'しつけできる？'
             text: '%care_answer_clawlesson.training_phrases.0'

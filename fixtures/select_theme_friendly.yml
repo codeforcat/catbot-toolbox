@@ -312,13 +312,6 @@ intents:
           - type: message
             label: '撫で方'
             text: '%friendly_answer_touch.training_phrases.0'
-    - payload:
-        type: template
-        altText: 'つづきだよ！'
-        template:
-          type: buttons
-          text: 'つづきだよ！'
-          actions:
           - type: message
             label: '肉球タッチ'
             text: '%friendly_answer_pad.training_phrases.0'
