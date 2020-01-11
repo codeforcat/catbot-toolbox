@@ -16,4 +16,4 @@ intents:
             actions:
               - type: uri
                 label: 出てきて！ネコ先生！
-                uri: https://codeforcat.github.io/sensei_ar/index.html
+                uri: https://mamix1116.github.io/CfJSummit_ARCat/index.html
