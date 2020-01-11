@@ -86,7 +86,6 @@ intents:
   - display_name: friendly_answer_massage
     training_phrases:
     - 'マッサージしてあげたい'
-    - 'マッサージ'
     messages:
     - '肩やしっぽのつけ根へのマッサージを喜ぶネコが多いよ。最初は軽く、様子を見ながら気持ちいいツボを探してあげてね。'
     more_question: true
@@ -94,7 +93,6 @@ intents:
   - display_name: friendly_answer_brushing
     training_phrases:
     - 'ブラッシングしてあげたい'
-    - 'ブラッシング'
     messages:
     - 'ブラシの横でゴロンとして「ブラッシングして」というネコもいるくらい。嫌がるようなら道具を変えて試してみてね。'
     more_question: true
