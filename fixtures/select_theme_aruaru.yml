@@ -56,22 +56,6 @@ intents:
   - display_name: aruaru_answer_grooming
     training_phrases:
     - '毛づくろいするのはなぜ？'
-    - parts:
-        - text: 毛づくろい
-          entity_type: '@grooming'
-          alias: grooming
-        - text: するのはなぜ
-    - parts:
-        - text: なぜ
-        - text: 毛づくろい
-          entity_type: '@grooming'
-          alias: grooming
-        - text: するの
-    - parts:
-        - text: 毛づくろい
-          entity_type: '@grooming'
-          alias: grooming
-        - text: はなぜするの
     messages:
     - |
       落ち着くためにしてるんだよ。
@@ -90,28 +74,6 @@ intents:
   - display_name: aruaru_answer_groomchild
     training_phrases:
     - '母ネコが子ネコに毛づくろいするのは？'
-    - parts:
-        - text: 母ネコ
-          entity_type: '@mother-cat'
-          alias: mother-cat
-        - text: が
-        - text: 子ネコ
-          entity_type: '@kitten'
-          alias: kitten
-        - text: に
-        - text: 毛づくろい
-          entity_type: '@grooming'
-          alias: grooming
-        - text: するのは
-    - parts:
-        - text: 子ネコ
-          entity_type: '@kitten'
-          alias: kitten
-        - text: に
-        - text: 毛づくろい
-          entity_type: '@grooming'
-          alias: grooming
-        - text: するのは
     messages:
     - '子ネコは自分で毛づくろいができないので、母ネコが代わりにやってあげてるんだよ。マッサージ効果もあるから、気持ちよさそうだよね。毛づくろいで落ち着くというのは、その幸せの記憶が作用してるかもしれないね。'
     more_question: true
@@ -165,18 +127,6 @@ intents:
   - display_name: aruaru_answer_groomothercat
     training_phrases:
     - '他のネコとスリスリするのは？'
-    - parts:
-        - text: 他の
-        - text: ネコ
-          entity_type: '@cat'
-          alias: cat
-        - text: とスリスリするのは
-    - parts:
-        - text: 他の
-        - text: ネコ
-          entity_type: '@cat'
-          alias: cat
-        - text: とすりすりするのは
     messages:
     - 'お互い安心するための、においの交換みたいなもんだね。'
     more_question: true
@@ -192,16 +142,6 @@ intents:
   - display_name: aruaru_answer_bite
     training_phrases:
     - '甘噛みするのはなぜ？'
-    - parts:
-        - text: 甘噛み
-          entity_type: '@biting'
-          alias: biting
-        - text: するのはなぜ
-    - parts:
-        - text: 甘噛み
-          entity_type: '@biting'
-          alias: biting
-        - text: する
     messages:
     - |
       頻繁な甘噛みはストレスのサインです。
@@ -220,16 +160,6 @@ intents:
   - display_name: aruaru_answer_approachbite
     training_phrases:
     - '甘噛みの対処法はある？'
-    - parts:
-        - text: 甘噛み
-          entity_type: '@biting'
-          alias: biting
-        - text: の対処法
-    - parts:
-        - text: 甘噛み
-          entity_type: '@biting'
-          alias: biting
-        - text: はどうすれば
     - '噛みクセをなおしたい'
     messages:
     - 'ネコが人を噛んだ場合には、無反応・無視を徹底しましょう。ネコに「噛むと遊んでもらえない」ということを学習させることで、噛みクセがつくのを防ぎましょう。'
@@ -238,18 +168,6 @@ intents:
   - display_name: aruaru_answer_blink
     training_phrases:
     - 'ゆっくり瞬きするのはなぜ？'
-    - parts:
-        - text: ゆっくり
-        - text: 瞬き
-          entity_type: '@blink'
-          alias: blink
-        - text: するのはなぜ
-    - parts:
-        - text: ゆっくり
-        - text: 瞬き
-          entity_type: '@blink'
-          alias: blink
-        - text: する
     messages:
     - |
       ゆっくり瞬きは、好きのサイン。
@@ -336,11 +254,6 @@ intents:
   - display_name: aruaru_answer_drop
     training_phrases:
     - '机の上のものを落とすのはなぜ？'
-    - parts:
-        - text: 机
-          entity_type: '@desk'
-          alias: desk
-        - text: の上のものを落とすのはなぜ
     - '上のものを落とす'
     messages:
     - 'なぜ、机の上のものを落とすか、それは楽しいからです。落とすものによって、その様子は様々、ネコは獲物を想起させるものが好きなので、落下の動きが楽しいのです。また、モノを落とすと飼い主さんが来たり、声を出したりするので、その反応も楽しんでいます。'
@@ -358,16 +271,6 @@ intents:
   - display_name: aruaru_answer_copedrop
     training_phrases:
     - '机の上のものを落とすのを防ぐ方法はある？'
-    - parts:
-        - text: 机
-          entity_type: '@desk'
-          alias: desk
-        - text: の上のものを落とすのを防ぐ
-    - parts:
-        - text: 机
-          entity_type: '@desk'
-          alias: desk
-        - text: のものを落とす対処法
     - '上のものを落とさないようにする'
     messages:
     - 'ネコがモノを落とすことを防ぐのは無理なので、落とされたら困るものを置かないようにする、これしかありません。'
