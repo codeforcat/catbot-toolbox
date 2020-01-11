@@ -61,43 +61,50 @@ intents:
   - display_name: friendly_answer_goods
     training_phrases:
     - 'どんなおもちゃが好き？'
+    - 'おもちゃ'
+    - 'じゃらし'
     messages:
-    - 'お気に入りのおもちゃで遊んだり、丸めたレジ袋やリボンでじゃらしたり、形にはこだわらず、ネコの好奇心を刺激してあげましょう。'
+    - 'お気に入りのおもちゃで遊んでもらったり、丸めたレジ袋やリボンでじゃらしたり、形にはこだわらず、ネコの好奇心をいっぱい刺激してあげてね。'
     more_question: true
 
   - display_name: friendly_answer_chase
     training_phrases:
     - '急に追いかけっこが始まったら？'
+    - '追いかけっこ'
     messages:
-    - 'ネコが目の前で急にダッシュしたら、追いかけっこのお誘いです。すばやく追いかける→振り払って逃げる。この組み合わせがときめきのリズムです。'
+    - 'ネコが目の前で急にダッシュしたら、追いかけっこのお誘いだよ。すばやく追いかける、振り払って逃げる、この組み合わせがときめきのリズムなんだにゃ。'
     more_question: true
 
   - display_name: friendly_answer_hide
     training_phrases:
     - 'かくれんぼしているの？'
+    - 'かくれんぼ'
     messages:
-    - 'ネコが物陰でじっとこちらを見つめていたら、見つけてほしいのサインです。あなたもカーテンの裏などに隠れて、小さく名前を呼んだりしてみて。'
+    - 'ネコが物陰でじっとこちらを見つめていたら、見つけてほしいのサイン。あなたもカーテンの裏などに隠れて、小さく名前を呼んだりして、遊びに加わってみて。'
     more_question: true
 
   - display_name: friendly_answer_massage
     training_phrases:
     - 'マッサージしてあげたい'
+    - 'マッサージ'
     messages:
-    - '肩やしっぽのつけ根へのマッサージを喜ぶネコが多いようです。最初は軽く、様子を見ながら気持ちいいツボを探してあげましょう。'
+    - '肩やしっぽのつけ根へのマッサージを喜ぶネコが多いよ。最初は軽く、様子を見ながら気持ちいいツボを探してあげてね。'
     more_question: true
 
   - display_name: friendly_answer_brushing
     training_phrases:
     - 'ブラッシングしてあげたい'
+    - 'ブラッシング'
     messages:
-    - 'ブラシの横でゴロンとして「ブラッシングして」というネコもいるくらい。嫌がるようなら道具を変えて試してみて。'
+    - 'ブラシの横でゴロンとして「ブラッシングして」というネコもいるくらい。嫌がるようなら道具を変えて試してみてね。'
     more_question: true
 
   - display_name: friendly_answer_stroke
     training_phrases:
     - '撫でてあげたい'
+    - '撫でる'
     messages:
-    - '多くのネコはやさしく撫でてもらうのが大好きです。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコが多いようです。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてあげて。'
+    - '多くのネコはやさしく撫でてもらうのが大好き。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコも多いね。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてあげてみて。'
     more_question: true
 
   - display_name: friendly_select_dont
@@ -140,43 +147,52 @@ intents:
   - display_name: friendly_answer_gaze
     training_phrases:
     - 'じっと見つめちゃだめなの？'
+    - '見つめる'
     messages:
-    - 'ネコの世界では相手の目を見つめるのは宣戦布告を意味します。まさに、ガンをつける状態。目が合ったときには、ゆっくり瞬きすれば、愛のサインになりますよ。'
+    - 'ネコの世界では相手の目を見つめるのは宣戦布告の意味。まさに、ガンをつける状態だね。目が合ったときには、ゆっくり瞬きすれば、愛のサインになるということも覚えておいてね。'
     more_question: true
 
   - display_name: friendly_answer_follow
     training_phrases:
     - '追いかけちゃだめなの？'
+    - '追いかける'
     messages:
-    - 'ネコの行くところについて回るのは、鬱陶しがられるもとです。ネコの方から「来て」と誘われた場合以外は、ネコの移動には見て見ぬふりをしましょう。'
+    - 'ネコの行くところについて回るのは、鬱陶しがられるもと。ネコの方から「来て」と誘われた場合以外は、ネコの行動には見て見ぬふりしてね。'
     more_question: true
 
   - display_name: friendly_answer_hidingplace
     training_phrases:
     - '隠れ場所を暴いちゃだめなの？'
+    - '隠れ場所'
     messages:
-    - '隠れながらもあなたを見つめていたり、脚を出して動かしたり、そんな場合以外は、隠れていたい気分なので、そっとしてあげましょう。'
+    - '隠れながらもあなたを見つめていたり、脚を出して動かしたり、そんな場合以外は、隠れていたい気分なので、そっとしてあげてね。'
     more_question: true
 
   - display_name: friendly_answer_hold
     training_phrases:
     - 'しつこく触っちゃだめなの？'
+    - '触られる'
+    - '触る'
     messages:
-    - '抱っこや撫でが好きなネコでも気分じゃないときは嫌なもの。触られるのが嫌いなネコならなおさらです。特にしっぽや肉球は嫌がるポイントです。'
+    - '抱っこや撫でが好きなネコでも気分じゃないときは嫌なもの。触られるのが嫌いなネコならなおさら。特にしっぽや肉球は嫌がるポイントだね。'
     more_question: true
 
   - display_name: friendly_answer_loud
     training_phrases:
     - '大声を出しちゃだめなの？'
+    - '大声'
+    - 'くしゃみ'
+    - '咳'
     messages:
-    - 'ネコは大きな声や音が嫌いです。歌を歌うと怒るネコ、くしゃみや咳を嫌がるネコもいます。'
+    - 'ネコは大きな声や音が嫌い。歌を歌うくらいはいいけど、くしゃみや咳を嫌がるネコもいるよ。'
     more_question: true
 
   - display_name: friendly_answer_move
     training_phrases:
     - '急に大きな動作をしちゃだめなの？'
+    - '大きな動作'
     messages:
-    - '突然大きな動作をされるとびっくりしてそれがストレスになります。常に落ち着いた態度で接したいものです。'
+    - '突然大きな動作をされるとびっくりしてそれがストレスになるよ。常に落ち着いた態度で接してあげてね。'
     more_question: true
 
   - display_name: friendly_select_communication
@@ -224,15 +240,19 @@ intents:
   - display_name: friendly_answer_bodylanguage
     training_phrases:
     - 'ボディランゲージにはどんな意味がある？'
+    - '瞳'
+    - '耳'
+    - 'ヒゲ'
     messages:
-    - 'よく動く大きな瞳はネコならではのチャームポイントです。ネコの瞳は豊かな表情を見せてくれます。ネコの耳は普通前向きですが、不安や恐怖なので感情が揺れるほど横から後ろに倒れていきます。ヒゲは方向感覚を保つ、空気の流れを察知するなど重大な役割があります。'
+    - 'よく動く大きな瞳はネコならではのチャームポイント。ネコの瞳は豊かな表情を見せられるね。ネコの耳は普通前向きだけど、不安や恐怖なので感情が揺れるほど横から後ろに倒れていくんだ。ヒゲは方向感覚を保つ、空気の流れを察知するなど重大な役割があるんだよ。'
     more_question: true
 
   - display_name: friendly_answer_meow
     training_phrases:
     - '鳴き声にはどんな意味がある？'
+    - '鳴き声'
     messages:
-    - 'ネコにはおよそ20通りの鳴き声があると言われています。次の鳴き声には、どんな意味があるかわかりますか？'
+    - 'ネコにはおよそ20通りの鳴き声があると言われている。次の鳴き声には、どんな意味があるかわかるかにゃ？'
     - |
       ①にゃ〜＝希望と要求
       ②ゴロゴロ＝リラックス
@@ -248,8 +268,10 @@ intents:
   - display_name: friendly_answer_pose
     training_phrases:
     - '姿勢にはどんな意味がある？'
+    - '姿勢'
+    - '丸くなる'
     messages:
-    - 'ネコは大きく見せて敵を威嚇、怖いとカラダが縮こまります。丸くなってたら、リラックスのしるし。季節によっても姿勢が変わりますよ。'
+    - 'ネコは大きく見せて敵を威嚇、怖いとカラダが縮こまるんだ。丸くなってたら、リラックスのしるし。季節によっても姿勢が変わるよ。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -263,11 +285,13 @@ intents:
 
   - display_name: friendly_answer_walkstylecaution
     training_phrases:
-    - 'こんな歩き方をしていたら注意'
+    - 'こんな歩き方をしていたら注意してあげてね'
+    - 'かかと'
+    - 'とぼとぼ'
     messages:
     - |
       ①かかとをつけて歩いていたら、病気のサイン。
-      ②顔としっぽを下げてとぼとぼ歩いていたら、ストレスがたまっている証拠。
+      ②顔としっぽを下げてとぼとぼ歩いていたら、体調が悪いサイン。
     more_question: true
 
   - display_name: friendly_select_playcat
@@ -290,12 +314,25 @@ intents:
           - type: message
             label: '撫で方'
             text: '%friendly_answer_touch.training_phrases.0'
+    - payload:
+        type: template
+        altText: 'つづきだよ！'
+        template:
+          type: buttons
+          text: 'つづきだよ！'
+          actions:
+          - type: message
+            label: '肉球タッチ'
+            text: '%friendly_answer_pad.training_phrases.0'
 
   - display_name: friendly_answer_play
     training_phrases:
     - '遊び方を知りたい'
+    - '遊び方'
+    - 'ハンター'
+    - '狩猟'
     messages:
-    - '生来のハンターであるネコは、遊びを通して狩りの方法を学びます。ネコと遊ぶときには、獲物となる小動物の動きを取り入れるなど、ネコの狩猟本能を刺激してあげると、夢中になります。'
+    - '生来のハンターであるネコは、遊びを通して狩りの方法を学ぶんだよ。ネコと遊ぶときには、獲物となる小動物の動きを取り入れるとか、ネコの狩猟本能を刺激してあげると、夢中になってくれるよ。'
     - payload:
         type: template
         altText: '他にも気になることある？'
@@ -304,28 +341,41 @@ intents:
           text: '他にも気になることある？'
           actions:
           - type: message
-            label: 'すぐ飽きるんですけど'
+            label: 'すぐ飽きるんだけど'
             text: '%friendly_answer_fedupplay.training_phrases.0'
 
   - display_name: friendly_answer_fedupplay
     training_phrases:
-    - '遊んでいてもすぐ飽きるんですけど'
+    - '遊んでいてもすぐ飽きるんだけど'
+    - '飽きる'
+    - '飽きっぽい'
     messages:
-    - 'ネコは基本的に飽きっぽいので、一度に遊ぶ時間は短くてオッケー。その代り、遊ぶ回数を増やしてあげましょう。'
+    - 'ネコは基本的に飽きっぽいので、一度に遊ぶ時間は短くてオッケー。その代り、遊ぶ回数を増やしてあげてね。'
     more_question: true
 
   - display_name: friendly_answer_nohold
     training_phrases:
     - '抱っこのしかたを知りたい'
+    - '抱っこが苦手'
     messages:
-    - '基本的にネコは抱っこが苦手だと認識しましょう。爪切りなどで抱っこの必要がある場合には、ネコ思いな抱っこをしましょう。'
+    - '基本的にネコは抱っこが苦手だと覚えておいて。爪切りなどで抱っこの必要がある場合には、ネコ思いな抱っこを心がけてね。'
     more_question: true
 
   - display_name: friendly_answer_touch
     training_phrases:
     - '撫で方を知りたい'
+    - '撫で方'
     messages:
-    - '多くのネコはやさしく撫でてもらうのが大好きです。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコが多いようです。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてあげて。'
+    - '多くのネコはやさしく撫でてもらうのが大好き。ネコが喜ぶポイントは、毛づくろいするときに自分の舌が届かないところ。反対に、足やしっぽは嫌がるネコが多いね。ネコによって好みは千差万別なので、気持ちよさそうにしているかどうか確かめながら撫でてちょうだい。'
+    more_question: true
+
+  - display_name: friendly_answer_pad
+    training_phrases:
+    - '肉球タッチしたい'
+    - '肉球'
+    - '肉球タッチ'
+    messages:
+    - 'ネコのカラダで唯一、汗腺があるのが肉球。衝撃を吸収する、足音を消す、滑り止めなど、大切な役割を担ってるんだ。それだけに、とてもデリケートなので、様子を見ながらタッチあげてね。'
     more_question: true
 
   - display_name: friendly_select_why
@@ -340,32 +390,24 @@ intents:
           text: 'ネコには不思議がいっぱい。どれが気になる？'
           actions:
           - type: message
-            label: '肉球タッチ'
-            text: '%friendly_answer_pad.training_phrases.0'
-          - type: message
             label: '鏡に映る自分を見ている'
             text: '%friendly_answer_mirror.training_phrases.0'
           - type: message
             label: 'テレビを見ている'
             text: '%friendly_answer_tv.training_phrases.0'
 
-  - display_name: friendly_answer_pad
-    training_phrases:
-    - '肉球タッチしたい'
-    messages:
-    - 'ネコのカラダで唯一、汗腺があるのが肉球です。汗をかくことで体温を調節するほか、衝撃を吸収する、足音を消す、滑り止めなど、大切な役割を担っています。それだけに、とてもデリケートなので、様子を見ながらタッチしてください。'
-    more_question: true
-
   - display_name: friendly_answer_mirror
     training_phrases:
     - '鏡に映る自分を見ている'
+    - '鏡'
     messages:
-    - '猫は鏡に映った何かを認識することはできます。鏡の中に映った何かに反応して威嚇してみたり、話かけてみたり、一緒に遊ぶような素振りを見せたりします。しかし、鏡の中に映るのが自分だと猫は理解することができません。'
+    - 'ネコは鏡に映った何かを認識することはできるよ。鏡の中に映った何かに反応して威嚇してみたり、話かけてみたり、一緒に遊ぶような素振りを見せたり。鏡の中に映るのが自分だとネコはちゃんと理解してるよ。'
     more_question: true
 
   - display_name: friendly_answer_tv
     training_phrases:
     - 'テレビを見ている'
+    - 'テレビ'
     messages:
-    - 'テレビの見えるネコと見えないネコがいるみたいです。見えていてもただの画像だと分かって興味がないだけかも知れませんが。'
+    - 'テレビの画像は見えていても、興味を持つネコと持たないネコがいるのは事実だな。'
     more_question: true
