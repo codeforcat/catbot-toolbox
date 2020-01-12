@@ -1,0 +1,77 @@
+{
+  "line": {
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+      "type": "carousel",
+      "contents": [
+        {
+          "type": "bubble",
+          "direction": "ltr",
+          "hero": {
+            "type": "image",
+            "url": "https://code4cat.org/catbot/card-game/nezumi.jpg",
+            "size": "full",
+            "aspectRatio": "1.51:1",
+            "aspectMode": "fit"
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ねずみ",
+                "align": "center"
+              }
+            ]
+          }
+        },
+        {
+          "type": "bubble",
+          "direction": "ltr",
+          "hero": {
+            "type": "image",
+            "url": "https://code4cat.org/catbot/card-game/kotatsu.jpg",
+            "size": "full",
+            "aspectRatio": "1.51:1",
+            "aspectMode": "fit"
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "コタツ",
+                "align": "center"
+              }
+            ]
+          }
+        },
+        {
+          "type": "bubble",
+          "direction": "ltr",
+          "hero": {
+            "type": "image",
+            "url": "https://code4cat.org/catbot/card-game/cabbage.jpg",
+            "size": "full",
+            "aspectRatio": "1.51:1",
+            "aspectMode": "fit"
+          },
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "キャベツ",
+                "align": "center"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
