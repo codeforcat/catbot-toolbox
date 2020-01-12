@@ -15,8 +15,6 @@ intents:
       - messages:
         - followup_event: environment_quiz_like
       - messages:
-        - followup_event: environment_quiz_notroom
-      - messages:
         - followup_event: aruaru_quiz_sign
     webhook_state: WEBHOOK_STATE_ENABLED
 
@@ -27,7 +25,7 @@ intents:
       lifespan_count: 1
     messages:
     - choice_buttons:
-        text: ここで、クイズです。このなかで、ネコに食べさせたらダメなものは？
+        text: このなかで、ネコに食べさせたらダメなものは？
         buttons:
         - ①玉ねぎ
         - ②チョコレート
@@ -46,9 +44,7 @@ intents:
     - choices:
       - numbers: [1, 2, 3]
         messages:
-        - |
-          ピンポン！正解です。
-          玉ねぎ、ネギ、にんにく、チョコレート、イカなど、人間の食べ物は塩気が多いのでだめです。あと、生ものも避けようね。
+        - '全部ダメだよ。玉ねぎ、ネギ、にんにく、チョコレート、イカなど、人間の食べ物は塩気が多いので基本的にはダメと思っていいよ。'
     webhook_state: WEBHOOK_STATE_ENABLED
 
 # food_quiz_plate
@@ -58,7 +54,7 @@ intents:
       lifespan_count: 1
     messages:
     - choice_buttons:
-        text: ここで、クイズです。水の器、大きいのと小さいのとどっちがいい？
+        text: 水の器、大きいのと小さいのとどっちがいい？
         buttons:
         - ①大きい器
         - ②小さい器
@@ -111,12 +107,9 @@ intents:
     - number
     messages:
     - choices:
-      - numbers: [1, 2]
+      - numbers: [1, 2, 3, 4]
         messages:
-        - そういう行動は、トイレの砂が気に入らないときだよ。
-      - numbers: [3, 4]
-        messages:
-        - そういう行動は、トイレの形や大きさが気に入らないときだよ。
+        - そういう行動は、トイレの砂や形状など、とにかく、トイレが気に入らないというサインだよ。
     webhook_state: WEBHOOK_STATE_ENABLED
 
 # environment_quiz_like
@@ -126,7 +119,7 @@ intents:
       lifespan_count: 1
     messages:
     - choice_buttons:
-        text: ネコが好きな場所は、どこでしょう？
+        text: ネコが好きな場所は？
         buttons:
         - ①高いところ
         - ②狭いところ
@@ -150,93 +143,17 @@ intents:
             altText: 全部正解だよ！
             template:
               type: buttons
-              text: 全部正解だよ、具体的には何が知りたい？
+              text: 全部正解だよ。なぜだか知ってる？
               actions:
               - type: message
                 label: "なぜ高いところ？"
-                text: '%environment_answer_high.training_phrases.0'
+                text: 'なぜ高いところが好きなの？'
               - type: message
                 label: "なぜ狭いところ？"
-                text: '%environment_answer_narrow.training_phrases.0'
+                text: 'なぜ狭いところが好きなの？'
               - type: message
                 label: "なぜダンボール？"
-                text: '%environment_answer_cardboard.training_phrases.0'
-    webhook_state: WEBHOOK_STATE_ENABLED
-
-  - display_name: environment_answer_high
-    training_phrases:
-    - どうして高いところが好きなの？
-    messages:
-    - 野生の名残らしいよ。野生のネコは地上の敵から襲われにくく、獲物を狙いやすい木の上で暮らしてたからだよ。お家では、タンスやテーブルの上が指定席なのはそういうこと。キャットタワー置いてあげるといいよ。
-    - payload:
-        type: template
-        altText: 他にも気になることある？
-        template:
-          type: buttons
-          text: 他にも気になることある？
-          actions:
-          - type: message
-            label: キャットタワーの設置
-            text: '%environment_answer_cattower.training_phrases.0'
-
-  - display_name: environment_answer_cattower
-    training_phrases:
-    - キャットタワーはどこに設置したらいいの？
-    messages:
-    - キャットタワーは、窓際に置いてあげると、高いところから外が見られて、ご機嫌だよ。
-    more_question: true
-
-  - display_name: environment_answer_narrow
-    training_phrases:
-    - どうして狭いところが好きなの？
-    messages:
-    - イエネコの祖先だと言われているリビアヤマネコは、狭くて暗いところを寝床にしていたからだよ。ソファの下が好きなのはそういうことだよ。
-    more_question: true
-
-  - display_name: environment_answer_cardboard
-    training_phrases:
-    - どうしてダンボールが好きなの？
-    messages:
-    - 狭いところがネコの基本。ネコの目は平面で、左右や後部の視界はないので、壁が1面より2面、3面ある場所が落ち着く。
-    more_question: true
-
-# environment_quiz_notroom
-  - display_name: environment_quiz_notroom
-    output_contexts:
-    - name: environment_quiz_notroom_answer
-      lifespan_count: 1
-    messages:
-    - choice_buttons:
-        text: ネコと暮らすのに、部屋に置いちゃいけないものはどれでしょう？
-        buttons:
-        - ①花・観葉植物
-        - ②アロマオイル・サプリメント
-        - ③タバコ
-        - ④柑橘系のニオイ
-
-  - display_name: environment_quiz_notroom_answer
-    training_phrases:
-    - number: 1
-    input_context_names:
-    - environment_quiz_notroom_answer
-    output_contexts:
-    - name: environment_quiz_notroom_answer
-    parameters:
-    - number
-    messages:
-    - choices:
-      - numbers: [1, 2, 3, 4]
-        messages:
-        - |
-          全部正解だよ！
-          ①花・観葉植物
-          ゆり科、ネギ類など毒になる植物は数百種類もあるよ!
-          ②アロマオイル・サプリメント
-          ネコには刺激が強すぎるし、毒になることもあるよ！
-          ③タバコ
-          もちろんダメだよ!
-          ④柑橘系のニオイ
-          大嫌いだよ!
+                text: 'なぜダンボールが好きなの？'
     webhook_state: WEBHOOK_STATE_ENABLED
 
 # aruaru_quiz_sign
@@ -246,7 +163,7 @@ intents:
       lifespan_count: 1
     messages:
     - choice_buttons:
-        text: ネコのゴロゴロって鳴き声は何のサインでしょう？
+        text: ゴロゴロは何のサイン？
         buttons:
         - ①ご機嫌
         - ②ご飯ちょうだい
@@ -265,7 +182,5 @@ intents:
     - choices:
       - numbers: [1, 2, 3]
         messages:
-        - |
-          全部正解だよ！
-          ゴロゴロという鳴き声には、いろんな意味があるよ。大体は、ご機嫌なときのゴロゴロなんだけど、「ご飯ちょうだい」などの要求がらみのものやカラダの具合が悪いときにもゴロゴロするので、気をつけて見ておいてね。
+        - '全部正解だよ。ゴロゴロという鳴き声には、いろんな意味があるんだ。大体は、ご機嫌なときのゴロゴロなんだけど、「ご飯ちょうだい」などの要求がらみのときやカラダの具合が悪いときにもゴロゴロするので、気をつけて見ておいてね。'
     webhook_state: WEBHOOK_STATE_ENABLED
