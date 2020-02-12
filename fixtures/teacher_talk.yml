@@ -1,0 +1,18 @@
+version: 0.1.0
+intents:
+# richmenu
+  - display_name: richmenu_teacher_talk
+    training_phrases:
+    - '質問してみよう'
+    messages:
+    - 'キーボードから自由に入力してみてね。'
+    - payload:
+        type: template
+        altText: '先生のプロフィール'
+        template:
+          type: buttons
+          text: '先生のプロフィールだよ'
+          actions:
+          - type: uri
+            label: '見てみる'
+            uri: 'https://code4cat.org/'
