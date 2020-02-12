@@ -3,7 +3,7 @@ intents:
 # richmenu
   - display_name: richmenu_teacher_quiz
     training_phrases:
-    - 先生と遊ぼう
+    - クイズで遊ぼう
     messages:
     - random_choices:
       - messages:
