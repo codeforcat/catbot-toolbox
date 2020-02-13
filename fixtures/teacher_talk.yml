@@ -15,4 +15,4 @@ intents:
           actions:
           - type: uri
             label: '見てみる'
-            uri: 'https://code4cat.org/'
+            uri: 'https://code4cat.org/sensei-profile/'
