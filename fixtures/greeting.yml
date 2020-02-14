@@ -1,0 +1,65 @@
+version: 0.1.0
+intents:
+  - display_name: greeting_eat
+    training_phrases:
+    - いただきます
+    messages:
+    - めしあがれ！
+
+  - display_name: greeting_good_evening
+    training_phrases:
+    - こんばんは
+    - こんばんわ
+    messages:
+    - こんばんは！
+
+  - display_name: greeting_goodbye
+    training_phrases:
+    - さようなら
+    - またね
+    messages:
+    - またね！
+
+  - display_name: greeting_home
+    training_phrases:
+    - ただいま
+    messages:
+    - おかえり！
+
+  - display_name: greeting_how_are_you
+    training_phrases:
+    - 元気ですか
+    messages:
+    - 元気だよ！
+
+  - display_name: greeting_meow
+    training_phrases:
+    - にゃー
+    - にゃ
+    messages:
+    - random_choices:
+      - messages:
+        - にゃーにゃー
+      - messages:
+        - にゃにゃにゃ
+    webhook_state: WEBHOOK_STATE_ENABLED
+
+  - display_name: greeting_see_you
+    training_phrases:
+    - いってきます
+    messages:
+    - いってらっしゃい！
+
+  - display_name: greeting_thank_you
+    training_phrases:
+    - ありがとう
+    - ありがと
+    - サンキュー
+    messages:
+    - どういたしまして！
+
+  - display_name: greeting_thank_you_meal
+    training_phrases:
+    - ごちそうさま
+    messages:
+    - ごちそうさま！
