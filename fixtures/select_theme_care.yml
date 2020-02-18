@@ -95,6 +95,7 @@ intents:
     - '爪とぎ対策'
     messages:
     - '爪とぎの本能は止められないので、やる場所を与えてあげて。守りたい場所にはネコが嫌う香りのスプレーや保護シートを、その代わり、ネコ好みの魅力的な爪とぎ板などを用意してあげてね。'
+    more_question: true
 
   - display_name: care_answer_clawboard
     training_phrases:
