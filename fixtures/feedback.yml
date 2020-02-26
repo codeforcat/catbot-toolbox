@@ -1,0 +1,35 @@
+version: 0.1.0
+intents:
+  - display_name: feedback
+    training_phrases:
+    - parts:
+        - text: 答え
+          entity_type: '@answer'
+          alias: answer
+        - text: がおかしい
+    - parts:
+        - text: 答え
+          entity_type: '@answer'
+          alias: answer
+        - text: がへん
+    - parts:
+        - text: おかしな
+        - text: 答え
+          entity_type: '@answer'
+          alias: answer
+    - parts:
+        - text: へんな
+        - text: 答え
+          entity_type: '@answer'
+          alias: answer
+    messages:
+    - payload:
+        type: template
+        altText: 'おかしな回答があったら教えてにゃ'
+        template:
+          type: buttons
+          text: 'おかしな回答があったら教えてにゃ'
+          actions:
+          - type: uri
+            label: 'フィードバックはこちら'
+            uri: 'https://forms.gle/AqGV2gkvaBXujZrp6'
