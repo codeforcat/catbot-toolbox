@@ -29,7 +29,7 @@
       },
       "action":{
         "type":"uri",
-        "label":"問題点やご意見などフィードバックはこちら",
+        "label":"問題点やご意見はこちら",
         "uri":"https://forms.gle/AqGV2gkvaBXujZrp6"
       }
     },
