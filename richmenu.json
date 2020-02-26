@@ -11,13 +11,26 @@
       "bounds":{
         "x":0,
         "y":0,
-        "width":2500,
+        "width":2080,
         "height":845
       },
       "action":{
         "type":"message",
         "label":"テーマから選ぼう",
         "text":"テーマから選ぼう"
+      }
+    },
+    {
+      "bounds":{
+        "x":2081,
+        "y":0,
+        "width":420,
+        "height":845
+      },
+      "action":{
+        "type":"uri",
+        "label":"問題点やご意見などフィードバックはこちら",
+        "uri":"https://forms.gle/AqGV2gkvaBXujZrp6"
       }
     },
     {
